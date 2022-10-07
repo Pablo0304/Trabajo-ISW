@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.BusinessLogic.Entities
+namespace ClassLibrary.Entities
 {
     public partial class Magazine
     {

@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.Persistence.Entities
+namespace ClassLibrary.Entities
 {
     public partial class Area
     {
-        private int id { get; set; } // Id
+        private int Id { get; set; } // Id
 
-        private string name { get; set; } // name
+        private string Name { get; set; } // name
 
-        private User usuario { get; set; } // Usuario editor de esa Area
+        private User User { get; set; } // Usuario editor de esa Area
 
-        private Magazine revista { get; set; } // Revista que contiene esta Area
+        private Magazine Revista { get; set; } // Revista que contiene esta Area
 
-        private List<Paper> paperList { get; set; } // Papers que pertenecen a esa Area
+        private List<Paper> PaperList { get; set; } // Papers que pertenecen a esa Area
     }
 }
