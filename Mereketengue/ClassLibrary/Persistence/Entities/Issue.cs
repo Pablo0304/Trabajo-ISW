@@ -8,5 +8,15 @@ namespace ClassLibrary.Persistence.Entities
 {
     internal class Issue
     {
+        private int Id { get; set; } // Id
+
+        private int Number { get; set; } // number
+
+        private DateTime? PublicationDate { get; set; } // fecha de publicación
+
+        private List<Paper> papers { get; set; } // lista con Paper de una Issue en concreto
+
+        private Magazine magazine { get; set; } // Magazine a la que hace referencia el Issue
+
     }
 }

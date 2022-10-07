@@ -8,5 +8,12 @@ namespace ClassLibrary.Persistence.Entities
 {
     internal class Person
     {
+        private int Id { get; set; } // Id
+
+        private string Name { get; set; } // Name
+
+        private string Surname { get; set; } // Surname
+
+        private Paper paper { get; set; } // Paper del que se encarngan
     }
 }
