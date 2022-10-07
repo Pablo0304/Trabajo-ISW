@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.BusinessLogic.Entities
 {
-    internal class Issue
+    public partial class Issue
     {
     }
 }

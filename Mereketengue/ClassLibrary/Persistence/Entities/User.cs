@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.Persistence.Entities
 {
-    partial class User : Person
+    public partial class User : Person
     {
         private bool Alerted { get; set; } // Alerteds
 

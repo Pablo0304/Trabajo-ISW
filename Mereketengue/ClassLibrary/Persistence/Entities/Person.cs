@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.Persistence.Entities
 {
-    internal class Person
+    public partial class Person
     {
         private int Id { get; set; } // Id
 

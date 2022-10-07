@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary.Persistence.Entities
 {
-    internal class Evaluation
+    public partial class Evaluation
     {
         private Boolean Accepted { get; set; } // estado
 
