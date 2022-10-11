@@ -14,12 +14,12 @@ namespace ClassLibrary.Entities
             this.title = title;
 
             // Relaciones a 1
-            user = usuario;
-            uploadDate = uploadDate;
-            area = area;
-            coAuthors = coAuthors;
-            issue = issue;
-            evaluacion = evaluacion;
+            this.user = user;
+            this.uploadDate = uploadDate;
+            this.area = area;
+            this.coAuthors = coAuthors;
+            this.issue = issue;
+            this.evaluacion = evaluacion;
 
         }
     

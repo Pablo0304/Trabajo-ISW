@@ -12,11 +12,11 @@ namespace ClassLibrary.Entities
             issues = new List<Issue>();
             areas = new List<Area>();
         }
-        public Magazine(String name, User usuario) { 
+        public Magazine(String name, User user) { 
             this.name = name;
 
             // Relaciones a 1
-            user = usuario;
+            this.user = user;
 
             // Colecciones
             this.issues = new List<Issue>();
