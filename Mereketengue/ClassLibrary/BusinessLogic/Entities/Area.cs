@@ -11,20 +11,20 @@ namespace ClassLibrary.Entities
         public Area()
         {
             // Colecciones
-            PaperList = new List<Paper>();
+            paperList = new List<Paper>();
         }
 
-        public Area(string name, User usuario, Magazine revista)
+        public Area(string name, User user, Magazine revista)
         {
             // No se le da valor a Id porque lo hará EF
-            this.Name = name;
+            this.name = name;
 
             // Relaciones a 1
-            User = usuario;
-            Revista = revista;
+            this.user = user;
+            this.revista = revista;
 
             // Colecciones
-            this.PaperList = new List<Paper>();
+            this.paperList = new List<Paper>();
         }
     }
 }

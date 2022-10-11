@@ -8,15 +8,15 @@ namespace ClassLibrary.Entities
 {
     public partial class User : Person
     {
-        private bool Alerted { get; set; } // Alerteds
+        private bool alerted { get; set; } // Alerteds
 
-        private string AreasOFInterest { get; set; } // AreasDeInteres
+        private string areasOFInterest { get; set; } // AreasDeInteres
 
-        private string Email { get; set; } // Email 
+        private string email { get; set; } // Email 
 
-        private string Login { get; set; } // Login
+        private string login { get; set; } // Login
 
-        private string Password { get; set; } // Password
+        private string password { get; set; } // Password
 
         private Area area { get; set; } // Area de la que es editor este user
 

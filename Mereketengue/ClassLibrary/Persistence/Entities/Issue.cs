@@ -8,11 +8,11 @@ namespace ClassLibrary.Entities
 {
     public partial class Issue
     {
-        private int Id { get; set; } // Id
+        private int id { get; set; } // Id
 
-        private int Number { get; set; } // number
+        private int number { get; set; } // number
 
-        private DateTime? PublicationDate { get; set; } // fecha de publicación
+        private DateTime? publicationDate { get; set; } // fecha de publicación
 
         private List<Paper> papers { get; set; } // lista con Paper de una Issue en concreto
 

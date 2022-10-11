@@ -8,14 +8,14 @@ namespace ClassLibrary.Entities
 {
     public partial class Area
     {
-        private int Id { get; set; } // Id
+        private int id { get; set; } // Id
 
-        private string Name { get; set; } // name
+        private String name { get; set; } // name
 
-        private User User { get; set; } // Usuario editor de esa Area
+        private User user { get; set; } // Usuario editor de esa Area
 
-        private Magazine Revista { get; set; } // Revista que contiene esta Area
+        private Magazine revista { get; set; } // Revista que contiene esta Area
 
-        private List<Paper> PaperList { get; set; } // Papers que pertenecen a esa Area
+        private List<Paper> paperList { get; set; } // Papers que pertenecen a esa Area
     }
 }
