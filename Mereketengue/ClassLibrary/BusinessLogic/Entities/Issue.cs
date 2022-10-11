@@ -8,6 +8,21 @@ namespace ClassLibrary.Entities
 {
     public partial class Issue
     {
+        public Issue() { 
+            // Colecciones
+            paperList = new List<Paper>();
+        }
+
+        public Issue(DateTime? publicationDate, Magazine magazine)
+        {
+            this.publicationDate = publicationDate;
+
+            // Relaciones a 1
+            this.magazine = magazine;
+
+            // Colecciones
+            this.paperList = new List<Paper>();
+        }
 
     }
 
