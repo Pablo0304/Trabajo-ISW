@@ -10,10 +10,10 @@ namespace ClassLibrary.Entities
     {
         private int id { get; set; } // Id
 
-        private string name { get; set; } // Name
+        private String name { get; set; } // Name
 
-        private string surname { get; set; } // Surname
+        private String surname { get; set; } // Surname
 
-        private Paper paper { get; set; } // Paper del que se encarngan
+        private List<Paper> coAuthoredPapers { get; set; } // Paper del que se encarngan
     }
 }

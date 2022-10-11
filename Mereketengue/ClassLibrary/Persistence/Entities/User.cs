@@ -10,19 +10,19 @@ namespace ClassLibrary.Entities
     {
         private bool alerted { get; set; } // Alerteds
 
-        private string areasOFInterest { get; set; } // AreasDeInteres
+        private String areasOFInterest { get; set; } // AreasDeInteres
 
-        private string email { get; set; } // Email 
+        private String email { get; set; } // Email 
 
-        private string login { get; set; } // Login
+        private String login { get; set; } // Login
 
-        private string password { get; set; } // Password
+        private String password { get; set; } // Password
 
         private Area area { get; set; } // Area de la que es editor este user
 
         private Magazine magazine { get; set; } // Magazine de la que es editor este user
 
-        private Paper paper { get; set; } // Paper del que se encarga este User
+        private List<Paper> paperUser { get; set; } // Paper del que se encarga este User
 
 
     }
