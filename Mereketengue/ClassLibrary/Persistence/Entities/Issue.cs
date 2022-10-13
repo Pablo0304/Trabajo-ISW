@@ -14,7 +14,7 @@ namespace ClassLibrary.Entities
 
         private DateTime? publicationDate { get; set; } // fecha de publicación
 
-        private List<Paper> papers { get; set; } // lista con Paper de una Issue en concreto
+        private List<Paper> paperList { get; set; } // lista con Paper de una Issue en concreto
 
         private Magazine magazine { get; set; } // Magazine a la que hace referencia el Issue
 
