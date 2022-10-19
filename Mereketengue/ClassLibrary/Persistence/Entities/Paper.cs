@@ -10,7 +10,7 @@ namespace Magazine.Entities
     {
         private int Id { get; set; } // Id
 
-        private string Title { get; set; } // título
+        private String Title { get; set; } // título
 
         private DateTime UploadDate { get; set; } // fecha de subida
 

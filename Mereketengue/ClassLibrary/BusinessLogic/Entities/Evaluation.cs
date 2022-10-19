@@ -12,14 +12,15 @@ namespace Magazine.Entities
         {
         }
 
-        public Evaluation(Boolean accepted, String coments, DateTime date, Paper paper)
+        public Evaluation(Boolean accepted, String comments, DateTime date, int id, Paper paper)
         {
-            this.accepted = accepted;
-            this.coments = coments;
-            this.date = date;
+            this.Accepted = accepted;
+            this.Comments = comments;
+            this.Date = date;
+            this.Id = id;
 
             // Relaciones a 1
-            this.paper = paper;
+            Paper = paper;
         }
     }
 }

@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{EC8A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagazineLib", "ClassLibrary\MagazineLib.csproj", "{023F5C15-153C-4B2B-BC44-2E00FC35869B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagazineObjectDesignTests", "MagazineObjectDesignTests\MagazineObjectDesignTests.csproj", "{4011CF53-3F2A-4236-8013-3531C2160163}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,12 +29,17 @@ Global
 		{023F5C15-153C-4B2B-BC44-2E00FC35869B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{023F5C15-153C-4B2B-BC44-2E00FC35869B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{023F5C15-153C-4B2B-BC44-2E00FC35869B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4011CF53-3F2A-4236-8013-3531C2160163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4011CF53-3F2A-4236-8013-3531C2160163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4011CF53-3F2A-4236-8013-3531C2160163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4011CF53-3F2A-4236-8013-3531C2160163}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{023F5C15-153C-4B2B-BC44-2E00FC35869B} = {EC8A565B-4396-447A-BDC5-21ED9A1A7F96}
+		{4011CF53-3F2A-4236-8013-3531C2160163} = {55C068AE-7000-4C7F-9A74-03F405092690}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E022E9DE-C3A2-4103-A088-5FBD3F624851}

@@ -8,20 +8,22 @@ namespace Magazine.Entities
 {
     public partial class Issue
     {
-        public Issue() { 
+        public Issue() {
             // Colecciones
-            paperList = new List<Paper>();
+            PublishedPapers = new List<Paper>();
         }
 
-        public Issue(DateTime? publicationDate, Magazine magazine)
+        public Issue(int id, int number, DateTime? publicationDate, Magazine magazine)
         {
-            this.publicationDate = publicationDate;
+            this.PublicationDate = publicationDate;
+            this.Number = number;
+            this.Id = id;
 
             // Relaciones a 1
-            this.magazine = magazine;
+            Magazine = magazine;
 
             // Colecciones
-            this.paperList = new List<Paper>();
+            PublishedPapers = new List<Paper>();
         }
 
     }

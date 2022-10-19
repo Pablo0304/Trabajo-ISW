@@ -10,25 +10,25 @@ namespace Magazine.Entities
 
         public User() {
             //Colecciones
-            paperUser = new List<Paper>();
+            MainAuthoredPapers = new List<Paper>();
         }
 
         public User(bool alerted, String areasOfInterest, String email, String login, String password,
                     Area area, Magazine magazine) {
             
             //Atributos
-            this.alerted = alerted; 
-            this.areasOFInterest = areasOfInterest;
-            this.email = email;
-            this.login = login; 
-            this.password = password;
+            this.Alerted = alerted; 
+            this.AreasOfInterest = areasOfInterest;
+            this.Email = email;
+            this.Login = login; 
+            this.Password = password;
 
             //Relaciones a 1
-            this.area = area;   
-            this.magazine = magazine;
+            Area = area;   
+            Magazine = magazine;
 
             //Colecciones
-            paperUser = new List<Paper>();
+            MainAuthoredPapers = new List<Paper>();
         }
 
     }

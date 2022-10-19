@@ -10,16 +10,20 @@ namespace Magazine.Entities
     {
         public Paper() { 
         }
-        public Paper(String title, DateTime uploadDate, Area area, User user, Person coAuthors, Issue issue, Evaluation evaluacion) { 
-            this.title = title;
+        public Paper(int id, String title, DateTime uploadDate, Area evaluationPendingArea, Area belongingArea,
+            Area publicationPendingArea, User resposible, Person coAuthors, Issue issue, Evaluation evaluation) { 
+            this.Id = id;
+            this.Title = title;
+            this.UploadDate = uploadDate;
 
             // Relaciones a 1
-            this.user = user;
-            this.uploadDate = uploadDate;
-            this.area = area;
-            this.coAuthors = coAuthors;
-            this.issue = issue;
-            this.evaluacion = evaluacion;
+            EvaluationPendingArea = evaluationPendingArea;
+            BelongingArea = belongingArea;
+            PublicationPendingArea = publicationPendingArea;
+            Resposible = resposible;
+            CoAuthors = coAuthors;
+            Issue = issue;
+            Evaluation = evaluation;
 
         }
     

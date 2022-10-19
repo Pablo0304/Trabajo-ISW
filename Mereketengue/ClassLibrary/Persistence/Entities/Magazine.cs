@@ -10,7 +10,7 @@ namespace Magazine.Entities
     {
         private int Id { get; set; } // Id
 
-        private string Name { get; set; } // name
+        private String Name { get; set; } // name
 
         private List<Issue> Issues { get; set; } // lista de Issues de esa revista
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Magazine.Entities
 {
@@ -11,20 +12,25 @@ namespace Magazine.Entities
         public Area()
         {
             // Colecciones
-            paperList = new List<Paper>();
+            Papers = new List<Paper>();
+            EvaluationPending = new List<Paper>();
+            PublicationPending = new List<Paper>();
         }
 
-        public Area(string name, User user, Magazine revista)
+        public Area(int id, String name, User editor, Magazine magazine)
         {
             // No se le da valor a Id porque lo hará EF
-            this.name = name;
+            this.Id = id;
+            this.Name = name;
+            this.Editor = editor;
 
             // Relaciones a 1
-            this.user = user;
-            this.revista = revista;
+            Magazine = magazine;
 
             // Colecciones
-            this.paperList = new List<Paper>();
+            Papers = new List<Paper>();
+            EvaluationPending = new List<Paper>();
+            PublicationPending = new List<Paper>();
         }
     }
 }

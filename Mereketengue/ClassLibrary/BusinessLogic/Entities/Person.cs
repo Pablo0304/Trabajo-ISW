@@ -10,18 +10,17 @@ namespace Magazine.Entities
     {
         public Person() 
         {
-            coAuthoredPapers = new List<Paper>();
+            CoAuthoredPapers = new List<Paper>();
         }
 
         public Person(int id, String name, String surname)
         {
-            //Atributos
-            this.id = id;
-            this.name = name;
-            this.surname = surname;
+            this.Id = id;
+            this.Name = name;
+            this.Surname = surname;
 
             //Colecciones
-            coAuthoredPapers = new List<Paper>();
+            CoAuthoredPapers = new List<Paper>();
         }
     }
 }
