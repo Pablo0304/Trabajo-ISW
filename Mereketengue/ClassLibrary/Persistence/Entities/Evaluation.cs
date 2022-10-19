@@ -8,15 +8,15 @@ namespace ClassLibrary.Entities
 {
     public partial class Evaluation
     {
-        private Boolean accepted { get; set; } // estado
+        private Boolean Accepted { get; set; } // estado
 
-        private String coments { get; set; } // comentarios
+        private String Comments { get; set; } // comentarios
 
-        private DateTime date { get; set; } // fecha 
+        private DateTime Date { get; set; } // fecha 
 
-        private int id { get; set; } // Id
+        private int Id { get; set; } // Id
 
-        private Paper paper { get; set; } // Paper al que hacer referencia la Evaluation
+        private Paper Paper { get; set; } // Paper al que hacer referencia la Evaluation
 
     }
 }

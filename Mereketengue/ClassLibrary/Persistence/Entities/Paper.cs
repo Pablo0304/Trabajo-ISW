@@ -8,20 +8,24 @@ namespace ClassLibrary.Entities
 {
     public partial class Paper
     {
-        private int id { get; set; } // Id
+        private int Id { get; set; } // Id
 
-        private string title { get; set; } // título
+        private string Title { get; set; } // título
 
-        private DateTime uploadDate { get; set; } // fecha de subida
+        private DateTime UploadDate { get; set; } // fecha de subida
 
-        private Area area { get; set; } // area a la que pertenece
+        private Area EvaluationPendingArea { get; set; } 
 
-        private User user { get; set; } // responsable
+        private Area BelongingArea { get; set; } 
 
-        private Person coAuthors { get; set; } // autores
+        private Area PublicationPendingArea { get; set; } 
 
-        private Issue issue { get; set; } // Issue a la que pertenece
+        private User Resposible { get; set; } // responsable
 
-        private Evaluation evaluacion { get; set; } // evaluacion del Paper
+        private Person CoAuthors { get; set; } // autores
+
+        private Issue Issue { get; set; } // Issue a la que pertenece
+
+        private Evaluation Evaluation { get; set; } // evaluacion del Paper
     }
 }

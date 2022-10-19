@@ -8,21 +8,21 @@ namespace ClassLibrary.Entities
 {
     public partial class User : Person
     {
-        private bool alerted { get; set; } // Alerteds
+        private bool Alerted { get; set; } // Alerteds
 
-        private String areasOFInterest { get; set; } // AreasDeInteres
+        private String AreasOfInterest { get; set; } // AreasDeInteres
 
-        private String email { get; set; } // Email 
+        private String Email { get; set; } // Email 
 
-        private String login { get; set; } // Login
+        private String Login { get; set; } // Login
 
-        private String password { get; set; } // Password
+        private String Password { get; set; } // Password
 
-        private Area area { get; set; } // Area de la que es editor este user
+        private Area Area { get; set; } // Area de la que es editor este user
 
-        private Magazine magazine { get; set; } // Magazine de la que es editor este user
+        private Magazine Magazine { get; set; } // Magazine de la que es editor este user
 
-        private List<Paper> paperUser { get; set; } // Paper del que se encarga este User
+        private List<Paper> MainAuthoredPapers { get; set; } // Paper del que se encarga este User
 
 
     }

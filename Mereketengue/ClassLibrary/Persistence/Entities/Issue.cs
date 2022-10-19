@@ -8,15 +8,15 @@ namespace ClassLibrary.Entities
 {
     public partial class Issue
     {
-        private int id { get; set; } // Id
+        private int Id { get; set; } // Id
 
-        private int number { get; set; } // number
+        private int Number { get; set; } // number
 
-        private DateTime? publicationDate { get; set; } // fecha de publicación
+        private DateTime? PublicationDate { get; set; } // fecha de publicación
 
-        private List<Paper> paperList { get; set; } // lista con Paper de una Issue en concreto
+        private List<Paper> PublishedPapers { get; set; } // lista con Paper de una Issue en concreto
 
-        private Magazine magazine { get; set; } // Magazine a la que hace referencia el Issue
+        private Magazine Magazine { get; set; } // Magazine a la que hace referencia el Issue
 
     }
 }

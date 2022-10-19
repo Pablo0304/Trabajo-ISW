@@ -8,12 +8,12 @@ namespace ClassLibrary.Entities
 {
     public partial class Person
     {
-        private int id { get; set; } // Id
+        private int Id { get; set; } // Id
 
-        private String name { get; set; } // Name
+        private String Name { get; set; } // Name
 
-        private String surname { get; set; } // Surname
+        private String Surname { get; set; } // Surname
 
-        private List<Paper> coAuthoredPapers { get; set; } // Paper del que se encarngan
+        private List<Paper> CoAuthoredPapers { get; set; } // Paper del que se encarngan
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,14 +8,19 @@ namespace ClassLibrary.Entities
 {
     public partial class Area
     {
-        private int id { get; set; } // Id
+        private int Id { get; set; } // Id
 
-        private String name { get; set; } // name
+        private String Name { get; set; } // name
 
-        private User user { get; set; } // Usuario editor de esa Area
+        private User Editor { get; set; } // Usuario editor de esa Area
 
-        private Magazine revista { get; set; } // Revista que contiene esta Area
+        private Magazine Magazine { get; set; } // Revista que contiene esta Area
 
-        private List<Paper> paperList { get; set; } // Papers que pertenecen a esa Area
+        private List<Paper> Papers { get; set; } 
+
+        private List<Paper> EvaluationPending { get; set; }
+
+        private List<Paper> PublicationPending { get; set; }
+
     }
 }
