@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.Entities
+namespace Magazine.Entities
 {
     public partial class Area
     {
