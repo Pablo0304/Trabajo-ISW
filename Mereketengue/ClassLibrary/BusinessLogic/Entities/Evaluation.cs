@@ -12,7 +12,7 @@ namespace ClassLibrary.Entities
         {
         }
 
-        public Area(Boolean accepted, String coments, DateTime date, Paper paper)
+        public Evaluation(Boolean accepted, String coments, DateTime date, Paper paper)
         {
             this.accepted = accepted;
             this.coments = coments;
