@@ -8,15 +8,15 @@ namespace Magazine.Entities
 {
     public partial class Issue
     {
-        private int Id { get; set; } // Id
+        public int Id { get; set; } // Id
 
-        private int Number { get; set; } // number
+        public int Number { get; set; } // number
 
-        private DateTime? PublicationDate { get; set; } // fecha de publicación
+        public DateTime? PublicationDate { get; set; } // fecha de publicación
 
-        private ICollection<Paper> PublishedPapers { get; set; } // lista con Paper de una Issue en concreto
+        public virtual ICollection<Paper> PublishedPapers { get; set; } // lista con Paper de una Issue en concreto
 
-        private Magazine Magazine { get; set; } // Magazine a la que hace referencia el Issue
+        public virtual Magazine Magazine { get; set; } // Magazine a la que hace referencia el Issue
 
     }
 }

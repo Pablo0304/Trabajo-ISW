@@ -8,14 +8,14 @@ namespace Magazine.Entities
 {
     public partial class Magazine
     {
-        private int Id { get; set; } // Id
+        public int Id { get; set; } // Id
 
-        private String Name { get; set; } // name
+        public String Name { get; set; } // name
 
-        private ICollection<Issue> Issues { get; set; } // lista de Issues de esa revista
+        public virtual ICollection<Issue> Issues { get; set; } // lista de Issues de esa revista
 
-        private ICollection<Area> Areas { get; set; } // lista de areas de esa revista
+        public virtual ICollection<Area> Areas { get; set; } // lista de areas de esa revista
 
-        private User ChiefEditor { get; set; } // Usuario editor adignado a esa revista
+        public virtual User ChiefEditor { get; set; } // Usuario editor adignado a esa revista
     }
 }

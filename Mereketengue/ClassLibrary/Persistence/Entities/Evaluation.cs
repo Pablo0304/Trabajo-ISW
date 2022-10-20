@@ -16,7 +16,7 @@ namespace Magazine.Entities
 
         public int Id { get; set; } // Id
 
-        public Paper Paper { get; set; } // Paper al que hacer referencia la Evaluation
+        public virtual Paper Paper { get; set; } // Paper al que hacer referencia la Evaluation
 
     }
 }

@@ -12,9 +12,9 @@ namespace Magazine.Entities
 
         public String Name { get; set; } // name
 
-        public User Editor { get; set; } // Usuario editor de esa Area
+        public virtual User Editor { get; set; } // Usuario editor de esa Area
 
-        public Magazine Magazine { get; set; } // Revista que contiene esta Area
+        public virtual Magazine Magazine { get; set; } // Revista que contiene esta Area
 
         public virtual ICollection<Paper> Papers { get; set; }
 
