@@ -16,7 +16,6 @@ namespace Magazine.Entities
         public Issue(DateTime? publicationDate, Magazine magazine)
         {
             this.PublicationDate = publicationDate;
-            
             // Relaciones a 1
             Magazine = magazine;
 

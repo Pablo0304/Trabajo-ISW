@@ -13,7 +13,7 @@ namespace Magazine.Entities
             CoAuthoredPapers = new List<Paper>();
         }
 
-        public Person(String Name, String Surname)
+        public Person(String Name, String Surname) : this()
         {
             this.Name = Name;
             this.Surname = Surname;

@@ -13,8 +13,8 @@ namespace Magazine.Entities
         {
             // Colecciones
             Papers = new List<Paper>();
-            EvaluationPending = new List<Paper>();
-            PublicationPending = new List<Paper>();
+            EvaluationPending = new List<Paper> ();
+            PublicationPending = new List<Paper> ();
         }
 
         public Area(String name, User editor, Magazine magazine)

@@ -13,7 +13,7 @@ namespace Magazine.Entities
         public Paper(String title, DateTime uploadDate, Area evaluationPendingArea, Area belongingArea,
             Area publicationPendingArea, User resposible, Person coAuthors, Issue issue, Evaluation evaluation) { 
 
-            this.Title = title;
+            Title = title;
             this.UploadDate = uploadDate;
 
             // Relaciones a 1

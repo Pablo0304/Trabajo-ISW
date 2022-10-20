@@ -18,12 +18,13 @@ namespace Magazine.Entities
 
         public String Password { get; set; } // Password
 
-        public virtual Area { get; set; } // Area de la que es editor este user
+        public virtual Area Area{ get; set; } // Area de la que es editor este user
 
         public virtual Magazine Magazine { get; set; } // Magazine de la que es editor este user
 
         public virtual ICollection<Paper> MainAuthoredPapers { get; set; } // Paper del que se encarga este User
-
-
     }
+
+
+    
 }

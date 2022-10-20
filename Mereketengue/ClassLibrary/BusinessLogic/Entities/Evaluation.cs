@@ -12,7 +12,7 @@ namespace Magazine.Entities
         {
         }
 
-        public Evaluation(Boolean accepted, String comments, DateTime date, Paper paper)
+        public Evaluation(bool accepted, string comments, DateTime date, Paper paper)
         {
             this.Accepted = accepted;
             this.Comments = comments;
