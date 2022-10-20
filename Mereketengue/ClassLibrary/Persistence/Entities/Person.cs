@@ -8,12 +8,12 @@ namespace Magazine.Entities
 {
     public partial class Person
     {
-        private int Id { get; set; } // Id
+        public int Id { get; set; } // Id
 
-        private String Name { get; set; } // Name
+        public String Name { get; set; } // Name
 
-        private String Surname { get; set; } // Surname
+        public String Surname { get; set; } // Surname
 
-        private List<Paper> CoAuthoredPapers { get; set; } // Paper del que se encarngan
+        public virtual ICollection<Paper> CoAuthoredPapers { get; set; } // Paper del que se encarngan
     }
 }

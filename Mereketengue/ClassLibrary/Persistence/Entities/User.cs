@@ -8,21 +8,21 @@ namespace Magazine.Entities
 {
     public partial class User : Person
     {
-        private bool Alerted { get; set; } // Alerteds
+        public bool Alerted { get; set; } // Alerteds
 
-        private String AreasOfInterest { get; set; } // AreasDeInteres
+        public String AreasOfInterest { get; set; } // AreasDeInteres
 
-        private String Email { get; set; } // Email 
+        public String Email { get; set; } // Email 
 
-        private String Login { get; set; } // Login
+        public String Login { get; set; } // Login
 
-        private String Password { get; set; } // Password
+        public String Password { get; set; } // Password
 
-        private Area Area { get; set; } // Area de la que es editor este user
+        public virtual Area { get; set; } // Area de la que es editor este user
 
-        private Magazine Magazine { get; set; } // Magazine de la que es editor este user
+        public virtual Magazine Magazine { get; set; } // Magazine de la que es editor este user
 
-        private List<Paper> MainAuthoredPapers { get; set; } // Paper del que se encarga este User
+        public virtual ICollection<Paper> MainAuthoredPapers { get; set; } // Paper del que se encarga este User
 
 
     }
