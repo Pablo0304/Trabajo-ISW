@@ -8,19 +8,19 @@ namespace Magazine.Entities
 {
     public partial class Area
     {
-        private int Id { get; set; } // Id
+        public int Id { get; set; } // Id
 
-        private String Name { get; set; } // name
+        public String Name { get; set; } // name
 
-        private User Editor { get; set; } // Usuario editor de esa Area
+        public User Editor { get; set; } // Usuario editor de esa Area
 
-        private Magazine Magazine { get; set; } // Revista que contiene esta Area
+        public Magazine Magazine { get; set; } // Revista que contiene esta Area
 
-        private List<Paper> Papers { get; set; } 
+        public virtual ICollection<Paper> Papers { get; set; }
 
-        private List<Paper> EvaluationPending { get; set; }
+        public virtual ICollection<Paper> EvaluationPending { get; set; }
 
-        private List<Paper> PublicationPending { get; set; }
+        public virtual ICollection<Paper> PublicationPending { get; set; }
 
     }
 }

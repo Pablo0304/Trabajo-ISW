@@ -14,7 +14,7 @@ namespace Magazine.Entities
 
         private DateTime? PublicationDate { get; set; } // fecha de publicación
 
-        private List<Paper> PublishedPapers { get; set; } // lista con Paper de una Issue en concreto
+        private ICollection<Paper> PublishedPapers { get; set; } // lista con Paper de una Issue en concreto
 
         private Magazine Magazine { get; set; } // Magazine a la que hace referencia el Issue
 

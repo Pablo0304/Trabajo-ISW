@@ -12,9 +12,9 @@ namespace Magazine.Entities
 
         private String Name { get; set; } // name
 
-        private List<Issue> Issues { get; set; } // lista de Issues de esa revista
+        private ICollection<Issue> Issues { get; set; } // lista de Issues de esa revista
 
-        private List<Area> Areas { get; set; } // lista de areas de esa revista
+        private ICollection<Area> Areas { get; set; } // lista de areas de esa revista
 
         private User ChiefEditor { get; set; } // Usuario editor adignado a esa revista
     }

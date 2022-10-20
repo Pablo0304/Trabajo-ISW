@@ -12,9 +12,8 @@ namespace Magazine.Entities
             Issues = new List<Issue>();
             Areas = new List<Area>();
         }
-        public Magazine(int id, String name, User chiefEditor) {
+        public Magazine(String name, User chiefEditor) {
 
-            this.Id = id;
             this.Name = name;
 
             // Relaciones a 1

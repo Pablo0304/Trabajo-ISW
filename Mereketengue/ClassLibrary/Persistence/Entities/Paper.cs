@@ -8,24 +8,24 @@ namespace Magazine.Entities
 {
     public partial class Paper
     {
-        private int Id { get; set; } // Id
+        public int Id { get; set; } // Id
 
-        private String Title { get; set; } // título
+        public String Title { get; set; } // título
 
-        private DateTime UploadDate { get; set; } // fecha de subida
+        public DateTime UploadDate { get; set; } // fecha de subida
 
-        private Area EvaluationPendingArea { get; set; } 
+        public Area EvaluationPendingArea { get; set; }
 
-        private Area BelongingArea { get; set; } 
+        public Area BelongingArea { get; set; }
 
-        private Area PublicationPendingArea { get; set; } 
+        public Area PublicationPendingArea { get; set; }
 
-        private User Resposible { get; set; } // responsable
+        public User Resposible { get; set; } // responsable
 
-        private Person CoAuthors { get; set; } // autores
+        public Person CoAuthors { get; set; } // autores
 
-        private Issue Issue { get; set; } // Issue a la que pertenece
+        public Issue Issue { get; set; } // Issue a la que pertenece
 
-        private Evaluation Evaluation { get; set; } // evaluacion del Paper
+        public Evaluation Evaluation { get; set; } // evaluacion del Paper
     }
 }

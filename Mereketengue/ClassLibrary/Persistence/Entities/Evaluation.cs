@@ -8,15 +8,15 @@ namespace Magazine.Entities
 {
     public partial class Evaluation
     {
-        private Boolean Accepted { get; set; } // estado
+        public Boolean Accepted { get; set; } // estado
 
-        private String Comments { get; set; } // comentarios
+        public String Comments { get; set; } // comentarios
 
-        private DateTime Date { get; set; } // fecha 
+        public DateTime Date { get; set; } // fecha 
 
-        private int Id { get; set; } // Id
+        public int Id { get; set; } // Id
 
-        private Paper Paper { get; set; } // Paper al que hacer referencia la Evaluation
+        public Paper Paper { get; set; } // Paper al que hacer referencia la Evaluation
 
     }
 }

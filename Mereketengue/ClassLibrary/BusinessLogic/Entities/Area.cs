@@ -17,10 +17,9 @@ namespace Magazine.Entities
             PublicationPending = new List<Paper>();
         }
 
-        public Area(int id, String name, User editor, Magazine magazine)
+        public Area(String name, User editor, Magazine magazine)
         {
             // No se le da valor a Id porque lo hará EF
-            this.Id = id;
             this.Name = name;
             this.Editor = editor;
 
