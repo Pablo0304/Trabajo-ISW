@@ -12,14 +12,11 @@ namespace Magazine.Entities
         {
         }
 
-        public Evaluation(bool accepted, string comments, DateTime date, Paper paper)
+        public Evaluation(bool accepted, string comments, DateTime date)
         {
             this.Accepted = accepted;
             this.Comments = comments;
             this.Date = date;
-
-            // Relaciones a 1
-            Paper = paper;
         }
     }
 }

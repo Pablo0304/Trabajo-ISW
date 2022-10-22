@@ -10,20 +10,15 @@ namespace Magazine.Entities
     {
         public Paper() { 
         }
-        public Paper(String title, DateTime uploadDate, Area evaluationPendingArea, Area belongingArea,
-            Area publicationPendingArea, User resposible, Person coAuthors, Issue issue, Evaluation evaluation) { 
+        public Paper(String title, DateTime uploadDate, Area belongingArea, User resposible) { 
 
             Title = title;
             this.UploadDate = uploadDate;
 
             // Relaciones a 1
-            EvaluationPendingArea = evaluationPendingArea;
             BelongingArea = belongingArea;
-            PublicationPendingArea = publicationPendingArea;
             Resposible = resposible;
-            CoAuthors = coAuthors;
-            Issue = issue;
-            Evaluation = evaluation;
+
 
         }
     
