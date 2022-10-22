@@ -13,7 +13,7 @@ namespace Magazine.Entities
             MainAuthoredPapers = new List<Paper>();
         }
 
-        public User(String id, String name, String surname, Boolean alerted, String areasOfInterest, String email, String login, String password ): base (id, name, surname) {
+        public User(String id, String name, String surname, Boolean alerted, String areasOfInterest, String email, String login, String password ){
             
             //Atributos
             this.Alerted = alerted; 
@@ -21,6 +21,11 @@ namespace Magazine.Entities
             this.Email = email;
             this.Login = login; 
             this.Password = password;
+
+            //duda
+            this.Name = name;
+            this.Surname = surname;
+            this.Id = id;
 
             //Colecciones
             MainAuthoredPapers = new List<Paper>();
