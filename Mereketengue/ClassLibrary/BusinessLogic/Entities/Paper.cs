@@ -12,18 +12,18 @@ namespace Magazine.Entities
             //Coleccions
             CoAuthors = new List<Person>();
         }
-        public Paper(String title, DateTime uploadDate, Area belongingArea, User resposible) { 
+        public Paper(String title, DateTime uploadDate, Area belongingArea, User responsible) { 
 
             Title = title;
             this.UploadDate = uploadDate;
 
             // Relaciones a 1
             BelongingArea = belongingArea;
-            Resposible = resposible;
+            Responsible = responsible;
 
             //Coleccions
             CoAuthors = new List<Person>();
-            CoAuthors.Add(resposible);
+            CoAuthors.Add(responsible);
 
         }
     

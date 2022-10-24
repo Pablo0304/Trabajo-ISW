@@ -20,7 +20,7 @@ namespace Magazine.Entities
 
         public virtual Area PublicationPendingArea { get; set; }
 
-        public virtual User Resposible { get; set; } // responsable
+        public virtual User Responsible { get; set; } // responsable
 
         public virtual ICollection<Person> CoAuthors { get; set; } // Inicialitzar llista.
 
