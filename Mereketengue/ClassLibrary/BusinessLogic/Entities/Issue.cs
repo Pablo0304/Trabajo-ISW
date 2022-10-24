@@ -13,9 +13,11 @@ namespace Magazine.Entities
             PublishedPapers = new List<Paper>();
         }
 
-        public Issue(DateTime? publicationDate, Magazine magazine)
+        public Issue(DateTime? publicationDate, Magazine magazine) // espera el parametro number (int)
         {
             this.PublicationDate = publicationDate;
+            // this.Number = Number;
+            
             // Relaciones a 1
             Magazine = magazine;
 
