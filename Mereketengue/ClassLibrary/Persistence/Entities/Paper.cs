@@ -22,7 +22,7 @@ namespace Magazine.Entities
 
         public virtual User Resposible { get; set; } // responsable
 
-        public virtual Person CoAuthors { get; set; } // autores
+        public virtual ICollection<Person> CoAuthors { get; set; } // Inicialitzar llista.
 
         public virtual Issue Issue { get; set; } // Issue a la que pertenece
 

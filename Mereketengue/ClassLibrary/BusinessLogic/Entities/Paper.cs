@@ -19,6 +19,8 @@ namespace Magazine.Entities
             BelongingArea = belongingArea;
             Resposible = resposible;
 
+            //Coleccions
+            CoAuthors = new List<Person>();
 
         }
     
