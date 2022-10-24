@@ -10,6 +10,8 @@ namespace Magazine.Entities
     {
         public Person() 
         {
+            //Colecciones
+            CoAuthoredPapers = new List<Paper>();
         }
 
         public Person(String id, String name, String surname)
@@ -17,6 +19,9 @@ namespace Magazine.Entities
             this.Id = id;
             this.Name = name;
             this.Surname = surname;
+
+            //Colecciones
+            CoAuthoredPapers = new List<Paper>();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Magazine.Entities
     public partial class Paper
     {
         public int Id { get; set; } // Id
-
+        
         public String Title { get; set; } // título
 
         public DateTime UploadDate { get; set; } // fecha de subida

@@ -8,7 +8,9 @@ namespace Magazine.Entities
 {
     public partial class Paper
     {
-        public Paper() { 
+        public Paper() {
+            //Coleccions
+            CoAuthors = new List<Person>();
         }
         public Paper(String title, DateTime uploadDate, Area belongingArea, User resposible) { 
 
@@ -21,6 +23,7 @@ namespace Magazine.Entities
 
             //Coleccions
             CoAuthors = new List<Person>();
+            CoAuthors.Add(resposible);
 
         }
     
