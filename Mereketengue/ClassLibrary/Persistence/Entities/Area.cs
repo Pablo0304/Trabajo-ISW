@@ -18,7 +18,6 @@ namespace Magazine.Entities
         public virtual User Editor { get; set; } // Usuario editor de esa Area
 
         [Required]
-        [InverseProperty("Areas")]
         public virtual Magazine Magazine { get; set; } // Revista que contiene esta Area
 
         public virtual ICollection<Paper> Papers { get; set; }

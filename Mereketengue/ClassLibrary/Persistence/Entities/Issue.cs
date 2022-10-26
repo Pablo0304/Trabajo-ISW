@@ -19,7 +19,6 @@ namespace Magazine.Entities
         public virtual ICollection<Paper> PublishedPapers { get; set; } // lista con Paper de una Issue en concreto
 
         [Required]
-        [InverseProperty("Issues")]
         public virtual Magazine Magazine { get; set; } // Magazine a la que hace referencia el Issue
 
     }
