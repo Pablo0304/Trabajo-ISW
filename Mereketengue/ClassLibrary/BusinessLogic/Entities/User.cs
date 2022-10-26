@@ -22,11 +22,6 @@ namespace Magazine.Entities
             this.Login = login; 
             this.Password = password;
 
-            //duda
-            this.Name = name;
-            this.Surname = surname;
-            this.Id = id;
-
             //Colecciones
             MainAuthoredPapers = new List<Paper>();
         }
