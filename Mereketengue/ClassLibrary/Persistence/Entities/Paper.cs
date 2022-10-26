@@ -16,14 +16,14 @@ namespace Magazine.Entities
 
         public DateTime UploadDate { get; set; } // fecha de subida
 
-        [InverseProperty("EvaluationPending")]
+        // [InverseProperty("EvaluationPending")]
         public virtual Area EvaluationPendingArea { get; set; }
 
         [Required]
-        [InverseProperty("Papers")]
+        //[InverseProperty("Papers")]
         public virtual Area BelongingArea { get; set; }
 
-        [InverseProperty("PublicationPending")]
+        //[InverseProperty("PublicationPending")]
         public virtual Area PublicationPendingArea { get; set; }
 
         [Required]
