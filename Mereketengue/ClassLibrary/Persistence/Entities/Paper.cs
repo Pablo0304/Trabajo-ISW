@@ -10,7 +10,6 @@ namespace Magazine.Entities
 {
     public partial class Paper
     {
-        [Key]
         public int Id { get; set; } // Id
         
         public String Title { get; set; } // título
