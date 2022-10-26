@@ -13,15 +13,13 @@ namespace Magazine.Entities
             PublishedPapers = new List<Paper>();
         }
 
-        public Issue(int Number, Magazine magazine) // espera el parametro number (int)
+        public Issue(int Number, Magazine magazine) : this() // espera el parametro number (int)
         {
             this.Number = Number;
             
             // Relaciones a 1
             Magazine = magazine;
 
-            // Colecciones
-            PublishedPapers = new List<Paper>();
         }
 
     }

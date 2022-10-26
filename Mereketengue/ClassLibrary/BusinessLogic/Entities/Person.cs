@@ -14,14 +14,12 @@ namespace Magazine.Entities
             CoAuthoredPapers = new List<Paper>();
         }
 
-        public Person(String id, String name, String surname)
+        public Person(String id, String name, String surname) :this()
         {   
             this.Id = id;
             this.Name = name;
             this.Surname = surname;
 
-            //Colecciones
-            CoAuthoredPapers = new List<Paper>();
         }
     }
 }

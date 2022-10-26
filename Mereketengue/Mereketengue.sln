@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagazineObjectDesignTests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagazinePersistenceTests", "MagazinePersistenceTests\MagazinePersistenceTests.csproj", "{54877077-11BB-48B1-BC83-F287F137CF21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBTest", "DBTest\DBTest.csproj", "{7A34B489-87E1-4918-943F-1995F76CCE24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{54877077-11BB-48B1-BC83-F287F137CF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54877077-11BB-48B1-BC83-F287F137CF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54877077-11BB-48B1-BC83-F287F137CF21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A34B489-87E1-4918-943F-1995F76CCE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A34B489-87E1-4918-943F-1995F76CCE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A34B489-87E1-4918-943F-1995F76CCE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A34B489-87E1-4918-943F-1995F76CCE24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{023F5C15-153C-4B2B-BC44-2E00FC35869B} = {EC8A565B-4396-447A-BDC5-21ED9A1A7F96}
 		{4011CF53-3F2A-4236-8013-3531C2160163} = {55C068AE-7000-4C7F-9A74-03F405092690}
 		{54877077-11BB-48B1-BC83-F287F137CF21} = {55C068AE-7000-4C7F-9A74-03F405092690}
+		{7A34B489-87E1-4918-943F-1995F76CCE24} = {55C068AE-7000-4C7F-9A74-03F405092690}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E022E9DE-C3A2-4103-A088-5FBD3F624851}

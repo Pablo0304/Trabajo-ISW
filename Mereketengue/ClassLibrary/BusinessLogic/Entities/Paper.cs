@@ -12,7 +12,7 @@ namespace Magazine.Entities
             //Coleccions
             CoAuthors = new List<Person>();
         }
-        public Paper(String title, DateTime uploadDate, Area belongingArea, User responsible) { 
+        public Paper(String title, DateTime uploadDate, Area belongingArea, User responsible) : this() { 
 
             Title = title;
             this.UploadDate = uploadDate;
@@ -22,7 +22,6 @@ namespace Magazine.Entities
             Responsible = responsible;
 
             //Coleccions
-            CoAuthors = new List<Person>();
             CoAuthors.Add(responsible);
 
         }
