@@ -15,7 +15,6 @@ namespace Magazine.Entities
 
         public DateTime Date { get; set; } // fecha 
 
-        [Key]
         public int Id { get; set; } // Id
 
         public virtual Paper Paper { get; set; } // Paper al que hacer referencia la Evaluation

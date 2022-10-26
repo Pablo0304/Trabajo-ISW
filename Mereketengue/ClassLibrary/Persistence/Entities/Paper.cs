@@ -10,22 +10,23 @@ namespace Magazine.Entities
 {
     public partial class Paper
     {
-        [Key]
         public int Id { get; set; } // Id
         
         public String Title { get; set; } // título
 
         public DateTime UploadDate { get; set; } // fecha de subida
 
+        [InverseProperty("EvaluationPendingArea")]
         public virtual Area EvaluationPendingArea { get; set; }
 
         [Required]
+        [InverseProperty("Papers")]
         public virtual Area BelongingArea { get; set; }
 
+        [InverseProperty("PublicationPending")]
         public virtual Area PublicationPendingArea { get; set; }
 
         [Required]
-        [InverseProperty("MainAuthoredPapers")]
         public virtual User Responsible { get; set; } // responsable
 
         public virtual ICollection<Person> CoAuthors { get; set; } // Inicialitzar llista.

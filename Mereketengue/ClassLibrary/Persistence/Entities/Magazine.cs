@@ -9,7 +9,6 @@ namespace Magazine.Entities
 {
     public partial class Magazine
     {
-        [Key]
         public int Id { get; set; } // Id
 
         public String Name { get; set; } // name

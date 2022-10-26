@@ -23,10 +23,12 @@ namespace Magazine.Entities
             this.Password = password;
 
             //duda
-            base.Name = name;
+            this.Name = name;
             this.Surname = surname;
             this.Id = id;
-         
+
+            //Colecciones
+            MainAuthoredPapers = new List<Paper>();
         }
 
     }
