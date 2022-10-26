@@ -38,7 +38,7 @@ namespace MagazinePersistenceTests
         [TestCleanup]
         public void CleanTests()
         {
-            dal.RemoveAllData();
+                 dal.RemoveAllData();
         }
     }
 }

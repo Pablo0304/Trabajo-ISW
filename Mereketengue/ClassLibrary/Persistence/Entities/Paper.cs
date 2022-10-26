@@ -16,7 +16,7 @@ namespace Magazine.Entities
 
         public DateTime UploadDate { get; set; } // fecha de subida
 
-        [InverseProperty("EvaluationPendingArea")]
+        [InverseProperty("EvaluationPending")]
         public virtual Area EvaluationPendingArea { get; set; }
 
         [Required]
