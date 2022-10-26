@@ -24,11 +24,10 @@ namespace DBTest
             Console.WriteLine("===========================================");
             Console.WriteLine("\n// CREACIÓ D’UNA REVISTA i EL SEU EDITOR EN JEFE");
             User u1 = new User("1234", "Pepe", "TheBoss", false, "ninguna",
-           "pgarcia@gmail.com", "theboss", "1234");
+            "pgarcia@gmail.com", "theboss", "1234");
             dal.Insert<User>(u1);
             dal.Commit();
             Magazine.Entities.Magazine m = new Magazine.Entities.Magazine("Revista Universitaria", u1);
-
 
             u1.Magazine = m;
 
@@ -36,7 +35,7 @@ namespace DBTest
             dal.Commit();
             Console.WriteLine("Nom de la revista: " + m.Name);
             Console.WriteLine(" Editor de la revista: " + m.ChiefEditor.Name + " " +
-           m.ChiefEditor.Surname);
+            m.ChiefEditor.Surname);
 
             Console.ReadKey();
             // Populate here the rest of the database with data
