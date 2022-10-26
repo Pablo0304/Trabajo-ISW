@@ -20,10 +20,13 @@ namespace Magazine.Entities
         [Required]
         public virtual Magazine Magazine { get; set; } // Revista que contiene esta Area
 
+        [InverseProperty("BelongingArea")]
         public virtual ICollection<Paper> Papers { get; set; }
 
+        [InverseProperty("EvaluationPendingArea")]
         public virtual ICollection<Paper> EvaluationPending { get; set; }
 
+        [InverseProperty("PublicationPendingArea")]
         public virtual ICollection<Paper> PublicationPending { get; set; }
 
     }
