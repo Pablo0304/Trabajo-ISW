@@ -13,7 +13,8 @@ namespace DBTest2
     {
         static void Main(string[] args)
         {
-
+            IDAL dal = new EntityFrameworkDAL(new MagazineDbContext());
+            createSampleDB(dal);
         }
         private void createSampleDB(IDAL dal)
         {
