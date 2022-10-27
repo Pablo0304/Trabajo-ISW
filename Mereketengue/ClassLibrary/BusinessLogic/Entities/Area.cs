@@ -19,7 +19,7 @@ namespace Magazine.Entities
 
         public Area(String name, User editor, Magazine magazine) : this()
         {
-            // No se le da valor a Id porque lo hará EF
+            // No se le da valor  Id porque lo hará EF
             this.Name = name;
             this.Editor = editor;
 
