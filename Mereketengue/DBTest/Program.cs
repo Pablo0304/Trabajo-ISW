@@ -66,9 +66,9 @@ namespace DBTest
             dal.Commit();
 
             Area a2 = new Area("Coches", u2, m1);
-            m1.Areas.Add(a1);
-            u2.Area = a1;
-            dal.Insert<Area>(a1);
+            m1.Areas.Add(a2);
+            u2.Area = a2;
+            dal.Insert<Area>(a2);
             dal.Commit();
 
 
