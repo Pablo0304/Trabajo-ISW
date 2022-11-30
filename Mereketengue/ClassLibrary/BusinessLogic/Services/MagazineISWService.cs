@@ -113,7 +113,15 @@ namespace Magazine.Services
 
 
         #region Issue
-
+        Issue BuildIssue(int number){
+            if (dal.Exists<Issue>(number))
+            {
+                dal.GetById<Issue>(number);
+            }
+            else { 
+                
+            }
+        }
 
         #endregion
 
