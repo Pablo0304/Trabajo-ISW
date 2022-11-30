@@ -59,6 +59,9 @@
     <Compile Include="BusinessLogic\Entities\Person.cs" />
     <Compile Include="BusinessLogic\Entities\Magazine.cs" />
     <Compile Include="BusinessLogic\Entities\Paper.cs" />
+    <Compile Include="BusinessLogic\Services\IMagazineISWService-1.cs" />
+    <Compile Include="BusinessLogic\Services\MagazineISWService.cs" />
+    <Compile Include="BusinessLogic\Services\ServiceException.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Persistence\Class1.cs" />
     <Compile Include="Persistence\Entities\User.cs" />
