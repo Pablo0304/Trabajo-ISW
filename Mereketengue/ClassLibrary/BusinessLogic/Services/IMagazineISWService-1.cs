@@ -50,11 +50,12 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        void AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
+        User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
 
         #endregion
 
         #region Paper
+        // void addPaper(String Title, DateTime uploaddate, Area evaluationPendingArea, Area belongingArea, Area publicationPendingArea, User responsible
         void EnviarPaper(Area area, String Title);
         void ServicioEvaluatePaper(Area area);
         void ListarArticuloyPaper();
@@ -73,7 +74,7 @@ namespace Magazine.Services
         #endregion
 
         #region Magazine
-        
+        void AddMagazine(string name, User chiefEditorId);
 
 
         #endregion
