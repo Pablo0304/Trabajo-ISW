@@ -21,7 +21,7 @@ namespace Magazine.Services
         public MagazineISWService(IDAL dal)
         {
             this.dal = dal;
-            
+
         }
 
         public void RemoveAllData()
@@ -39,7 +39,7 @@ namespace Magazine.Services
             RemoveAllData();
 
             User u1 = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
-      
+
             Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", u1);
 
             User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
@@ -47,16 +47,16 @@ namespace Magazine.Services
             AddArea("Area A1", u2, m1);
 
             User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
-           
+
             Area a2 = AddArea("Area 2", u3, m1);
-           
+
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
-            
+
         }
 
         #region User
-        void SignUp(string name, string surname, string email, string password, string areasOfInterest, bool alerted) { 
-            
+        void SignUp(string name, string surname, string email, string password, string areasOfInterest, bool alerted) {
+
         }
         /// <summary>   Performs login validation and logs in </summary>
         /// <param>     <c>login</c> is the user login name 
@@ -66,13 +66,16 @@ namespace Magazine.Services
         /// <returns>   Any required ServiceExceptions
         ///             userId if login succeeds
         /// </returns>
-        string Login(string login, string password) {
-            if (dal.Exists<User>(login)) {
-                User loged = dal.GetById<User>(login);
-                if (loged.Password == password) {
-                    return "Correcto";
-                } else { return "Error"; }
-            } else { return "Error"; }
+        bool Login(string login, string password) {
+            foreach(User u in dal.GetAll<User>()) 
+            {
+                if (u.Login.Equals(login) && u.Password.Equals(password))
+                {
+                   LoggedUser = u; 
+                   return true; 
+                }
+            }
+            throw new ServiceException("Login or Password are not correct."); 
         }
 
         /// <summary>   Performs a log out operation </summary>
@@ -97,8 +100,17 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password) {
-            if (!dal.Exists<User>(login)) //get by id cambiar
+        User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        {
+            Boolean encontrado = false;
+            foreach (User u in dal.GetAll<User>())
+            {
+                if (u.Id.Equals(id))
+                {
+                    encontrado = true;
+                }
+            }
+            if (encontrado)
             {
                 User user = new User(id, name, surname, alerted, areasOfInterest, email, login, password);
                 dal.Insert<User>(user);
@@ -106,7 +118,7 @@ namespace Magazine.Services
             }
             else { throw new ServiceException("User already exists."); }
         }
-
+        
         #endregion
 
 
@@ -116,11 +128,15 @@ namespace Magazine.Services
                 dal.Insert();
             }
         }
-        public void ServicioEvaluatePaper(Area area) { }
-        public void ListarArticuloyPaper() { }
+        public void ServicioEvaluatePaper(Area area) { 
+            
+        }
+        public void ListarArticuloyPaper() { 
+        
+        }
         //public Paper getPapers(Area area) { }
 
-#endif
+
         #endregion
 
 
@@ -129,7 +145,7 @@ namespace Magazine.Services
             Boolean trobada = false;
             Issue resp;
             foreach (Issue i in dal.GetAll<Issue>()) {
-                if (i.Number == number) { trobada = true;  }
+                if (i.Number == number) { trobada = true; }
             }
             if (trobada == true)
             {
