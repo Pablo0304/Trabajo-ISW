@@ -38,34 +38,23 @@ namespace Magazine.Services
         {
             RemoveAllData();
 
-            User u1 = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
+            User u1 = SignUp("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
 
             Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", u1);
 
-            User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
+            User u2 = SignUp("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
             AddArea("Area A1", u2, m1);
 
-            User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
+            User u3 = SignUp("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
 
             Area a2 = AddArea("Area 2", u3, m1);
 
-            User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
+            User u4 = SignUp("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
         }
 
         #region User
-        void SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password) {
-            foreach (User u in dal.GetAll<User>())
-            {
-                if (u.Login.Equals(login) && u.Password.Equals(password))
-                {
-                    LoggedUser = u;
-                    return true;
-                }
-            }
-            throw new ServiceException("Login or Password are not correct.");
-        }
         /// <summary>   Performs login validation and logs in </summary>
         /// <param>     <c>login</c> is the user login name 
         /// </param>
@@ -80,10 +69,11 @@ namespace Magazine.Services
                 if (u.Login.Equals(login) && u.Password.Equals(password))
                 {
                    LoggedUser = u; 
-                   return true; 
                 }
             }
-            throw new ServiceException("Login or Password are not correct."); 
+
+            if (LoggedUser != null) { return true; }
+            else { throw new ServiceException("Login or Password are not correct."); }
         }
 
         /// <summary>   Performs a log out operation </summary>
@@ -108,7 +98,7 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        User SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
         {
             Boolean encontrado = false;
             foreach (User u in dal.GetAll<User>())
