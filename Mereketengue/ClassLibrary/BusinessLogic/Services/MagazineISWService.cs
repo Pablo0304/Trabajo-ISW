@@ -97,8 +97,11 @@ namespace Magazine.Services
 
         #endregion
 
+
         #region Paper
-        public void EnviarPaper(Area area, String Title) { }
+        public void EnviarPaper(Area area, String Title) {
+            if (dal.) { }
+        }
         public void ServicioEvaluatePaper(Area area) { }
         public void ListarArticuloyPaper() { }
         #endregion
@@ -111,7 +114,7 @@ namespace Magazine.Services
 
         #region Area
 
-
+        
 
         #endregion
 

@@ -16,6 +16,7 @@ namespace Magazine.Entities
         public Issue(int Number, Magazine magazine) : this() // espera el parametro number (int)
         {
             this.Number = Number;
+            //this.PublicationDate = fecha;
             
             // Relaciones a 1
             Magazine = magazine;
