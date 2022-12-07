@@ -68,13 +68,11 @@ namespace Magazine.Services
         #endregion
 
         #region Area
-
-
-
+        Entities.Area  AddArea(String name, User editor, Entities.Magazine magazine);
         #endregion
 
         #region Magazine
-        void AddMagazine(string name, User chiefEditorId);
+        Entities.Magazine AddMagazine(string name, User chiefEditorId);
 
 
         #endregion

@@ -38,23 +38,20 @@ namespace Magazine.Services
         {
             RemoveAllData();
 
-            User user = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
+            User u1 = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
       
-            AddMagazine("Revista Universitària UUPPVV", user);
+            Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", u1);
 
+            User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
-            AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
-            Area a1 = new Area("Area A1", u2, m);
-            AddArea(a1);
+            AddArea("Area A1", u2, m1);
 
-            User u3 = new User("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
-            AddUser(u3);
-            Area a2 = new Area("Area 2", u3, m);
-            AddArea(a2);
-
-         
-            User u4 = new User("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
-            AddUser(u4);
+            User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
+           
+            Area a2 = AddArea("Area 2", u3, m1);
+           
+            User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
+            
         }
 
         #region User
@@ -101,7 +98,7 @@ namespace Magazine.Services
         /// <returns>   Any required ServiceExceptions
         /// </returns>
         User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password) {
-            if (!dal.Exists<User>(login))
+            if (!dal.Exists<User>(login)) //get by id cambiar
             {
                 User user = new User(id, name, surname, alerted, areasOfInterest, email, login, password);
                 dal.Insert<User>(user);
@@ -138,14 +135,20 @@ namespace Magazine.Services
         #endregion
 
         #region Area
+        public Area AddArea(String name, User editor, Entities.Magazine magazine) {
+            Area area = new Area(name, editor, magazine);
+            dal.Insert<Area>(area);
+            return area;
+        }
 
-        
 
         #endregion
 
         #region Magazine
-        public void AddMagazine(String name, User chiefEditorId) {
+        public Entities.Magazine AddMagazine(String name, User chiefEditorId) {
             Entities.Magazine magazine = new Entities.Magazine(name, chiefEditorId);
+            dal.Insert<Entities.Magazine>(magazine);
+            return magazine;
         }
         #endregion
     }
