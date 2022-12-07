@@ -58,7 +58,9 @@ namespace Magazine.Services
         }
 
         #region User
-        void SignUp(string name, string surname, string email, string password, string areasOfInterest, bool alerted) { }
+        void SignUp(string name, string surname, string email, string password, string areasOfInterest, bool alerted) { 
+            
+        }
         /// <summary>   Performs login validation and logs in </summary>
         /// <param>     <c>login</c> is the user login name 
         /// </param>
@@ -67,8 +69,13 @@ namespace Magazine.Services
         /// <returns>   Any required ServiceExceptions
         ///             userId if login succeeds
         /// </returns>
-        string Login(string login, string password) { 
-        
+        string Login(string login, string password) {
+            if (dal.Exists<User>(login)) {
+                User loged = dal.GetById<User>(login);
+                if (loged.Password == password) {
+                    return "Correcto";
+                } else { return "Error"; }
+            } else { return "Error"; }
         }
 
         /// <summary>   Performs a log out operation </summary>
@@ -107,8 +114,10 @@ namespace Magazine.Services
 
 
         #region Paper
-        public void EnviarPaper(Area area, String Title) {
-            if (dal.) { }
+        public void EnviarPaper(Area area, String Title, List<String> lista) {
+            if (lista.Count <= 4) {
+                dal.Insert();
+            }
         }
         public void ServicioEvaluatePaper(Area area) { }
         public void ListarArticuloyPaper() { }

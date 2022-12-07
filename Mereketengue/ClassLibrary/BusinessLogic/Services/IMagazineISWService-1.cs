@@ -56,7 +56,7 @@ namespace Magazine.Services
 
         #region Paper
         // void addPaper(String Title, DateTime uploaddate, Area evaluationPendingArea, Area belongingArea, Area publicationPendingArea, User responsible
-        void EnviarPaper(Area area, String Title);
+        void EnviarPaper(Area area, String Title, List<String> lista);
         void ServicioEvaluatePaper(Area area);
         void ListarArticuloyPaper();
         #endregion
