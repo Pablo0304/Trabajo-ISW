@@ -118,19 +118,34 @@ namespace Magazine.Services
         }
         public void ServicioEvaluatePaper(Area area) { }
         public void ListarArticuloyPaper() { }
+        //public Paper getPapers(Area area) { }
+
+#endif
         #endregion
 
 
         #region Issue
-        Issue BuildIssue(int number){
-            if (dal.Exists<Issue>(number))
+        Issue BuildIssue(int id,int number){
+            Boolean trobada = false;
+            Issue resp;
+            foreach (Issue i in dal.GetAll<Issue>()) {
+                if (i.Number == number) { trobada = true;  }
+            }
+            if (trobada == true)
             {
-                dal.GetById<Issue>(number);
+                resp = dal.GetById<Issue>(number);
             }
-            else { 
-                
+            else {
+                Area areaSelec = dal.GetById<Area>(id);
+                foreach (Paper p in areaSelec.Papers) {
+                    areaSelec.PublicationPending.Add(p);
+                    areaSelec.EvaluationPending.Add(p);
+                }
             }
+            return resp;
         }
+
+
 
         #endregion
 
