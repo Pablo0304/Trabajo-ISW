@@ -27,5 +27,8 @@ namespace Magazine.Entities
             MainAuthoredPapers = new List<Paper>();
         }
 
+        public bool ComprobarLogin(String login) { return this.Login.Equals(login); }
+
+        public bool ComprobarPassword(String pssw) { return this.Password.Equals(pssw); }
     }
 }

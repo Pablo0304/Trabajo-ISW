@@ -66,14 +66,13 @@ namespace Magazine.Services
         bool Login(string login, string password) {
             foreach(User u in dal.GetAll<User>()) 
             {
-                if (u.Login.Equals(login) && u.Password.Equals(password))
+                if (u.ComprobarLogin(login) && u.ComprobarPassword(password))
                 {
-                   LoggedUser = u; 
+                   LoggedUser = u;
+                   return true;
                 }
             }
-
-            if (LoggedUser != null) { return true; }
-            else { throw new ServiceException("Login or Password are not correct."); }
+            throw new ServiceException("Login or Password are not correct.");
         }
 
         /// <summary>   Performs a log out operation </summary>
