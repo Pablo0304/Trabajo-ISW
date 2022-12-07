@@ -38,13 +38,11 @@ namespace Magazine.Services
         {
             RemoveAllData();
 
-            AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
+            User user = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
       
+            AddMagazine("Revista Universitària UUPPVV", user);
 
-            Magazine.Entities.Magazine m = new Magazine.Entities.Magazine("Revista Universitària UUPPVV", u1);
-            
-           
-            AddMagazine(m);
+
             AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
             Area a1 = new Area("Area A1", u2, m);
             AddArea(a1);
@@ -69,7 +67,9 @@ namespace Magazine.Services
         /// <returns>   Any required ServiceExceptions
         ///             userId if login succeeds
         /// </returns>
-        string Login(string login, string password) { }
+        string Login(string login, string password) { 
+        
+        }
 
         /// <summary>   Performs a log out operation </summary>
         void Logout() { }
@@ -93,7 +93,15 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        void AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password) { }
+        User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password) {
+            if (!dal.Exists<User>(login))
+            {
+                User user = new User(id, name, surname, alerted, areasOfInterest, email, login, password);
+                dal.Insert<User>(user);
+                return user;
+            }
+            else { throw new ServiceException("User already exists."); }
+        }
 
         #endregion
 
@@ -108,7 +116,15 @@ namespace Magazine.Services
 
 
         #region Issue
-
+        Issue BuildIssue(int number){
+            if (dal.Exists<Issue>(number))
+            {
+                dal.GetById<Issue>(number);
+            }
+            else { 
+                
+            }
+        }
 
         #endregion
 
@@ -119,11 +135,9 @@ namespace Magazine.Services
         #endregion
 
         #region Magazine
-        public int AddMagazine(String name, String chiefEditorId) { 
-            
+        public void AddMagazine(String name, User chiefEditorId) {
+            Entities.Magazine magazine = new Entities.Magazine(name, chiefEditorId);
         }
-        
-
         #endregion
     }
 }
