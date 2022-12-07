@@ -55,8 +55,16 @@ namespace Magazine.Services
         }
 
         #region User
-        void SignUp(string name, string surname, string email, string password, string areasOfInterest, bool alerted) {
-
+        void SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password) {
+            foreach (User u in dal.GetAll<User>())
+            {
+                if (u.Login.Equals(login) && u.Password.Equals(password))
+                {
+                    LoggedUser = u;
+                    return true;
+                }
+            }
+            throw new ServiceException("Login or Password are not correct.");
         }
         /// <summary>   Performs login validation and logs in </summary>
         /// <param>     <c>login</c> is the user login name 

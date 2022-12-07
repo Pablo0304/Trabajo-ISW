@@ -17,7 +17,7 @@ namespace Magazine.Services
         void DBInitialization();
 
         #region User
-        void SignUp(string name, string surname, string email, string password, string areasOfInterest, bool alerted);
+        void SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
         /// <summary>   Performs login validation and logs in </summary>
         /// <param>     <c>login</c> is the user login name 
         /// </param>
