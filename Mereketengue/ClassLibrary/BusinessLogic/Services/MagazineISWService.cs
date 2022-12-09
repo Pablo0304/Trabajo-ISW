@@ -38,19 +38,19 @@ namespace Magazine.Services
         {
             RemoveAllData();
 
-            User u1 = SignUp("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
+            User u1 = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
 
             Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", u1);
 
-            User u2 = SignUp("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
+            User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
             AddArea("Area A1", u2, m1);
 
-            User u3 = SignUp("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
+            User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
 
             Area a2 = AddArea("Area 2", u3, m1);
 
-            User u4 = SignUp("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
+            User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
         }
 
@@ -96,7 +96,7 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        User SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        void SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
         {
             Boolean encontrado = false;
             foreach (User u in dal.GetAll<User>())
@@ -106,15 +106,20 @@ namespace Magazine.Services
                     encontrado = true;
                 }
             }
-            if (encontrado)
+            if (!encontrado)
             {
-                User user = new User(id, name, surname, alerted, areasOfInterest, email, login, password);
-                dal.Insert<User>(user);
-                return user;
+                User user = AddUser(id, name, surname, alerted, areasOfInterest, email, login, password);
             }
             else { throw new ServiceException("User already exists."); }
         }
         
+        public User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        {
+            User user = new User(id, name, surname, alerted, areasOfInterest, email, login, password);
+            dal.Insert<User>(user);
+            Commit();
+            return user;
+        }
         #endregion
 
 
@@ -127,7 +132,7 @@ namespace Magazine.Services
         public void ServicioEvaluatePaper(Area area) { 
             
         }
-        public void ListarArticuloyPaper() { 
+        public void ListPaper() { 
         
         }
         //public Paper getPapers(Area area) { }
@@ -165,16 +170,19 @@ namespace Magazine.Services
         public Area AddArea(String name, User editor, Entities.Magazine magazine) {
             Area area = new Area(name, editor, magazine);
             dal.Insert<Area>(area);
+            Commit();
             return area;
         }
-
+        Area
 
         #endregion
 
         #region Magazine
-        public Entities.Magazine AddMagazine(String name, User chiefEditorId) {
+        public Magazine.Entities.Magazine AddMagazine(string name, User chiefEditorId)
+        {
             Entities.Magazine magazine = new Entities.Magazine(name, chiefEditorId);
             dal.Insert<Entities.Magazine>(magazine);
+            Commit();
             return magazine;
         }
         #endregion

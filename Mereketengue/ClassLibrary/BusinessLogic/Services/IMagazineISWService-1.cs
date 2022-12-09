@@ -28,7 +28,6 @@ namespace Magazine.Services
         string Login(string login, string password);
 
         /// <summary>   Performs a log out operation </summary>
-        void Logout();
 
         /// <summary>   Performs User info validation and registers a new user. </summary>
         /// <param>     <c>id</c> is the user identification. 
@@ -71,9 +70,7 @@ namespace Magazine.Services
         #endregion
 
         #region Magazine
-        Entities.Magazine AddMagazine(string name, User chiefEditorId);
-
-
+        Magazine.Entities.Magazine AddMagazine(string name, User chiefEditorId);
         #endregion
     }
 }
