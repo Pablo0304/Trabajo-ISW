@@ -22,7 +22,11 @@ namespace Magazine.Entities
         }
         public ICollection<Area> gAreas() 
         {
-            return Areas;
+            return this.Areas;
+        }
+        public ICollection<Issue> gIssues() 
+        {
+            return this.Issues;
         }
     }
 }

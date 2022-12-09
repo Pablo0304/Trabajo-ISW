@@ -53,7 +53,7 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Issue i1 = AddIssue("12", m1);
+            Issue i1 = AddIssue( 12, m1);
         }
 
         #region User
@@ -134,10 +134,17 @@ namespace Magazine.Services
 
         #region Paper
         public void EnviarPaper(Area area, String Title, List<String> lista) {
-            if (lista.Count <= 4) {
-                dal.Insert();
+
+            if (lista == null) 
+            { 
+                //crear paper
             }
+            
         }
+        public void addCoauthor(String name) { 
+            //pide name surname (es una person) mete en la lista de papers el actual
+        }
+
         public void ServicioEvaluatePaper(Paper paper, Boolean decision, String comentarios) {
             Evaluation evaluacion = new Evaluation(decision, comentarios, DateTime.Now);
             paper.Evaluation = evaluacion;
@@ -203,16 +210,12 @@ namespace Magazine.Services
         #endregion
 
         #region Area
-        public Area AddArea(String name, User editor, Entities.Magazine magazine) {
+        public Area AddArea(String name, User editor, Entities.Magazine magazine)
+        {
             Area area = new Area(name, editor, magazine);
             dal.Insert<Area>(area);
             Commit();
             return area;
-        }
-        public ICollection<Area> listAreas() 
-        {
-            ICollection<Area> list = magazine.gAreas();
-            return list;
         }
 
         #endregion
@@ -225,6 +228,15 @@ namespace Magazine.Services
             Commit();
             return magazine;
         }
+
+        public ICollection<Area> listAreas()
+        {
+            ICollection<Area> list = magazine.gAreas();
+            return list;
+        }
+
+
+
         #endregion
     }
 }
