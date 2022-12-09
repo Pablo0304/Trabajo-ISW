@@ -2,6 +2,7 @@
 using Magazine.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -52,6 +53,7 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
+            Issue i1 = AddIssue("12", m1);
         }
 
         #region User
@@ -66,7 +68,7 @@ namespace Magazine.Services
         bool Login(string login, string password) {
             foreach(User u in dal.GetAll<User>()) 
             {
-                if (u.ComprobarLogin(login) && u.ComprobarPassword(password))
+                if (u.comprobarLogin(login) && u.comprobarPassword(password))
                 {
                    LoggedUser = u;
                    return true;
@@ -96,21 +98,28 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        void SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        bool SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
         {
             Boolean encontrado = false;
             foreach (User u in dal.GetAll<User>())
             {
-                if (u.Id.Equals(id))
+                if (u.comprobarId(id) )
                 {
                     encontrado = true;
+                    throw new ServiceException("Error: You are already registered, go to Log in page");
+                }
+                if (u.comprobarLogin(login)) 
+                {
+                    encontrado = true;
+                    throw new ServiceException("Error: That login is already used, try again.");
                 }
             }
             if (!encontrado)
             {
-                User user = AddUser(id, name, surname, alerted, areasOfInterest, email, login, password);
+                AddUser(id, name, surname, alerted, areasOfInterest, email, login, password);
+                return true;
             }
-            else { throw new ServiceException("User already exists."); }
+            return false;
         }
         
         public User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
@@ -183,7 +192,13 @@ namespace Magazine.Services
             return resp;
         }
 
-
+        public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
+        {
+            Issue issue = new Issue(number, magazine);
+            dal.Insert<Issue>(issue);
+            Commit();
+            return issue;
+        }
 
         #endregion
 
@@ -194,7 +209,11 @@ namespace Magazine.Services
             Commit();
             return area;
         }
-        Area
+        public ICollection<Area> listAreas() 
+        {
+            ICollection<Area> list = magazine.gAreas();
+            return list;
+        }
 
         #endregion
 

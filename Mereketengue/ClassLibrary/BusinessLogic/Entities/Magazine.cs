@@ -20,5 +20,9 @@ namespace Magazine.Entities
             ChiefEditor = chiefEditor;
 
         }
+        public ICollection<Area> gAreas() 
+        {
+            return Areas;
+        }
     }
 }
