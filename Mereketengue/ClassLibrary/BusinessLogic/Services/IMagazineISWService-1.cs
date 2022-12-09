@@ -25,7 +25,7 @@ namespace Magazine.Services
         /// <returns>   Any required ServiceExceptions
         ///             userId if login succeeds
         /// </returns>
-        string Login(string login, string password);
+        bool Login(string login, string password);
 
         /// <summary>   Performs a log out operation </summary>
 
@@ -48,15 +48,16 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        User SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
+        bool SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
 
+        Entities.User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
         #endregion
 
         #region Paper
-        // void addPaper(String Title, DateTime uploaddate, Area evaluationPendingArea, Area belongingArea, Area publicationPendingArea, User responsible
-        void EnviarPaper(Area area, String Title, List<String> lista);
+        void EnviarPaper(Area area, string Title, List<string> lista);
         void ServicioEvaluatePaper(Area area);
         void ListarArticuloyPaper();
+        Entities.Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible);
         #endregion
 
         #region Issue
@@ -66,11 +67,17 @@ namespace Magazine.Services
         #endregion
 
         #region Area
-        Entities.Area  AddArea(String name, User editor, Entities.Magazine magazine);
+        Entities.Area  AddArea(string name, User editor, Entities.Magazine magazine);
         #endregion
 
         #region Magazine
         Magazine.Entities.Magazine AddMagazine(string name, User chiefEditorId);
         #endregion
+
+        #region Person
+        Person addCoauthor(string name, string surname, Paper paper);
+        void deleteCoauthor(string name, string surname, Paper paper); //añadido
+        Person AddPerson(string id, string name, string surname);
+        #endregion 
     }
 }

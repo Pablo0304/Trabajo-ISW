@@ -9,6 +9,7 @@ using System.Resources;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Magazine.Services
 {
@@ -53,7 +54,7 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Issue i1 = AddIssue( 12, m1);
+            Issue i1 = AddIssue(12, m1);
         }
 
         #region User
@@ -65,13 +66,14 @@ namespace Magazine.Services
         /// <returns>   Any required ServiceExceptions
         ///             userId if login succeeds
         /// </returns>
-        bool Login(string login, string password) {
-            foreach(User u in dal.GetAll<User>()) 
+        public bool Login(string login, string password)
+        {
+            foreach (User u in dal.GetAll<User>())
             {
                 if (u.comprobarLogin(login) && u.comprobarPassword(password))
                 {
-                   LoggedUser = u;
-                   return true;
+                    LoggedUser = u;
+                    return true;
                 }
             }
             throw new ServiceException("Login or Password are not correct.");
@@ -98,17 +100,17 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        bool SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        public bool SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
         {
             Boolean encontrado = false;
             foreach (User u in dal.GetAll<User>())
             {
-                if (u.comprobarId(id) )
+                if (u.comprobarId(id))
                 {
                     encontrado = true;
                     throw new ServiceException("Error: You are already registered, go to Log in page");
                 }
-                if (u.comprobarLogin(login)) 
+                if (u.comprobarLogin(login))
                 {
                     encontrado = true;
                     throw new ServiceException("Error: That login is already used, try again.");
@@ -121,7 +123,7 @@ namespace Magazine.Services
             }
             return false;
         }
-        
+
         public User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
         {
             User user = new User(id, name, surname, alerted, areasOfInterest, email, login, password);
@@ -133,19 +135,14 @@ namespace Magazine.Services
 
 
         #region Paper
-        public void EnviarPaper(Area area, String Title, List<String> lista) {
-
-            if (lista == null) 
-            { 
-                //crear paper
-            }
-            
-        }
-        public void addCoauthor(String name) { 
-            //pide name surname (es una person) mete en la lista de papers el actual
+        public Paper EnviarPaper( Area area, string Title, List<string> lista)
+        {
+            Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
+            return paper;   
         }
 
-        public void ServicioEvaluatePaper(Paper paper, Boolean decision, String comentarios) {
+        public void ServicioEvaluatePaper(Paper paper, Boolean decision, string comentarios)
+        {
             Evaluation evaluacion = new Evaluation(decision, comentarios, DateTime.Now);
             paper.Evaluation = evaluacion;
             Area areaPaper = paper.BelongingArea;
@@ -153,15 +150,20 @@ namespace Magazine.Services
             {
                 areaPaper.PublicationPending.Add(paper);
             }
-            else { areaPaper.EvaluationPending.Remove(paper);  }
+            else { areaPaper.EvaluationPending.Remove(paper); }
         }
-        public void ListarArticuloyPaper(string filtro) {
+
+        public void ListarArticuloyPaper(string filtro)
+        {
             Boolean existe = false;
             ICollection<Paper> ListaFiltrada;
-            if (filtro.Equals("")){
+            if (filtro.Equals(""))
+            {
             }
-            else {
-                foreach (Issue i in dal.GetAll<Issue>()){
+            else
+            {
+                foreach (Issue i in dal.GetAll<Issue>())
+                {
                     if (i.Id.Equals(filtro))
                     {
                         ListaFiltrada.Add(i);
@@ -172,26 +174,36 @@ namespace Magazine.Services
                 else { throw new ServiceException("No se encueentra un Issue con este number."); }
             }
         }
-        //public Paper getPapers(Area area) { }
 
+        public Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible)
+        {
+            Paper paper = new Paper(title, uploadDate, belongingArea, responsible);
+            dal.Insert<Paper>(paper);
+            Commit();
+            return paper;
+        }
 
         #endregion
 
 
         #region Issue
-        Issue BuildIssue(int id,int number){
+        Issue BuildIssue(int id, int number)
+        {
             Boolean trobada = false;
             Issue resp;
-            foreach (Issue i in dal.GetAll<Issue>()) {
+            foreach (Issue i in dal.GetAll<Issue>())
+            {
                 if (i.Number == number) { trobada = true; }
             }
             if (trobada == true)
             {
                 resp = dal.GetById<Issue>(number);
             }
-            else {
+            else
+            {
                 Area areaSelec = dal.GetById<Area>(id);
-                foreach (Paper p in areaSelec.Papers) {
+                foreach (Paper p in areaSelec.Papers)
+                {
                     areaSelec.PublicationPending.Add(p);
                     areaSelec.EvaluationPending.Add(p);
                 }
@@ -210,7 +222,7 @@ namespace Magazine.Services
         #endregion
 
         #region Area
-        public Area AddArea(String name, User editor, Entities.Magazine magazine)
+        public Area AddArea(string name, User editor, Entities.Magazine magazine)
         {
             Area area = new Area(name, editor, magazine);
             dal.Insert<Area>(area);
@@ -237,6 +249,37 @@ namespace Magazine.Services
 
 
 
+        #endregion
+
+        #region Person
+
+        public Person AddPerson(string id, string name, string surname)
+        {
+            Person person = new Person(id,name,surname);
+            dal.Insert<Person>(person);
+            Commit();
+            return person;
+        }
+
+        public Person addCoauthor(string id, string name, string surname, Paper paper)
+        {
+            if (paper.gCoAuthors().Count < 4)
+            {
+                //como ponemos el id de una person? lo hace el entityframework?
+                Person person = AddPerson(id, name, surname);
+                person.AñadiralPaper(paper);
+                return person;
+            }
+            else { throw new ServiceException("There is already 4 Coauthors for this paper"); }
+        }
+
+        public void deleteCoauthor(Person person, Paper paper)
+        {
+            if (paper.gCoAuthors().Count < 0)
+            {
+                person.EliminarDelPaper(paper);
+            }
+        }
         #endregion
     }
 }

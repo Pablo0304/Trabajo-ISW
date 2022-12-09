@@ -25,6 +25,11 @@ namespace Magazine.Entities
             CoAuthors.Add(responsible);
 
         }
+
+        public ICollection<Person> gCoAuthors() 
+        {
+            return this.CoAuthors;
+        }
     
     }
 }

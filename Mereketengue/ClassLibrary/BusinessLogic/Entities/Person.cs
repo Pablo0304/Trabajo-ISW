@@ -21,5 +21,15 @@ namespace Magazine.Entities
             this.Surname = surname;
 
         }
+
+        public void AñadiralPaper(Paper paper) 
+        {
+            this.CoAuthoredPapers.Add(paper);
+        }
+
+        public void EliminarDelPaper(Paper paper)
+        {
+            this.CoAuthoredPapers.Remove(paper);
+        }
     }
 }
