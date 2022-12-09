@@ -27,5 +27,33 @@ namespace Magazine.Entities
             Magazine = magazine;
 
         }
+
+        public ICollection<Paper> EvaluationPendingPapers() //para que sirve EvaluationPending, no hace falta ? pregunta
+        {
+
+            foreach (Paper p in Papers)
+            {
+                if (!p.hasEvaluation())
+                {
+                    EvaluationPending.Add(p);
+                }
+            }
+            return EvaluationPending;
+        }
+
+        public void AddToPublicationPendingPapers(Paper paper) 
+        {
+            PublicationPending.Add(paper);
+        }
+
+        public void DeleteFromEvaluatePendingPaper(Paper paper) 
+        {
+            EvaluationPending.Remove(paper);
+        }
+
+        public ICollection<Paper> gPapers() 
+        {
+            return this.Papers;
+        }
     }
 }

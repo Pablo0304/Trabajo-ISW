@@ -135,25 +135,37 @@ namespace Magazine.Services
 
 
         #region Paper
-        public Paper EnviarPaper( Area area, string Title, List<string> lista)
+        public Paper EnviarPaper(Area area, string Title, List<string> lista)
         {
             Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
             return paper;   
         }
 
-        public void ServicioEvaluatePaper(Paper paper, Boolean decision, string comentarios)
+        public ICollection<Paper> getAllNoEvPapers(Area area) 
         {
-            Evaluation evaluacion = new Evaluation(decision, comentarios, DateTime.Now);
-            paper.Evaluation = evaluacion;
-            Area areaPaper = paper.BelongingArea;
-            if (decision)
-            {
-                areaPaper.PublicationPending.Add(paper);
-            }
-            else { areaPaper.EvaluationPending.Remove(paper); }
+            return area.EvaluationPendingPapers();
         }
 
-        public void ListarArticuloyPaper(string filtro)
+        public void EvaluatePaper(Paper paper, Boolean decision, string comentarios)
+        {
+            Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
+            Area areaPaper = paper.getPaperArea();
+            paper.setEvaluation(evaluacion);
+
+            if (decision)
+            {
+                areaPaper.AddToPublicationPendingPapers(paper);
+                paper.setPublicationPendingArea(areaPaper);
+                areaPaper.DeleteFromEvaluatePendingPaper(paper);
+            }
+            else 
+            { 
+                areaPaper.DeleteFromEvaluatePendingPaper(paper);
+                paper.removeEvaluationPendingArea();
+            }
+        }
+
+        public void ListarPaper(string filtro)  // intento 1 dani
         {
             Boolean existe = false;
             ICollection<Paper> ListaFiltrada;
@@ -173,6 +185,36 @@ namespace Magazine.Services
                 if (existe) { return ListaFiltrada; }
                 else { throw new ServiceException("No se encueentra un Issue con este number."); }
             }
+        }
+
+        public ICollection<Paper> ListarPaper(Area area) // intento 2
+        {
+            ICollection<Paper> listaPapers = area.gPapers();
+            List<string> listaStates = new List<string>(listaPapers.Count); 
+            //pregunta como funcionan las tablas, como crear lista con los atributos que yo quiera de un objeto y con otros elementos añadidos
+            int cont = 0;
+            foreach (Paper p in listaPapers)
+            {
+                cont++;
+                if (p.hasEvaluation())
+                {
+                    if(p.gEvaluationDecision()) 
+                    {
+                        listaStates[cont] = "accepted";
+                    }
+                    else 
+                    { 
+                        listaStates[cont] = "rejected"; 
+                    }
+                }
+                else
+                {
+                    listaStates[cont] = "Evaluation Pending";
+                }
+
+            }
+            return listaPapers;
+
         }
 
         public Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible)
@@ -279,6 +321,16 @@ namespace Magazine.Services
             {
                 person.EliminarDelPaper(paper);
             }
+        }
+        #endregion
+
+        #region Evaluation
+        public Evaluation AddEvaluation(bool accepted,String comentarios, DateTime time)
+        {
+            Evaluation evaluation = new Evaluation(accepted,comentarios,time);
+            dal.Insert<Evaluation>(evaluation);
+            Commit();
+            return evaluation;
         }
         #endregion
     }

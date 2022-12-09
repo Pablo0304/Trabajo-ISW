@@ -54,9 +54,10 @@ namespace Magazine.Services
         #endregion
 
         #region Paper
-        void EnviarPaper(Area area, string Title, List<string> lista);
-        void ServicioEvaluatePaper(Area area);
-        void ListarArticuloyPaper();
+        Paper EnviarPaper(Area area, string Title, List<string> lista);
+        void EvaluatePaper(Paper paper, Boolean decision, string comentarios);
+        ICollection<Paper> getAllPapers(Area area);
+        void ListarPaper();
         Entities.Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible);
         #endregion
 
@@ -75,8 +76,8 @@ namespace Magazine.Services
         #endregion
 
         #region Person
-        Person addCoauthor(string name, string surname, Paper paper);
-        void deleteCoauthor(string name, string surname, Paper paper); //añadido
+        Person addCoauthor(string id,string name, string surname, Paper paper);
+        void deleteCoauthor(Person person, Paper paper); //añadido
         Person AddPerson(string id, string name, string surname);
         #endregion 
     }

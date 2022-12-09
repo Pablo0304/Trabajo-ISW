@@ -18,5 +18,9 @@ namespace Magazine.Entities
             this.Comments = comments;
             this.Date = date;
         }
+        public bool gdecision() 
+        { 
+            return this.Accepted; 
+        }
     }
 }

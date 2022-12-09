@@ -22,7 +22,7 @@ namespace Magazine.Entities
             Responsible = responsible;
 
             //Coleccions
-            CoAuthors.Add(responsible);
+            CoAuthors.Add(responsible); //? preguntar
 
         }
 
@@ -30,6 +30,57 @@ namespace Magazine.Entities
         {
             return this.CoAuthors;
         }
-    
+
+        public bool hasEvaluation() 
+        {
+            if (this.Evaluation.Equals(null)) 
+            { 
+                return false; 
+            }
+            else 
+            { 
+                return true; 
+            }
+        }
+
+        public bool gEvaluationDecision() 
+        {
+            return this.Evaluation.Accepted;    
+        }
+
+        public void setEvaluation(Evaluation evaluation) 
+        {
+            this.Evaluation = evaluation;      
+        }
+        public void removeEvaluation()
+        {
+            this.Evaluation = null;
+        }
+
+        public Area getPaperArea() 
+        {
+            return this.BelongingArea;
+        }
+
+        public void setEvaluationPendingArea(Area area) 
+        {
+            this.EvaluationPendingArea = area;
+        }
+        
+        public void removeEvaluationPendingArea()
+        {
+            this.EvaluationPendingArea = null;
+        }
+
+        public void setPublicationPendingArea(Area area) 
+        {
+            this.PublicationPendingArea = area;
+        }
+
+        public void removePublicationnPendingArea()
+        {
+            this.PublicationPendingArea = null;
+        }
+
     }
 }
