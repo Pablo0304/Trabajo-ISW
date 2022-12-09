@@ -129,11 +129,32 @@ namespace Magazine.Services
                 dal.Insert();
             }
         }
-        public void ServicioEvaluatePaper(Area area) { 
-            
+        public void ServicioEvaluatePaper(Paper paper, Boolean decision, String comentarios) {
+            Evaluation evaluacion = new Evaluation(decision, comentarios, DateTime.Now);
+            paper.Evaluation = evaluacion;
+            Area areaPaper = paper.BelongingArea;
+            if (decision)
+            {
+                areaPaper.PublicationPending.Add(paper);
+            }
+            else { areaPaper.EvaluationPending.Remove(paper);  }
         }
-        public void ListPaper() { 
-        
+        public void ListarArticuloyPaper(string filtro) {
+            Boolean existe = false;
+            ICollection<Paper> ListaFiltrada;
+            if (filtro.Equals("")){
+            }
+            else {
+                foreach (Issue i in dal.GetAll<Issue>()){
+                    if (i.Id.Equals(filtro))
+                    {
+                        ListaFiltrada.Add(i);
+                        existe = true;
+                    }
+                }
+                if (existe) { return ListaFiltrada; }
+                else { throw new ServiceException("No se encueentra un Issue con este number."); }
+            }
         }
         //public Paper getPapers(Area area) { }
 
