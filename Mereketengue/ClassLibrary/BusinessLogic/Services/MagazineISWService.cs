@@ -138,7 +138,7 @@ namespace Magazine.Services
         public Paper EnviarPaper(Area area, string Title, List<string> lista)
         {
             Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
-            return paper;   
+            return paper;
         }
 
         public ICollection<Paper> getAllNoEvPapers(Area area) 
@@ -146,23 +146,27 @@ namespace Magazine.Services
             return area.EvaluationPendingPapers();
         }
 
-        public void EvaluatePaper(Paper paper, Boolean decision, string comentarios)
+        public void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios)
         {
-            Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
-            Area areaPaper = paper.getPaperArea();
-            paper.setEvaluation(evaluacion);
-
-            if (decision)
+            if (area.gEditor().Equals(LoggedUser))
             {
-                areaPaper.AddToPublicationPendingPapers(paper);
-                paper.setPublicationPendingArea(areaPaper);
-                areaPaper.DeleteFromEvaluatePendingPaper(paper);
+                Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
+                Area areaPaper = paper.getPaperArea();
+                paper.setEvaluation(evaluacion);
+
+                if (decision)
+                {
+                    areaPaper.AddToPublicationPendingPapers(paper);
+                    paper.setPublicationPendingArea(areaPaper);
+                    areaPaper.DeleteFromEvaluatePendingPaper(paper);
+                }
+                else
+                {
+                    areaPaper.DeleteFromEvaluatePendingPaper(paper);
+                    paper.removeEvaluationPendingArea();
+                }
             }
-            else 
-            { 
-                areaPaper.DeleteFromEvaluatePendingPaper(paper);
-                paper.removeEvaluationPendingArea();
-            }
+            throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area Editor can do it.");
         }
 
         public void ListarPaper(string filtro)  // intento 1 dani
@@ -189,31 +193,35 @@ namespace Magazine.Services
 
         public ICollection<Paper> ListarPaper(Area area) // intento 2
         {
-            ICollection<Paper> listaPapers = area.gPapers();
-            List<string> listaStates = new List<string>(listaPapers.Count); 
-            //pregunta como funcionan las tablas, como crear lista con los atributos que yo quiera de un objeto y con otros elementos añadidos
-            int cont = 0;
-            foreach (Paper p in listaPapers)
-            {
-                cont++;
-                if (p.hasEvaluation())
+            if (LoggedUser.Equals(magazine.gChiefEditor())) //solo si es el chiefEditor
+            { 
+                ICollection<Paper> listaPapers = area.gPapers();
+                List<string> listaStates = new List<string>(listaPapers.Count);
+                //pregunta como funcionan las tablas, como crear lista con los atributos que yo quiera de un objeto y con otros elementos añadidos
+                int cont = 0;
+                foreach (Paper p in listaPapers)
                 {
-                    if(p.gEvaluationDecision()) 
+                    cont++;
+                    if (p.hasEvaluation())
                     {
-                        listaStates[cont] = "accepted";
+                        if (p.gEvaluationDecision())
+                        {
+                            listaStates[cont] = "accepted";
+                        }
+                        else
+                        {
+                            listaStates[cont] = "rejected";
+                        }
                     }
-                    else 
-                    { 
-                        listaStates[cont] = "rejected"; 
+                    else
+                    {
+                        listaStates[cont] = "Evaluation Pending";
                     }
-                }
-                else
-                {
-                    listaStates[cont] = "Evaluation Pending";
-                }
 
+                }
+                return listaPapers;
             }
-            return listaPapers;
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
 
         }
 
@@ -231,26 +239,31 @@ namespace Magazine.Services
         #region Issue
         Issue BuildIssue(int id, int number)
         {
-            Boolean trobada = false;
-            Issue resp;
-            foreach (Issue i in dal.GetAll<Issue>())
-            {
-                if (i.Number == number) { trobada = true; }
-            }
-            if (trobada == true)
-            {
-                resp = dal.GetById<Issue>(number);
-            }
-            else
-            {
-                Area areaSelec = dal.GetById<Area>(id);
-                foreach (Paper p in areaSelec.Papers)
+            if (LoggedUser.Equals(magazine.gChiefEditor())) //solo si es el chiefEditor
+            { 
+                Boolean trobada = false;
+                Issue resp;
+                foreach (Issue i in dal.GetAll<Issue>())
                 {
-                    areaSelec.PublicationPending.Add(p);
-                    areaSelec.EvaluationPending.Add(p);
+                    if (i.Number == number) { trobada = true; }
                 }
+                if (trobada == true)
+                {
+                    resp = dal.GetById<Issue>(number);
+                }
+                else
+                {
+                    Area areaSelec = dal.GetById<Area>(id);
+                    foreach (Paper p in areaSelec.Papers)
+                    {
+                        areaSelec.PublicationPending.Add(p);
+                        areaSelec.EvaluationPending.Add(p);
+                    }
+                }
+                return resp;
             }
-            return resp;
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
+        
         }
 
         public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)

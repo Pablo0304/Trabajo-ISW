@@ -12,21 +12,28 @@ namespace Magazine.Entities
             Issues = new List<Issue>();
             Areas = new List<Area>();
         }
+
         public Magazine(String name, User chiefEditor) : this() {
 
             this.Name = name;
 
             // Relaciones a 1
             ChiefEditor = chiefEditor;
-
         }
+
         public ICollection<Area> gAreas() 
         {
             return this.Areas;
         }
+
         public ICollection<Issue> gIssues() 
         {
             return this.Issues;
+        }
+
+        public User gChiefEditor() 
+        { 
+            return this.ChiefEditor;
         }
     }
 }

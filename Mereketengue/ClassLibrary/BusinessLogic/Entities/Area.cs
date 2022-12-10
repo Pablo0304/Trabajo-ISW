@@ -55,5 +55,9 @@ namespace Magazine.Entities
         {
             return this.Papers;
         }
+        public User gEditor() 
+        { 
+            return (User)this.Editor;
+        }
     }
 }
