@@ -135,20 +135,20 @@ namespace Magazine.Services
 
 
         #region Paper
-        public Paper EnviarPaper(Area area, string Title, List<string> lista)
+        public Paper EnviarPaper(Area area, string Title, List<string> lista) // se usa en paper submision
         {
             Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
             return paper;
         }
 
-        public ICollection<Paper> getAllNoEvPapers(Area area) 
+        public ICollection<Paper> getAllNoEvPapers(Area area) // se usa en Evaluate paper
         {
             return area.EvaluationPendingPapers();
         }
 
         public void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios)
         {
-            if (area.gEditor().Equals(LoggedUser))
+            if (area.gEditor().Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
             {
                 Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
                 Area areaPaper = paper.getPaperArea();
@@ -166,7 +166,7 @@ namespace Magazine.Services
                     paper.removeEvaluationPendingArea();
                 }
             }
-            throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area Editor can do it.");
+            throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area's editor can do it.");
         }
 
         public void ListarPaper(string filtro)  // intento 1 dani
@@ -296,7 +296,7 @@ namespace Magazine.Services
             return magazine;
         }
 
-        public ICollection<Area> listAreas()
+        public ICollection<Area> listAreas() // se usa en paper submision y en Evaluatepaper, por ahora
         {
             ICollection<Area> list = magazine.gAreas();
             return list;
@@ -316,7 +316,7 @@ namespace Magazine.Services
             return person;
         }
 
-        public Person addCoauthor(string id, string name, string surname, Paper paper)
+        public Person addCoauthor(string id, string name, string surname, Paper paper) //se usa en paper submision
         {
             if (paper.gCoAuthors().Count < 4)
             {
@@ -334,7 +334,7 @@ namespace Magazine.Services
             {
                 person.EliminarDelPaper(paper);
             }
-        }
+        }// por si acaso
         #endregion
 
         #region Evaluation

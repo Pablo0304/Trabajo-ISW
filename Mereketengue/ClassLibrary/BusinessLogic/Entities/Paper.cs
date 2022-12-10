@@ -61,6 +61,11 @@ namespace Magazine.Entities
         {
             return this.BelongingArea;
         }
+        
+        public User gResponsible()
+        {
+            return this.Responsible;
+        }
 
         public void setEvaluationPendingArea(Area area) 
         {
