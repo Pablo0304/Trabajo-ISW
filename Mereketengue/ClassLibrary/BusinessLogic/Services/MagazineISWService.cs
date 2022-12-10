@@ -46,7 +46,7 @@ namespace Magazine.Services
 
             User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
-            AddArea("Area A1", u2, m1);
+            Area a1 = AddArea("Area A1", u2, m1);
 
             User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
 
@@ -132,7 +132,6 @@ namespace Magazine.Services
             return user;
         }
         #endregion
-
 
         #region Paper
         public Paper EnviarPaper(Area area, string Title, List<string> lista) // se usa en paper submision

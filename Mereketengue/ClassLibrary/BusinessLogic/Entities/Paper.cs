@@ -31,6 +31,16 @@ namespace Magazine.Entities
             return this.CoAuthors;
         }
 
+        public Area getPaperArea()
+        {
+            return this.BelongingArea;
+        }
+
+        public User gResponsible()
+        {
+            return this.Responsible;
+        }
+
         public bool hasEvaluation() 
         {
             if (this.Evaluation.Equals(null)) 
@@ -52,19 +62,10 @@ namespace Magazine.Entities
         {
             this.Evaluation = evaluation;      
         }
+
         public void removeEvaluation()
         {
             this.Evaluation = null;
-        }
-
-        public Area getPaperArea() 
-        {
-            return this.BelongingArea;
-        }
-        
-        public User gResponsible()
-        {
-            return this.Responsible;
         }
 
         public void setEvaluationPendingArea(Area area) 
