@@ -30,6 +30,16 @@ namespace Magazine.Entities
         {
             return this.CoAuthors;
         }
+        
+        public void deleteCoauthor(Person person)
+        {
+            CoAuthors.Remove(person);
+        }
+
+        public void addCoauthor(Person person)
+        {
+            CoAuthors.Add(person);
+        }
 
         public Area getPaperArea()
         {

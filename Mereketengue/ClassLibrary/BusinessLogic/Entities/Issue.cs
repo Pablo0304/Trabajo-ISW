@@ -22,6 +22,10 @@ namespace Magazine.Entities
             Magazine = magazine;
 
         }
+        public void setPublicationDate(DateTime datetime)
+        {
+            this.PublicationDate = datetime;
+        }
 
     }
 

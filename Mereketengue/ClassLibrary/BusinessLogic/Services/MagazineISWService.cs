@@ -19,6 +19,7 @@ namespace Magazine.Services
         private readonly IDAL dal;
         private User LoggedUser;
         private Entities.Magazine magazine;
+        private int number;
 
         public MagazineISWService(IDAL dal)
         {
@@ -54,7 +55,7 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Issue i1 = AddIssue(12, m1);
+            Issue i1 = AddIssue(1, m1);
         }
 
         #region User
@@ -137,6 +138,8 @@ namespace Magazine.Services
         public Paper EnviarPaper(Area area, string Title, List<string> lista) // se usa en paper submision
         {
             Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
+            paper.setEvaluationPendingArea(area);
+            area.addToPapers(paper);
             return paper;
         }
 
@@ -236,6 +239,13 @@ namespace Magazine.Services
 
 
         #region Issue
+
+        public void setNumberIssue() 
+        {
+            if (magazine.gIssues().Count == 0) { number = 1; }
+            else { number = magazine.gIssues().Count + 1; }
+        }
+
         Issue BuildIssue(int id, int number)
         {
             if (LoggedUser.Equals(magazine.gChiefEditor())) //solo si es el chiefEditor
@@ -268,6 +278,7 @@ namespace Magazine.Services
         public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
         {
             Issue issue = new Issue(number, magazine);
+            issue.setPublicationDate(DateTime.Now); 
             dal.Insert<Issue>(issue);
             Commit();
             return issue;
@@ -317,20 +328,26 @@ namespace Magazine.Services
 
         public Person addCoauthor(string id, string name, string surname, Paper paper) //se usa en paper submision
         {
-            if (paper.gCoAuthors().Count < 4)
+            if (LoggedUser.Equals(paper.gResponsible()))
             {
-                //como ponemos el id de una person? lo hace el entityframework?
-                Person person = AddPerson(id, name, surname);
-                person.AñadiralPaper(paper);
-                return person;
+                if (paper.gCoAuthors().Count < 4)
+                {
+                    //como ponemos el id de una person? lo hace el entityframework?
+                    Person person = AddPerson(id, name, surname);
+                    paper.addCoauthor(person);
+                    person.AñadiralPaper(paper);
+                    return person;
+                }
+                else { throw new ServiceException("There is already 4 Coauthors for this paper"); }
             }
-            else { throw new ServiceException("There is already 4 Coauthors for this paper"); }
+            throw new ServiceException("You are not allowed to add Coauthors to this paper, only the paper's responsible can do it");
         }
 
         public void deleteCoauthor(Person person, Paper paper)
         {
-            if (paper.gCoAuthors().Count < 0)
+            if (paper.gCoAuthors().Count > 0)
             {
+                paper.deleteCoauthor(person);
                 person.EliminarDelPaper(paper);
             }
         }// por si acaso
