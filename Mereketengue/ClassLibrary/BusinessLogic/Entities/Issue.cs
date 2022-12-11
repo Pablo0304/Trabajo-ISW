@@ -27,6 +27,11 @@ namespace Magazine.Entities
             this.PublicationDate = datetime;
         }
 
+        public int gNumber()
+        {
+            return this.Number;
+        }
+
     }
 
     // Se usa más adelante

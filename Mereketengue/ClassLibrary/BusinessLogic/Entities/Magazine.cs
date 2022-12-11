@@ -8,12 +8,14 @@ namespace Magazine.Entities
 {
     public partial class Magazine
     {
-        public Magazine() {
+        public Magazine()
+        {
             Issues = new List<Issue>();
             Areas = new List<Area>();
         }
 
-        public Magazine(String name, User chiefEditor) : this() {
+        public Magazine(String name, User chiefEditor) : this()
+        {
 
             this.Name = name;
 
@@ -21,19 +23,30 @@ namespace Magazine.Entities
             ChiefEditor = chiefEditor;
         }
 
-        public ICollection<Area> gAreas() 
+        public ICollection<Area> gAreas()
         {
             return this.Areas;
         }
 
-        public ICollection<Issue> gIssues() 
+        public ICollection<Issue> gIssues()
         {
             return this.Issues;
         }
 
-        public User gChiefEditor() 
-        { 
+        public User gChiefEditor()
+        {
             return this.ChiefEditor;
+        }
+
+        public int gMaxNumber(ICollection<Issue> lista)
+        {
+            int max = 0;
+            foreach (Issue issue in lista)
+            {
+                if (issue.gNumber() > max) { max = issue.gNumber(); }
+
+            }
+            return max;
         }
     }
 }

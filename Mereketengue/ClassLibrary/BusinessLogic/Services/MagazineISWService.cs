@@ -19,7 +19,6 @@ namespace Magazine.Services
         private readonly IDAL dal;
         private User LoggedUser;
         private Entities.Magazine magazine;
-        private int number;
 
         public MagazineISWService(IDAL dal)
         {
@@ -240,19 +239,14 @@ namespace Magazine.Services
 
         #region Issue
 
-        public void setNumberIssue() 
-        {
-            if (magazine.gIssues().Count == 0) { number = 1; }
-            else { number = magazine.gIssues().Count + 1; }
-        }
-
-        Issue BuildIssue(int id, int number)
+        Issue BuildIssue(Area area)
         {
             if (LoggedUser.Equals(magazine.gChiefEditor())) //solo si es el chiefEditor
             { 
                 Boolean trobada = false;
-                Issue resp;
-                foreach (Issue i in dal.GetAll<Issue>())
+                ICollection<Issue> issues = magazine.gIssues();
+                int currentNumber = magazine.gMaxNumber(issues);
+
                 {
                     if (i.Number == number) { trobada = true; }
                 }
