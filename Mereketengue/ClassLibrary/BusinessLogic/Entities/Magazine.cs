@@ -23,30 +23,14 @@ namespace Magazine.Entities
             ChiefEditor = chiefEditor;
         }
 
-        public ICollection<Area> gAreas()
-        {
-            return this.Areas;
-        }
-
-        public ICollection<Issue> gIssues()
-        {
-            return this.Issues;
-        }
-
         public User gChiefEditor()
         {
             return this.ChiefEditor;
         }
 
-        public int gMaxNumber(ICollection<Issue> lista)
+        public Issue gMaxNumberIssue()
         {
-            int max = 0;
-            foreach (Issue issue in lista)
-            {
-                if (issue.gNumber() > max) { max = issue.gNumber(); }
-
-            }
-            return max;
+            return this.Issues.Last();  //como de bien etá esto mucho . ? preguntas
         }
     }
 }

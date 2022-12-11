@@ -22,16 +22,12 @@ namespace Magazine.Entities
             Magazine = magazine;
 
         }
-        public void setPublicationDate(DateTime datetime)
-        {
-            this.PublicationDate = datetime;
-        }
 
-        public int gNumber()
+        public bool IssuePendientePub(DateTime datetime)
         {
-            return this.Number;
+           int aux = DateTime.Compare(datetime, DateTime.Now);
+            return aux < 0;
         }
-
     }
 
     // Se usa más adelante

@@ -139,6 +139,7 @@ namespace Magazine.Services
             Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
             paper.setEvaluationPendingArea(area);
             area.addToPapers(paper);
+            area.AddToEvaluationPendingPapers(paper);
             return paper;
         }
 
@@ -244,26 +245,32 @@ namespace Magazine.Services
             if (LoggedUser.Equals(magazine.gChiefEditor())) //solo si es el chiefEditor
             { 
                 Boolean trobada = false;
-                ICollection<Issue> issues = magazine.gIssues();
-                int currentNumber = magazine.gMaxNumber(issues);
+                Issue issue = magazine.gMaxNumberIssue();
 
+                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) //como esta esto y que es datetime? ? Pregunta
                 {
-                    if (i.Number == number) { trobada = true; }
-                }
-                if (trobada == true)
-                {
-                    resp = dal.GetById<Issue>(number);
-                }
-                else
-                {
-                    Area areaSelec = dal.GetById<Area>(id);
-                    foreach (Paper p in areaSelec.Papers)
+                    if (trobada == true)
                     {
-                        areaSelec.PublicationPending.Add(p);
-                        areaSelec.EvaluationPending.Add(p);
+                        magazine.Issues.
+                        
                     }
+                    else
+                    {
+                        Area areaSelec = dal.GetById<Area>(id);
+                        foreach (Paper p in areaSelec.Papers)
+                        {
+                            areaSelec.AddToPublicationPendingPapers(p);
+                            p.setPublicationPendingArea(areaSelec);
+                            areaSelec.AddToEvaluationPendingPapers(p);
+                            p.setEvaluationPendingArea(areaSelec);
+                        }
+                    }
+                    return resp;
                 }
-                return resp;
+                else //ya existe, edit
+                {
+
+                }
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
         
@@ -272,7 +279,7 @@ namespace Magazine.Services
         public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
         {
             Issue issue = new Issue(number, magazine);
-            issue.setPublicationDate(DateTime.Now); 
+            issue.setPublicationDate(DateTime.Now);
             dal.Insert<Issue>(issue);
             Commit();
             return issue;
@@ -302,7 +309,7 @@ namespace Magazine.Services
 
         public ICollection<Area> listAreas() // se usa en paper submision y en Evaluatepaper, por ahora
         {
-            ICollection<Area> list = magazine.gAreas();
+            ICollection<Area> list = magazine.Areas;
             return list;
         }
 
