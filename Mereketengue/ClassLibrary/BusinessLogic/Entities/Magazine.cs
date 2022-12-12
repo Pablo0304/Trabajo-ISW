@@ -23,14 +23,21 @@ namespace Magazine.Entities
             ChiefEditor = chiefEditor;
         }
 
-        public User gChiefEditor()
-        {
-            return this.ChiefEditor;
-        }
-
         public Issue gMaxNumberIssue()
         {
             return this.Issues.Last();  //como de bien etá esto mucho . ? preguntas
         }
+
+        public void addToIssues(Issue issue) 
+        {
+            this.Issues.Add(issue);
+        }
+
+        public void removeFromIssues(Issue issue)
+        {
+            this.Issues.Remove(issue);
+        }
+
+
     }
 }

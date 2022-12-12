@@ -28,27 +28,22 @@ namespace Magazine.Entities
 
         }
 
-        public ICollection<Paper> EvaluationPendingPapers() //para que sirve EvaluationPending, no hace falta ? pregunta
-        {
-            return EvaluationPending;
-        }
-
-        public void AddToPublicationPendingPapers(Paper paper) 
+        public void AddToPublPendPapers(Paper paper) 
         {
             PublicationPending.Add(paper);
         }
 
-        public void DeleteFromPublicationPendingPapers(Paper paper)
+        public void DeleteFromPublPendPapers(Paper paper)
         {
             PublicationPending.Remove(paper);
         }
 
-        public void AddToEvaluationPendingPapers(Paper paper)
+        public void AddToEvalPendPapers(Paper paper)
         {
             EvaluationPending.Add(paper);
         }
 
-        public void DeleteFromEvaluatePendingPaper(Paper paper) 
+        public void DeleteFromEvalPendPapers(Paper paper) 
         {
             EvaluationPending.Remove(paper);
         }
@@ -56,15 +51,6 @@ namespace Magazine.Entities
         public void addToPapers(Paper paper)
         {
             this.Papers.Add(paper);
-        }
-
-        public ICollection<Paper> gPapers() 
-        {
-            return this.Papers;
-        }
-        public User gEditor() 
-        { 
-            return (User)this.Editor;
         }
     }
 }

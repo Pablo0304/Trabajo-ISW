@@ -32,5 +32,6 @@ namespace Magazine.Entities
         public bool comprobarPassword(String pssw) { return this.Password.Equals(pssw); }
 
         public bool comprobarId(String id) { return this.Id.Equals(id); }
+
     }
 }

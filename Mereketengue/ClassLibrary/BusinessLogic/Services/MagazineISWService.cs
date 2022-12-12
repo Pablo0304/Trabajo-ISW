@@ -137,35 +137,35 @@ namespace Magazine.Services
         public Paper EnviarPaper(Area area, string Title, List<string> lista) // se usa en paper submision
         {
             Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
-            paper.setEvaluationPendingArea(area);
+            paper.EvaluationPendingArea = area;
             area.addToPapers(paper);
-            area.AddToEvaluationPendingPapers(paper);
+            area.AddToEvalPendPapers(paper);
             return paper;
         }
 
         public ICollection<Paper> getAllNoEvPapers(Area area) // se usa en Evaluate paper
         {
-            return area.EvaluationPendingPapers();
+            return area.EvaluationPending;
         }
 
         public void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios)
         {
-            if (area.gEditor().Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
+            if (area.Editor.Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
             {
                 Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
-                Area areaPaper = paper.getPaperArea();
-                paper.setEvaluation(evaluacion);
+                Area areaPaper = paper.BelongingArea;
+                paper.Evaluation = evaluacion;
 
                 if (decision)
                 {
-                    areaPaper.AddToPublicationPendingPapers(paper);
-                    paper.setPublicationPendingArea(areaPaper);
-                    areaPaper.DeleteFromEvaluatePendingPaper(paper);
+                    areaPaper.AddToPublPendPapers(paper);
+                    paper.PublicationPendingArea = areaPaper;
+                    areaPaper.DeleteFromEvalPendPapers(paper);
                 }
                 else
                 {
-                    areaPaper.DeleteFromEvaluatePendingPaper(paper);
-                    paper.removeEvaluationPendingArea();
+                    areaPaper.DeleteFromEvalPendPapers(paper);
+                    paper.EvaluationPendingArea = null;
                 }
             }
             throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area's editor can do it.");
@@ -195,9 +195,9 @@ namespace Magazine.Services
 
         public ICollection<Paper> ListarPaper(Area area) // intento 2
         {
-            if (LoggedUser.Equals(magazine.gChiefEditor())) //solo si es el chiefEditor
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             { 
-                ICollection<Paper> listaPapers = area.gPapers();
+                ICollection<Paper> listaPapers = area.Papers;
                 List<string> listaStates = new List<string>(listaPapers.Count);
                 //pregunta como funcionan las tablas, como crear lista con los atributos que yo quiera de un objeto y con otros elementos añadidos
                 int cont = 0;
@@ -242,7 +242,7 @@ namespace Magazine.Services
 
         Issue BuildIssue(Area area)
         {
-            if (LoggedUser.Equals(magazine.gChiefEditor())) //solo si es el chiefEditor
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             { 
                 Boolean trobada = false;
                 Issue issue = magazine.gMaxNumberIssue();
@@ -251,7 +251,7 @@ namespace Magazine.Services
                 {
                     if (trobada == true)
                     {
-                        magazine.Issues.
+                        magazine.a
                         
                     }
                     else
@@ -259,10 +259,10 @@ namespace Magazine.Services
                         Area areaSelec = dal.GetById<Area>(id);
                         foreach (Paper p in areaSelec.Papers)
                         {
-                            areaSelec.AddToPublicationPendingPapers(p);
-                            p.setPublicationPendingArea(areaSelec);
-                            areaSelec.AddToEvaluationPendingPapers(p);
-                            p.setEvaluationPendingArea(areaSelec);
+                            areaSelec.AddToPublPendPapers(p);
+                            p.PublicationPendingArea = areaSelec;
+                            areaSelec.AddToEvalPendPapers(p);
+                            p.EvaluationPendingArea = areaSelec;
                         }
                     }
                     return resp;
@@ -279,7 +279,7 @@ namespace Magazine.Services
         public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
         {
             Issue issue = new Issue(number, magazine);
-            issue.setPublicationDate(DateTime.Now);
+            issue.PublicationDate = DateTime.Now;
             dal.Insert<Issue>(issue);
             Commit();
             return issue;
@@ -329,9 +329,9 @@ namespace Magazine.Services
 
         public Person addCoauthor(string id, string name, string surname, Paper paper) //se usa en paper submision
         {
-            if (LoggedUser.Equals(paper.gResponsible()))
+            if (LoggedUser.Equals(paper.Responsible))
             {
-                if (paper.gCoAuthors().Count < 4)
+                if (paper.gCoAuthorsCount() < 4)
                 {
                     //como ponemos el id de una person? lo hace el entityframework?
                     Person person = AddPerson(id, name, surname);
@@ -344,14 +344,14 @@ namespace Magazine.Services
             throw new ServiceException("You are not allowed to add Coauthors to this paper, only the paper's responsible can do it");
         }
 
-        public void deleteCoauthor(Person person, Paper paper)
+        public void deleteCoauthor(Person person, Paper paper) // por si acaso
         {
-            if (paper.gCoAuthors().Count > 0)
+            if (paper.gCoAuthorsCount()> 0)
             {
                 paper.deleteCoauthor(person);
                 person.EliminarDelPaper(paper);
             }
-        }// por si acaso
+        }
         #endregion
 
         #region Evaluation

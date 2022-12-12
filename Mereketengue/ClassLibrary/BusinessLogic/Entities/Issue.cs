@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,31 @@ namespace Magazine.Entities
         {
            int aux = DateTime.Compare(datetime, DateTime.Now);
             return aux < 0;
+        }
+
+        public void addToPublishedPapers(Paper paper)
+        {
+            this.PublishedPapers.Add(paper);
+        }
+
+        public void deleteFromPublishedPapers(Paper paper)
+        {
+            this.PublishedPapers.Remove(paper); 
+        }
+
+        public void clearPublishedpapers()
+        {
+            this.PublishedPapers.Clear();
+        }
+
+        public void atras(ICollection<Paper> lista, int index) //a mitad no tocar
+        {
+            if (index < lista.Count) //si no es la última de la lista
+            {
+                Paper paper = lista.ElementAt(index);
+                List<Paper> aux = new List<Paper>(lista.Count);
+                lista.ElementAt(index) = lista.ElementAt(index + 1);
+            }
         }
     }
 

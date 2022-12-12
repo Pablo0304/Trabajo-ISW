@@ -25,11 +25,6 @@ namespace Magazine.Entities
             CoAuthors.Add(responsible); //? preguntar
 
         }
-
-        public ICollection<Person> gCoAuthors() 
-        {
-            return this.CoAuthors;
-        }
         
         public void deleteCoauthor(Person person)
         {
@@ -41,14 +36,9 @@ namespace Magazine.Entities
             CoAuthors.Add(person);
         }
 
-        public Area getPaperArea()
-        {
-            return this.BelongingArea;
-        }
-
-        public User gResponsible()
-        {
-            return this.Responsible;
+        public int gCoAuthorsCount() 
+        { 
+            return CoAuthors.Count; 
         }
 
         public bool hasEvaluation() 
@@ -67,36 +57,5 @@ namespace Magazine.Entities
         {
             return this.Evaluation.Accepted;    
         }
-
-        public void setEvaluation(Evaluation evaluation) 
-        {
-            this.Evaluation = evaluation;      
-        }
-
-        public void removeEvaluation()
-        {
-            this.Evaluation = null;
-        }
-
-        public void setEvaluationPendingArea(Area area) 
-        {
-            this.EvaluationPendingArea = area;
-        }
-        
-        public void removeEvaluationPendingArea()
-        {
-            this.EvaluationPendingArea = null;
-        }
-
-        public void setPublicationPendingArea(Area area) 
-        {
-            this.PublicationPendingArea = area;
-        }
-
-        public void removePublicationnPendingArea()
-        {
-            this.PublicationPendingArea = null;
-        }
-
     }
 }
