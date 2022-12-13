@@ -40,9 +40,9 @@ namespace Magazine.Services
         {
             RemoveAllData();
 
-            User u1 = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
+            User ChiefEditor = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
 
-            Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", u1);
+            Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", ChiefEditor);
 
             User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
@@ -136,10 +136,18 @@ namespace Magazine.Services
         #region Paper
         public Paper EnviarPaper(Area area, string Title, List<string> lista) // se usa en paper submision
         {
-            Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
+            foreach (Paper p in area.Papers) {
+                if (p.comprobarTitle(Title)) 
+                {
+                    throw new ServiceException("There is already a paper with the same Title in this area");
+                }
+            }
+            Paper paper = new Paper(Title, DateTime.Now, area, LoggedUser);
             paper.EvaluationPendingArea = area;
             area.addToPapers(paper);
             area.AddToEvalPendPapers(paper);
+            dal.Insert<Paper>(paper);
+            Commit();
             return paper;
         }
 
@@ -153,19 +161,26 @@ namespace Magazine.Services
             if (area.Editor.Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
             {
                 Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
-                Area areaPaper = paper.BelongingArea;
                 paper.Evaluation = evaluacion;
 
                 if (decision)
                 {
-                    areaPaper.AddToPublPendPapers(paper);
-                    paper.PublicationPendingArea = areaPaper;
-                    areaPaper.DeleteFromEvalPendPapers(paper);
+                    area.AddToPublPendPapers(paper);
+                    paper.PublicationPendingArea = area;
+                    area.DeleteFromEvalPendPapers(paper);
+                    dal.Delete<Paper>(paper); //?
+                    dal.Insert<Paper>(paper); //pregunta
+                    dal.Insert<Area>(area);
+                    Commit();
+
                 }
                 else
                 {
-                    areaPaper.DeleteFromEvalPendPapers(paper);
+                    area.DeleteFromEvalPendPapers(paper);
                     paper.EvaluationPendingArea = null;
+                    dal.Insert<Paper>(paper);
+                    dal.Insert<Area>(area);
+                    Commit();
                 }
             }
             throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area's editor can do it.");
@@ -199,7 +214,6 @@ namespace Magazine.Services
             { 
                 ICollection<Paper> listaPapers = area.Papers;
                 List<string> listaStates = new List<string>(listaPapers.Count);
-                //pregunta como funcionan las tablas, como crear lista con los atributos que yo quiera de un objeto y con otros elementos añadidos
                 int cont = 0;
                 foreach (Paper p in listaPapers)
                 {
@@ -247,7 +261,7 @@ namespace Magazine.Services
                 Boolean trobada = false;
                 Issue issue = magazine.gMaxNumberIssue();
 
-                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) //como esta esto y que es datetime? ? Pregunta
+                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) 
                 {
                     if (trobada == true)
                     {
@@ -331,12 +345,12 @@ namespace Magazine.Services
         {
             if (LoggedUser.Equals(paper.Responsible))
             {
-                if (paper.gCoAuthorsCount() < 4)
-                {
-                    //como ponemos el id de una person? lo hace el entityframework?
-                    Person person = AddPerson(id, name, surname);
+                if (paper.gCoAuthorsCount() < 3)
+                {   //comprobar si exixte persona
+                    Person person = new Person(id, name, surname);
                     paper.addCoauthor(person);
                     person.AñadiralPaper(paper);
+                    dal.Insert<Person>(person);
                     return person;
                 }
                 else { throw new ServiceException("There is already 4 Coauthors for this paper"); }
