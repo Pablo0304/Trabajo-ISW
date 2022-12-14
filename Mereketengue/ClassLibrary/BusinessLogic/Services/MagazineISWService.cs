@@ -265,7 +265,11 @@ namespace Magazine.Services
                 }
                 else //ya existe, edit
                 {
-                    EditIssue();
+                    ICollection<Paper> publishedPapers = issue.PublishedPapers;
+                    DateTime fechaPubli = (DateTime)issue.PublicationDate;
+                    int number = issue.Number;
+
+                    EditIssue(issue, publishedPapers, fechaPubli, number);
                 }
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
@@ -276,8 +280,11 @@ namespace Magazine.Services
         
         }
 
-        public void EditIssue() { 
-        
+        public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {
+            issue.PublishedPapers = publishedPapers;
+            issue.Number = number;
+            issue.PublicationDate = fechaPubli;
+            Commit();
         }
 
         public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
