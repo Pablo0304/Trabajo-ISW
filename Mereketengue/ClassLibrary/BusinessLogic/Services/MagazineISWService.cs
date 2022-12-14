@@ -263,7 +263,7 @@ namespace Magazine.Services
                 {
                     if (trobada == true)
                     {
-                        magazine.a
+                        magazine.a;
                         
                     }
                     else
