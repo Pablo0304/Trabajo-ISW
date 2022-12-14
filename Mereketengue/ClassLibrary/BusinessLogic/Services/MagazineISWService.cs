@@ -186,56 +186,54 @@ namespace Magazine.Services
             throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area's editor can do it.");
         }
 
-        public void ListarPaper(string filtro)  // intento 1 dani
-        {
-            Boolean existe = false;
-            ICollection<Paper> ListaFiltrada;
-            if (filtro.Equals(""))
-            {
-            }
-            else
-            {
-                foreach (Issue i in dal.GetAll<Issue>())
-                {
-                    if (i.Id.Equals(filtro))
-                    {
-                        ListaFiltrada.Add(i);
-                        existe = true;
-                    }
-                }
-                if (existe) { return ListaFiltrada; }
-                else { throw new ServiceException("No se encueentra un Issue con este number."); }
-            }
-        }
-
-        public ICollection<Paper> ListarPaper(Area area) // intento 2
+        public ICollection<Paper> ListarPapersEvPending(Area area)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
-            { 
-                ICollection<Paper> listaPapers = area.Papers;
-                List<string> listaStates = new List<string>(listaPapers.Count);
-                int cont = 0;
-                foreach (Paper p in listaPapers)
-                {
-                    cont++;
-                    if (p.hasEvaluation())
-                    {
-                        if (p.gEvaluationDecision())
-                        {
-                            listaStates[cont] = "accepted";
-                        }
-                        else
-                        {
-                            listaStates[cont] = "rejected";
-                        }
-                    }
-                    else
-                    {
-                        listaStates[cont] = "Evaluation Pending";
-                    }
+            {
+                return area.EvaluationPending; //devuelve pendientes de evaluación
+            }
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
 
+        }
+        public ICollection<Paper> ListarPapersPublPending(Area area)
+        {
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
+            {
+                return area.PublicationPending; //devuelve pendientes de publicación
+            }
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
+
+        }
+        public ICollection<Paper> ListarPublishedPapers(Area area)
+        {
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
+            {
+                ICollection<Paper> papers = area.Papers;
+                ICollection<Paper> Evpendingpapers = area.EvaluationPending;
+                ICollection<Paper> PublPendingPapers = area.EvaluationPending;
+                foreach(Paper paper in papers) //me quedo con los que están publicados o rechazados
+                {
+                    if(Evpendingpapers.Contains(paper) || PublPendingPapers.Contains(paper)) { papers.Remove(paper);}
+                    if (!paper.gEvaluationDecision()) { papers.Remove(paper); } //elimino los rechazados
+                } 
+                return papers;//devuelve aceptados y publicados 
+            }
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
+
+        }
+        public ICollection<Paper> ListarPapersRechazados(Area area) 
+        {
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
+            {
+                ICollection<Paper> papers = area.Papers;
+                ICollection<Paper> Evpendingpapers = area.EvaluationPending;
+                ICollection<Paper> PublPendingPapers = area.EvaluationPending;
+                foreach (Paper paper in papers) //me quedo con los que están publicados o rechazados
+                {
+                    if (Evpendingpapers.Contains(paper) || PublPendingPapers.Contains(paper)) { papers.Remove(paper); }
+                    if (paper.gEvaluationDecision()) { papers.Remove(paper); } //elimino los publicados
                 }
-                return listaPapers;
+                return papers; //devuelve rechazados
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
 
@@ -333,7 +331,7 @@ namespace Magazine.Services
 
         #region Person
 
-        public Person AddPerson(string id, string name, string surname)
+        public Person AddPerson(string id, string name, string surname) //para inicializar la base de datos
         {
             Person person = new Person(id,name,surname);
             dal.Insert<Person>(person);
