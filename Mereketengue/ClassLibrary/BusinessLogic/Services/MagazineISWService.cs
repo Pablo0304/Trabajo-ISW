@@ -2,6 +2,7 @@
 using Magazine.Persistence;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
@@ -256,35 +257,26 @@ namespace Magazine.Services
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             { 
-                Boolean trobada = false;
                 Issue issue = magazine.gMaxNumberIssue();
 
                 if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) 
                 {
-                    if (trobada == true)
-                    {
-                        magazine.a;
-                        
-                    }
-                    else
-                    {
-                        Area areaSelec = dal.GetById<Area>(id);
-                        foreach (Paper p in areaSelec.Papers)
-                        {
-                            areaSelec.AddToPublPendPapers(p);
-                            p.PublicationPendingArea = areaSelec;
-                            areaSelec.AddToEvalPendPapers(p);
-                            p.EvaluationPendingArea = areaSelec;
-                        }
-                    }
-                    return resp;
+                    CreateIssue();
                 }
                 else //ya existe, edit
                 {
-
+                    EditIssue();
                 }
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
+        
+        }
+
+        public void CreateIssue() { 
+        
+        }
+
+        public void EditIssue() { 
         
         }
 
