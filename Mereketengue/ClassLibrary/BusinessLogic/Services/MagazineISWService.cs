@@ -20,6 +20,7 @@ namespace Magazine.Services
         private readonly IDAL dal;
         private User LoggedUser;
         private Entities.Magazine magazine;
+        private ICollection<Paper> listaPapers;
 
         public MagazineISWService(IDAL dal)
         {
@@ -55,7 +56,7 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Issue i1 = AddIssue(1, m1);
+            Issue i1 = CreateIssue(1, m1);
         }
 
         #region User
@@ -261,7 +262,8 @@ namespace Magazine.Services
 
                 if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) 
                 {
-                    CreateIssue();
+                    int number = 0; //Asignar el number que escribamos en el programa
+                    CreateIssue(number, magazine);
                 }
                 else //ya existe, edit
                 {
@@ -276,21 +278,24 @@ namespace Magazine.Services
         
         }
 
-        public void CreateIssue() { 
-        
-        }
+        public void AddPublishedPapers(Paper paper, Issue issue) {
+            listaPapers = issue.PublishedPapers;
+            listaPapers.Add(paper);
 
+        }
         public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {
             issue.PublishedPapers = publishedPapers;
             issue.Number = number;
             issue.PublicationDate = fechaPubli;
+            issue.PublishedPapers = listaPapers;
             Commit();
         }
 
-        public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
+        public Issue CreateIssue(int number, Magazine.Entities.Magazine magazine)
         {
             Issue issue = new Issue(number, magazine);
             issue.PublicationDate = DateTime.Now;
+            issue.PublishedPapers = listaPapers;
             dal.Insert<Issue>(issue);
             Commit();
             return issue;
