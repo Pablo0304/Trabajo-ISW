@@ -365,6 +365,7 @@ namespace Magazine.Services
             {
                 paper.deleteCoauthor(person);
                 person.EliminarDelPaper(paper);
+                Commit();
             }
         }
         #endregion
