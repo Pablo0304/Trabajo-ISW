@@ -153,11 +153,6 @@ namespace Magazine.Services
             return paper;
         }
 
-        public ICollection<Paper> getAllNoEvPapers(Area area) // se usa en Evaluate paper
-        {
-            return area.EvaluationPending;
-        }
-
         public void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios)
         {
             if (area.Editor.Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
@@ -254,35 +249,38 @@ namespace Magazine.Services
 
         #region Issue
 
-        Issue BuildIssue(Area area)
+        Issue BuildIssue(int number)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
-            { 
+            {
                 Issue issue = magazine.gMaxNumberIssue();
-
-                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) 
+                if (issue.Number >= number)
                 {
-                    int number = 0; //Asignar el number que escribamos en el programa
-                    CreateIssue(number, magazine);
-                }
-                else //ya existe, edit
-                {
-                    ICollection<Paper> publishedPapers = issue.PublishedPapers;
-                    DateTime fechaPubli = (DateTime)issue.PublicationDate;
-                    int number = issue.Number;
+                    if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
+                    {
+                        CreateIssue(number, magazine);
+                    }
+                    else //ya existe, edit
+                    {
+                        ICollection<Paper> publishedPapers = issue.PublishedPapers;
+                        DateTime fechaPubli = (DateTime)issue.PublicationDate;
+                        int aux = issue.Number;
 
-                    EditIssue(issue, publishedPapers, fechaPubli, number);
+                        EditIssue(issue, publishedPapers, fechaPubli, aux);
+                    }
                 }
+                throw new ServiceException("An Issue is already published with the selected number.");
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
         
         }
 
-        public void AddPublishedPapers(Paper paper, Issue issue) {
+        public void AddPublishedPapers(Paper paper, Issue issue)
+        {
             listaPapers = issue.PublishedPapers;
             listaPapers.Add(paper);
-
         }
+
         public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {
             issue.PublishedPapers = publishedPapers;
             issue.Number = number;
@@ -296,6 +294,7 @@ namespace Magazine.Services
             Issue issue = new Issue(number, magazine);
             issue.PublicationDate = DateTime.Now;
             issue.PublishedPapers = listaPapers;
+            magazine.addToIssues(issue);
             dal.Insert<Issue>(issue);
             Commit();
             return issue;
