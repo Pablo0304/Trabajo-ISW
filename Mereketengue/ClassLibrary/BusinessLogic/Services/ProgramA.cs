@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services
+internal class ProgramA
 {
-    internal class ProgramA
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            DBInitialization();
-        }
+        IDAL dal = new EntityFrameworkDAL(new MagazineDbContext());
+
+        DBInitialization();
     }
 }

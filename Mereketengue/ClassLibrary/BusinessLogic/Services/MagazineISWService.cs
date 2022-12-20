@@ -22,7 +22,7 @@ namespace Magazine.Services
         private Entities.Magazine magazine;
         private ICollection<Paper> listaPapers;
 
-        public MagazineISWService(IDAL dal)
+            public MagazineISWService(IDAL dal)
         {
             this.dal = dal;
 
