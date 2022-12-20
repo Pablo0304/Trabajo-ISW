@@ -258,12 +258,10 @@ namespace Magazine.Services
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             { 
                 Issue issue = magazine.gMaxNumberIssue();
-                int number = issue.Number + 1;
 
                 if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) 
-                { // JAVI NO TOQUES ESTO QUE LA LIAS, LO HARÉ YO
-                    AddPaperToIssue();
-                    AddIssue(number, magazine, papers);
+                {
+                    CreateIssue();
                 }
                 else //ya existe, edit
                 {
@@ -274,18 +272,17 @@ namespace Magazine.Services
         
         }
 
+        public void CreateIssue() { 
+        
+        }
+
         public void EditIssue() { 
         
         }
 
-        public void AddPaperToIssue() { 
-        
-        }
-
-        public Issue AddIssue(int number, Magazine.Entities.Magazine magazine, ICollection<Paper> papers)
+        public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
         {
             Issue issue = new Issue(number, magazine);
-            issue.PublishedPapers = papers;
             issue.PublicationDate = DateTime.Now;
             dal.Insert<Issue>(issue);
             Commit();
