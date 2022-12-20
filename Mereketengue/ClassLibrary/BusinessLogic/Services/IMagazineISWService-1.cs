@@ -62,7 +62,7 @@ namespace Magazine.Services
         #endregion
 
         #region Issue
-        void BuildIssue();
+        void BuildIssue(Area area);
 
 
         #endregion
