@@ -43,7 +43,7 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e)
         {
-            user.Text;
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
