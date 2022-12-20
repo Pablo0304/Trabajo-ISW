@@ -44,6 +44,7 @@ namespace Magazine.Entities
         {
             this.PublishedPapers.Clear();
         }
+
     }
 
     // Se usa más adelante

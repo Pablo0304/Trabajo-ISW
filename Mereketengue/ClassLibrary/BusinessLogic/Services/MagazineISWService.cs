@@ -20,8 +20,9 @@ namespace Magazine.Services
         private readonly IDAL dal;
         private User LoggedUser;
         private Entities.Magazine magazine;
+        private ICollection<Paper> listaPapers;
 
-        public MagazineISWService(IDAL dal)
+            public MagazineISWService(IDAL dal)
         {
             this.dal = dal;
 
@@ -55,7 +56,7 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Issue i1 = AddIssue(1, m1);
+            Issue i1 = CreateIssue(1, m1);
         }
 
         #region User
@@ -150,11 +151,6 @@ namespace Magazine.Services
             dal.Insert<Paper>(paper);
             Commit();
             return paper;
-        }
-
-        public ICollection<Paper> getAllNoEvPapers(Area area) // se usa en Evaluate paper
-        {
-            return area.EvaluationPending;
         }
 
         public void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios)
@@ -253,37 +249,52 @@ namespace Magazine.Services
 
         #region Issue
 
-        Issue BuildIssue(Area area)
+        public Issue BuildIssue(int number)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
-            { 
+            {
                 Issue issue = magazine.gMaxNumberIssue();
+                if (issue.Number >= number)
+                {
+                    if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
+                    {
+                        CreateIssue(number, magazine);
+                    }
+                    else //ya existe, edit
+                    {
+                        ICollection<Paper> publishedPapers = issue.PublishedPapers;
+                        DateTime fechaPubli = (DateTime)issue.PublicationDate;
+                        int aux = issue.Number;
 
-                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) 
-                {
-                    CreateIssue();
+                        EditIssue(issue, publishedPapers, fechaPubli, aux);
+                    }
                 }
-                else //ya existe, edit
-                {
-                    EditIssue();
-                }
+                throw new ServiceException("An Issue is already published with the selected number.");
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
         
         }
 
-        public void CreateIssue() { 
-        
+        public void AddPublishedPapers(Paper paper, Issue issue)
+        {
+            listaPapers = issue.PublishedPapers;
+            listaPapers.Add(paper);
         }
 
-        public void EditIssue() { 
-        
+        public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {
+            issue.PublishedPapers = publishedPapers;
+            issue.Number = number;
+            issue.PublicationDate = fechaPubli;
+            issue.PublishedPapers = listaPapers;
+            Commit();
         }
 
-        public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
+        public Issue CreateIssue(int number, Magazine.Entities.Magazine magazine)
         {
             Issue issue = new Issue(number, magazine);
             issue.PublicationDate = DateTime.Now;
+            issue.PublishedPapers = listaPapers;
+            magazine.addToIssues(issue);
             dal.Insert<Issue>(issue);
             Commit();
             return issue;
@@ -354,6 +365,7 @@ namespace Magazine.Services
             {
                 paper.deleteCoauthor(person);
                 person.EliminarDelPaper(paper);
+                Commit();
             }
         }
         #endregion
@@ -365,6 +377,16 @@ namespace Magazine.Services
             dal.Insert<Evaluation>(evaluation);
             Commit();
             return evaluation;
+        }
+
+        public ICollection<Paper> getAllNoEvPapers(Area area)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void BuildIssue()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
