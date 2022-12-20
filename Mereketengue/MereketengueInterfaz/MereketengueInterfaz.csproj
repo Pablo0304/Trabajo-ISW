@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -126,6 +127,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
@@ -149,6 +151,30 @@
       <Project>{023f5c15-153c-4b2b-bc44-2e00fc35869b}</Project>
       <Name>MagazineLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buildissue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\createarea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editpaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editprofile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\evaluatepaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\listpapers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mypapers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\submitpaper.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
