@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MereketengueInterfaz
 {
-    public partial class MereketengueApp : Form
+    public partial class SignUp : Form
     {
-        public MereketengueApp()
+        public SignUp()
         {
             InitializeComponent();
         }

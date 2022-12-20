@@ -16,5 +16,10 @@ namespace MereketengueInterfaz
         {
             InitializeComponent();
         }
+
+        private void ListPapers_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

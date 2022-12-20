@@ -1,5 +1,4 @@
-﻿using Magazine.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,16 +10,14 @@ using System.Windows.Forms;
 
 namespace MereketengueInterfaz
 {
-    public partial class MereketengueApp : Form
+    public partial class Login : Form
     {
-        private IMagazineISWService service;
-        public MereketengueApp(IMagazineISWService service)
+        public Login()
         {
             InitializeComponent();
-            this.service = service;
         }
 
-        private void Mereketengue_Load(object sender, EventArgs e)
+        private void Login_Load(object sender, EventArgs e)
         {
 
         }

@@ -1,6 +1,6 @@
 ﻿namespace MereketengueInterfaz
 {
-    partial class MereketengueApp
+    partial class SignUp
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MereketengueApp
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 271);
-            this.Name = "MereketengueApp";
-            this.Text = "Sign Up";
-            this.ResumeLayout(false);
-
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "SignUp";
         }
 
         #endregion

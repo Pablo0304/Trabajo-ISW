@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "ListPapers";
             this.Text = "List Papers";
+            this.Load += new System.EventHandler(this.ListPapers_Load);
             this.ResumeLayout(false);
 
         }
