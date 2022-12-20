@@ -64,7 +64,7 @@ namespace Magazine.Services
         #endregion
 
         #region Issue
-        Issue BuildIssue(int number);
+        Issue BuildIssue();
 
 
         #endregion

@@ -249,27 +249,24 @@ namespace Magazine.Services
 
         #region Issue
 
-        public Issue BuildIssue(int number)
+        public Issue BuildIssue()
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             {
                 Issue issue = magazine.gMaxNumberIssue();
-                if (issue.Number >= number)
+                
+                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
                 {
-                    if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
-                    {
-                        CreateIssue(number, magazine);
-                    }
-                    else //ya existe, edit
-                    {
-                        ICollection<Paper> publishedPapers = issue.PublishedPapers;
-                        DateTime fechaPubli = (DateTime)issue.PublicationDate;
-                        int aux = issue.Number;
-
-                        EditIssue(issue, publishedPapers, fechaPubli, aux);
-                    }
+                    CreateIssue(issue.Number+1, magazine);
                 }
-                throw new ServiceException("An Issue is already published with the selected number.");
+                else //ya existe, edit
+                {
+                    ICollection<Paper> publishedPapers = issue.PublishedPapers;
+                    DateTime fechaPubli = (DateTime)issue.PublicationDate;
+
+                    EditIssue(issue, publishedPapers, fechaPubli, issue.Number);
+                }
+                
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
         
@@ -379,15 +376,6 @@ namespace Magazine.Services
             return evaluation;
         }
 
-        public ICollection<Paper> getAllNoEvPapers(Area area)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void BuildIssue()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
     }
 }
