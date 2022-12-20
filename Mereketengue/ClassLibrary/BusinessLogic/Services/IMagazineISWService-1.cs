@@ -57,7 +57,10 @@ namespace Magazine.Services
         Paper EnviarPaper(Area area, string Title, List<string> lista);
         void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios);
         ICollection<Paper> getAllNoEvPapers(Area area);
-        void ListarPaper();
+        ICollection<Paper> ListarPapersRechazados(Area area);
+        ICollection<Paper> ListarPublishedPapers(Area area);
+        ICollection<Paper> ListarPapersPublPending(Area area);
+        ICollection<Paper> ListarPapersEvPending(Area area);
         Entities.Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible);
         #endregion
 

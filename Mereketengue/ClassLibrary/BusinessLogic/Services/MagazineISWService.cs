@@ -2,6 +2,7 @@
 using Magazine.Persistence;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
@@ -19,6 +20,7 @@ namespace Magazine.Services
         private readonly IDAL dal;
         private User LoggedUser;
         private Entities.Magazine magazine;
+        private ICollection<Paper> listaPapers;
 
         public MagazineISWService(IDAL dal)
         {
@@ -40,9 +42,9 @@ namespace Magazine.Services
         {
             RemoveAllData();
 
-            User u1 = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
+            User ChiefEditor = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
 
-            Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", u1);
+            Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", ChiefEditor);
 
             User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
@@ -54,7 +56,7 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Issue i1 = AddIssue(1, m1);
+            Issue i1 = CreateIssue(1, m1);
         }
 
         #region User
@@ -136,16 +138,19 @@ namespace Magazine.Services
         #region Paper
         public Paper EnviarPaper(Area area, string Title, List<string> lista) // se usa en paper submision
         {
-            Paper paper = AddPaper(Title, DateTime.Now, area, LoggedUser ); 
+            foreach (Paper p in area.Papers) {
+                if (p.comprobarTitle(Title)) 
+                {
+                    throw new ServiceException("There is already a paper with the same Title in this area");
+                }
+            }
+            Paper paper = new Paper(Title, DateTime.Now, area, LoggedUser);
             paper.EvaluationPendingArea = area;
             area.addToPapers(paper);
             area.AddToEvalPendPapers(paper);
+            dal.Insert<Paper>(paper);
+            Commit();
             return paper;
-        }
-
-        public ICollection<Paper> getAllNoEvPapers(Area area) // se usa en Evaluate paper
-        {
-            return area.EvaluationPending;
         }
 
         public void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios)
@@ -153,75 +158,79 @@ namespace Magazine.Services
             if (area.Editor.Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
             {
                 Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
-                Area areaPaper = paper.BelongingArea;
                 paper.Evaluation = evaluacion;
 
                 if (decision)
                 {
-                    areaPaper.AddToPublPendPapers(paper);
-                    paper.PublicationPendingArea = areaPaper;
-                    areaPaper.DeleteFromEvalPendPapers(paper);
+                    area.AddToPublPendPapers(paper);
+                    paper.PublicationPendingArea = area;
+                    area.DeleteFromEvalPendPapers(paper);
+                    dal.Delete<Paper>(paper); //?
+                    dal.Insert<Paper>(paper); //pregunta
+                    dal.Insert<Area>(area);
+                    Commit();
+
                 }
                 else
                 {
-                    areaPaper.DeleteFromEvalPendPapers(paper);
+                    area.DeleteFromEvalPendPapers(paper);
                     paper.EvaluationPendingArea = null;
+                    dal.Insert<Paper>(paper);
+                    dal.Insert<Area>(area);
+                    Commit();
                 }
             }
             throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area's editor can do it.");
         }
 
-        public void ListarPaper(string filtro)  // intento 1 dani
-        {
-            Boolean existe = false;
-            ICollection<Paper> ListaFiltrada;
-            if (filtro.Equals(""))
-            {
-            }
-            else
-            {
-                foreach (Issue i in dal.GetAll<Issue>())
-                {
-                    if (i.Id.Equals(filtro))
-                    {
-                        ListaFiltrada.Add(i);
-                        existe = true;
-                    }
-                }
-                if (existe) { return ListaFiltrada; }
-                else { throw new ServiceException("No se encueentra un Issue con este number."); }
-            }
-        }
-
-        public ICollection<Paper> ListarPaper(Area area) // intento 2
+        public ICollection<Paper> ListarPapersEvPending(Area area)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
-            { 
-                ICollection<Paper> listaPapers = area.Papers;
-                List<string> listaStates = new List<string>(listaPapers.Count);
-                //pregunta como funcionan las tablas, como crear lista con los atributos que yo quiera de un objeto y con otros elementos añadidos
-                int cont = 0;
-                foreach (Paper p in listaPapers)
-                {
-                    cont++;
-                    if (p.hasEvaluation())
-                    {
-                        if (p.gEvaluationDecision())
-                        {
-                            listaStates[cont] = "accepted";
-                        }
-                        else
-                        {
-                            listaStates[cont] = "rejected";
-                        }
-                    }
-                    else
-                    {
-                        listaStates[cont] = "Evaluation Pending";
-                    }
+            {
+                return area.EvaluationPending; //devuelve pendientes de evaluación
+            }
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
 
+        }
+        public ICollection<Paper> ListarPapersPublPending(Area area)
+        {
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
+            {
+                return area.PublicationPending; //devuelve pendientes de publicación
+            }
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
+
+        }
+        public ICollection<Paper> ListarPublishedPapers(Area area)
+        {
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
+            {
+                ICollection<Paper> papers = area.Papers;
+                ICollection<Paper> Evpendingpapers = area.EvaluationPending;
+                ICollection<Paper> PublPendingPapers = area.EvaluationPending;
+                foreach(Paper paper in papers) //me quedo con los que están publicados o rechazados
+                {
+                    if(Evpendingpapers.Contains(paper) || PublPendingPapers.Contains(paper)) { papers.Remove(paper);}
+                    if (!paper.gEvaluationDecision()) { papers.Remove(paper); } //elimino los rechazados
+                } 
+                return papers;//devuelve aceptados y publicados 
+            }
+            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
+
+        }
+        public ICollection<Paper> ListarPapersRechazados(Area area) 
+        {
+            if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
+            {
+                ICollection<Paper> papers = area.Papers;
+                ICollection<Paper> Evpendingpapers = area.EvaluationPending;
+                ICollection<Paper> PublPendingPapers = area.EvaluationPending;
+                foreach (Paper paper in papers) //me quedo con los que están publicados o rechazados
+                {
+                    if (Evpendingpapers.Contains(paper) || PublPendingPapers.Contains(paper)) { papers.Remove(paper); }
+                    if (paper.gEvaluationDecision()) { papers.Remove(paper); } //elimino los publicados
                 }
-                return listaPapers;
+                return papers; //devuelve rechazados
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
 
@@ -240,46 +249,52 @@ namespace Magazine.Services
 
         #region Issue
 
-        Issue BuildIssue(Area area)
+        Issue BuildIssue(int number)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
-            { 
-                Boolean trobada = false;
+            {
                 Issue issue = magazine.gMaxNumberIssue();
-
-                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate)) //como esta esto y que es datetime? ? Pregunta
+                if (issue.Number >= number)
                 {
-                    if (trobada == true)
+                    if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
                     {
-                        magazine.a
-                        
+                        CreateIssue(number, magazine);
                     }
-                    else
+                    else //ya existe, edit
                     {
-                        Area areaSelec = dal.GetById<Area>(id);
-                        foreach (Paper p in areaSelec.Papers)
-                        {
-                            areaSelec.AddToPublPendPapers(p);
-                            p.PublicationPendingArea = areaSelec;
-                            areaSelec.AddToEvalPendPapers(p);
-                            p.EvaluationPendingArea = areaSelec;
-                        }
-                    }
-                    return resp;
-                }
-                else //ya existe, edit
-                {
+                        ICollection<Paper> publishedPapers = issue.PublishedPapers;
+                        DateTime fechaPubli = (DateTime)issue.PublicationDate;
+                        int aux = issue.Number;
 
+                        EditIssue(issue, publishedPapers, fechaPubli, aux);
+                    }
                 }
+                throw new ServiceException("An Issue is already published with the selected number.");
             }
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
         
         }
 
-        public Issue AddIssue(int number, Magazine.Entities.Magazine magazine)
+        public void AddPublishedPapers(Paper paper, Issue issue)
+        {
+            listaPapers = issue.PublishedPapers;
+            listaPapers.Add(paper);
+        }
+
+        public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {
+            issue.PublishedPapers = publishedPapers;
+            issue.Number = number;
+            issue.PublicationDate = fechaPubli;
+            issue.PublishedPapers = listaPapers;
+            Commit();
+        }
+
+        public Issue CreateIssue(int number, Magazine.Entities.Magazine magazine)
         {
             Issue issue = new Issue(number, magazine);
             issue.PublicationDate = DateTime.Now;
+            issue.PublishedPapers = listaPapers;
+            magazine.addToIssues(issue);
             dal.Insert<Issue>(issue);
             Commit();
             return issue;
@@ -319,7 +334,7 @@ namespace Magazine.Services
 
         #region Person
 
-        public Person AddPerson(string id, string name, string surname)
+        public Person AddPerson(string id, string name, string surname) //para inicializar la base de datos
         {
             Person person = new Person(id,name,surname);
             dal.Insert<Person>(person);
@@ -331,12 +346,12 @@ namespace Magazine.Services
         {
             if (LoggedUser.Equals(paper.Responsible))
             {
-                if (paper.gCoAuthorsCount() < 4)
-                {
-                    //como ponemos el id de una person? lo hace el entityframework?
-                    Person person = AddPerson(id, name, surname);
+                if (paper.gCoAuthorsCount() < 3)
+                {   //comprobar si exixte persona
+                    Person person = new Person(id, name, surname);
                     paper.addCoauthor(person);
                     person.AñadiralPaper(paper);
+                    dal.Insert<Person>(person);
                     return person;
                 }
                 else { throw new ServiceException("There is already 4 Coauthors for this paper"); }
@@ -350,6 +365,7 @@ namespace Magazine.Services
             {
                 paper.deleteCoauthor(person);
                 person.EliminarDelPaper(paper);
+                Commit();
             }
         }
         #endregion

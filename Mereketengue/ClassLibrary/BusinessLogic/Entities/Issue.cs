@@ -45,15 +45,6 @@ namespace Magazine.Entities
             this.PublishedPapers.Clear();
         }
 
-        public void atras(ICollection<Paper> lista, int index) //a mitad no tocar
-        {
-            if (index < lista.Count) //si no es la última de la lista
-            {
-                Paper paper = lista.ElementAt(index);
-                List<Paper> aux = new List<Paper>(lista.Count);
-                lista.ElementAt(index) = lista.ElementAt(index + 1);
-            }
-        }
     }
 
     // Se usa más adelante

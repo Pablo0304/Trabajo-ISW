@@ -22,8 +22,14 @@ namespace Magazine.Entities
             Responsible = responsible;
 
             //Coleccions
-            CoAuthors.Add(responsible); //? preguntar
+            CoAuthors.Add(responsible); // 3
 
+        }
+
+        public bool comprobarTitle(String Title)
+        {
+            if (this.Title.Equals(Title)) { return true; }
+            return false;
         }
         
         public void deleteCoauthor(Person person)

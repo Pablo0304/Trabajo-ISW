@@ -25,7 +25,7 @@ namespace Magazine.Entities
 
         public Issue gMaxNumberIssue()
         {
-            return this.Issues.Last();  //como de bien etá esto mucho . ? preguntas
+            return Issues.Last(); 
         }
 
         public void addToIssues(Issue issue) 
