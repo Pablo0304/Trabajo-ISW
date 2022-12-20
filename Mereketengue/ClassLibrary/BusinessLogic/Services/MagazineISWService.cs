@@ -249,7 +249,7 @@ namespace Magazine.Services
 
         #region Issue
 
-        Issue BuildIssue(int number)
+        public Issue BuildIssue(int number)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             {

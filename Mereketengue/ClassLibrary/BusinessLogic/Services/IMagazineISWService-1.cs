@@ -56,7 +56,6 @@ namespace Magazine.Services
         #region Paper
         Paper EnviarPaper(Area area, string Title, List<string> lista);
         void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios);
-        ICollection<Paper> getAllNoEvPapers(Area area);
         ICollection<Paper> ListarPapersRechazados(Area area);
         ICollection<Paper> ListarPublishedPapers(Area area);
         ICollection<Paper> ListarPapersPublPending(Area area);
@@ -65,7 +64,7 @@ namespace Magazine.Services
         #endregion
 
         #region Issue
-        void BuildIssue(Area area);
+        Issue BuildIssue(int number);
 
 
         #endregion
