@@ -56,16 +56,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mereketengue.cs">
+    <Compile Include="BuildIssue.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mereketengue.Designer.cs">
-      <DependentUpon>Mereketengue.cs</DependentUpon>
+    <Compile Include="BuildIssue.Designer.cs">
+      <DependentUpon>BuildIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EvaluatePaper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EvaluatePaper.Designer.cs">
+      <DependentUpon>EvaluatePaper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListPapers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListPapers.Designer.cs">
+      <DependentUpon>ListPapers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuPrincipal.Designer.cs">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaperSubmission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaperSubmission.Designer.cs">
+      <DependentUpon>PaperSubmission.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Mereketengue.resx">
-      <DependentUpon>Mereketengue.cs</DependentUpon>
+    <Compile Include="SignUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignUp.Designer.cs">
+      <DependentUpon>SignUp.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BuildIssue.resx">
+      <DependentUpon>BuildIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EvaluatePaper.resx">
+      <DependentUpon>EvaluatePaper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListPapers.resx">
+      <DependentUpon>ListPapers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaperSubmission.resx">
+      <DependentUpon>PaperSubmission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,6 +127,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SignUp.resx">
+      <DependentUpon>SignUp.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

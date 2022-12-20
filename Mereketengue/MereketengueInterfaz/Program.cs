@@ -19,7 +19,7 @@ namespace MereketengueInterfaz
             IMagazineISWService service = new MagazineISWService(new EntityFrameworkDAL(new MagazineDbContext()));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Mereketengue(service));
+            Application.Run(new MereketengueApp(service));
         }
     }
 }
