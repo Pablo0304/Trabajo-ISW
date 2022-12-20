@@ -378,6 +378,16 @@ namespace Magazine.Services
             Commit();
             return evaluation;
         }
+
+        public ICollection<Paper> getAllNoEvPapers(Area area)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void BuildIssue()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
