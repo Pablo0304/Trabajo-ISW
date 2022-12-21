@@ -27,12 +27,17 @@ namespace MereketengueInterfaz
                 selectorArea.Items.Add(a.Name);
             }
             Issue lastIssue = service.getLastIssue();
-            if (service.pendingPublication(lastIssue)) {
-                numberLabel.Text = lastIssue.Number.ToString();
+            if (service.pendingPublication(lastIssue))
+            {
+                numberLabel.Text = lastIssue.Number.ToString() + " (editar):";
                 dateTimePicker.Text = lastIssue.PublicationDate.ToString();
-                foreach (Paper p in lastIssue.PublishedPapers) {
+                foreach (Paper p in lastIssue.PublishedPapers)
+                {
                     selectedPapers.Items.Add(p.Title);
                 }
+            }
+            else {
+                numberLabel.Text = lastIssue.Number+1.ToString() + " (editar):";
             }
             //selectorArea.Items.Add(service.listAreas());
             
