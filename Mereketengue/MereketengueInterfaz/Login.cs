@@ -43,19 +43,19 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e) //QUITA ESTO CUANDO VAYAS A HACER PUSH ME CAGOENSATANAS
         {
-            if (user.Text != "" && pssw.Text != "")
+            if (user.Text == "" || pssw.Text == "" || !service.Login(user.Text, pssw.Text))
             {
-                service.Login(user.Text, pssw.Text);
-            }
-            else {
-                user.Text = "";
-                pssw.Text = "";
                 DialogResult answer = MessageBox.Show(this, // Owner
-                "You must complete User and Login boxes", // Message
+                "Invalid Credentials", // Message
                 "Unable to Login", // Title
                 MessageBoxButtons.OK, // Buttons included
                 MessageBoxIcon.Exclamation); // Icon
-
+            }
+            else {
+                Menu_Principal ev1 = new Menu_Principal(service);
+                this.Hide();
+                ev1.ShowDialog();
+                this.Close();
             }
         }
 
@@ -74,7 +74,7 @@ namespace MereketengueInterfaz
             SignUp ev1 = new SignUp(service);
             this.Hide();
             ev1.ShowDialog();
-            this.Show();
+            this.Close();
         }
     }
 }

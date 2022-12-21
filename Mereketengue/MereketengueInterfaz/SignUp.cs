@@ -73,7 +73,10 @@ namespace MereketengueInterfaz
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            Login ev1 = new Login(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Close();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -103,18 +106,19 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e)
         {
-            if (user.Text != "" && pssw.Text != "" && email.Text != "" && fieldsOfInterest.Text != "" && name.Text != "" && surname.Text != "")
+            if (user.Text == "" || pssw.Text == "" || email.Text == "" || fieldsOfInterest.Text == "" || name.Text == "" || surname.Text == "" || !service.SignUp("1111", name.Text, surname.Text, checkBox1.Checked, fieldsOfInterest.Text, email.Text, user.Text, pssw.Text))
             {
-                try {
-                    service.SignUp("1111",name.Text,surname.Text,checkBox1.Checked,fieldsOfInterest.Text,email.Text,user.Text,pssw.Text);
-                }catch { 
-                    name.Text = "";
-                    surname.Text = "";
-                    fieldsOfInterest.Text = "";
-                    email.Text = "";
-                    user.Text = "";
-                    pssw.Text = "";
-                }
+                DialogResult answer = MessageBox.Show(this, // Owner
+                "Invalid Credentials or Non-Existent User", // Message
+                "Unable to Sign Up", // Title
+                MessageBoxButtons.OK, // Buttons included
+                MessageBoxIcon.Exclamation); // Icon
+            }
+            else {
+                Login ev1 = new Login(service);
+                this.Hide();
+                ev1.ShowDialog();
+                this.Close();
             }
         }
     }

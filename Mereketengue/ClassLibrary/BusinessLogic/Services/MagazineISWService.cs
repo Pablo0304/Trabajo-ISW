@@ -83,7 +83,7 @@ namespace Magazine.Services
                     return true;
                 }
             }
-            throw new ServiceException("Login or Password are not correct.");
+            return false;
         }
 
         /// <summary>   Performs a log out operation </summary>
@@ -115,12 +115,14 @@ namespace Magazine.Services
                 if (u.comprobarId(id))
                 {
                     encontrado = true;
-                    throw new ServiceException("Error: You are already registered, go to Log in page");
+                    //throw new ServiceException("Error: You are already registered, go to Log in page");
+                    return false;
                 }
                 if (u.comprobarLogin(login))
                 {
                     encontrado = true;
-                    throw new ServiceException("Error: That login is already used, try again.");
+                    //throw new ServiceException("Error: That login is already used, try again.");
+                    return false;
                 }
             }
             if (!encontrado)
