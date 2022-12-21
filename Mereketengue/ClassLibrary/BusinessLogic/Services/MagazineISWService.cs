@@ -20,7 +20,7 @@ namespace Magazine.Services
         private readonly IDAL dal;
         private User LoggedUser;
         private Entities.Magazine magazine;
-        private ICollection<Paper> listaPapers = null;
+        private ICollection<Paper> listaPapers;
 
         public void setMagazine(Entities.Magazine magazine) { 
             this.magazine = magazine;
@@ -61,9 +61,8 @@ namespace Magazine.Services
 
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Issue i1 = CreateIssue(1, m1);
-
             Paper p1 = AddPaper("titulillo", DateTime.Now, a2, u2);
+            Issue i1 = CreateIssue(1, m1, listaPapers);
 
             Evaluation e1 = AddEvaluation(true, "Evaluation 1", DateTime.Now);
 
@@ -268,26 +267,25 @@ namespace Magazine.Services
 
         #region Issue
 
-        public Issue BuildIssue(DateTime publicationDate)
+        public Boolean BuildIssue(DateTime publicationDate, ICollection<Paper> listaPapersAux)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             {
                 Issue issue = magazine.gMaxNumberIssue();
-                
+
                 if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
                 {
-                    CreateIssue(issue.Number+1, magazine);
+                    CreateIssue(issue.Number + 1, magazine, listaPapersAux);
                 }
                 else //ya existe, edit
                 {
-                    ICollection<Paper> publishedPapers = issue.PublishedPapers;
                     DateTime fechaPubli = (DateTime)issue.PublicationDate;
 
-                    EditIssue(issue, publishedPapers, fechaPubli, issue.Number);
+                    EditIssue(issue, listaPapersAux, fechaPubli, issue.Number);
                 }
-                
+                return true;
             }
-            throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
+            else { return false; }
         
         }
         public ICollection<Issue> getAllIssues() {
@@ -306,11 +304,15 @@ namespace Magazine.Services
             return res;
         }
 
-        public void AddPublishedPapers(Paper paper)
-        {
-            this.listaPapers.Add(paper);
-        }
+        
 
+        public Paper gPaper(String name, Area area) {
+            foreach (Paper p in area.Papers) {
+                if (p.comprobarTitle(name)) { return p;  }
+                
+            }
+            throw new ServiceException("No existe paper");
+        }
         public ICollection<Paper> getPendingPublicationPapers(Area area) {
             return area.PublicationPending;
         }
@@ -323,11 +325,11 @@ namespace Magazine.Services
             Commit();
         }
 
-        public Issue CreateIssue(int number, Magazine.Entities.Magazine magazine)
+        public Issue CreateIssue(int number, Magazine.Entities.Magazine magazine, ICollection<Paper> listaPapersAux)
         {
             Issue issue = new Issue(number, magazine);
             issue.PublicationDate = DateTime.Now;
-            issue.PublishedPapers = listaPapers;
+            issue.PublishedPapers = listaPapersAux;
             magazine.addToIssues(issue);
             dal.Insert<Issue>(issue);
             Commit();

@@ -60,15 +60,15 @@ namespace Magazine.Services
         ICollection<Paper> ListarPublishedPapers(Area area);
         ICollection<Paper> ListarPapersPublPending(Area area);
         ICollection<Paper> ListarPapersEvPending(Area area);
+        Paper gPaper(String name, Area area);
         Entities.Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible);
         #endregion
 
         #region Issue
-        Issue BuildIssue(DateTime publicationDate);
+        Boolean BuildIssue(DateTime publicationDate, ICollection<Paper> listaPapersAux);
         ICollection<Issue> getAllIssues();
         Issue getLastIssue();
         Boolean pendingPublication(Issue issue);
-        void AddPublishedPapers(Paper paper);
         ICollection<Paper> getPendingPublicationPapers(Area area);
         ICollection<Paper> getPendingEvaluationPapers(Area area);
 

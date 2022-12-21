@@ -19,6 +19,7 @@ namespace MereketengueInterfaz
 
         Area actualArea = null;
         Paper selectedPaper = null;
+        ICollection<Paper> selectedPapersAux = new List<Paper>();
         public BuildIssue(IMagazineISWService service)
         {
             InitializeComponent();
@@ -45,9 +46,8 @@ namespace MereketengueInterfaz
 
         private void seleccionarPaper(object sender, EventArgs e)
         {
-            foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
-                if (p.Title == listaPapers.SelectedItem.ToString()) { selectedPaper = p; }
-            }
+            String var = listaPapers.GetItemText(listaPapers.SelectedItem);
+            selectedPaper = service.gPaper(var, actualArea);
         }
 
         private void seleccionarArea(object sender, EventArgs e)
@@ -77,13 +77,18 @@ namespace MereketengueInterfaz
 
         private void agregarPaperClick(object sender, EventArgs e)
         {
-            service.AddPublishedPapers(selectedPaper);
+            selectedPapersAux.Add(selectedPaper);
             selectedPapers.Items.Add(selectedPaper);
         }
 
         private void publicateClick(object sender, EventArgs e)
         {
-            //service.BuildIssue(dateTimePicker.Value);
+            if (service.BuildIssue(dateTimePicker.Value, selectedPapersAux)) { 
+                Menu_Principal ev1 = new Menu_Principal(service);
+                this.Hide();
+                ev1.ShowDialog();
+                this.Close();
+            }
         }
 
         private void backClick(object sender, EventArgs e)

@@ -63,5 +63,7 @@ namespace Magazine.Entities
         {
             return this.Evaluation.Accepted;    
         }
+
+
     }
 }

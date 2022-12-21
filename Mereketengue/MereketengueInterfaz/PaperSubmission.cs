@@ -124,5 +124,10 @@ namespace MereketengueInterfaz
             mp.ShowDialog();
             this.Close();
         }
+
+        private void PaperSubmission_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
