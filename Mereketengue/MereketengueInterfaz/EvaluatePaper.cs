@@ -57,20 +57,21 @@ namespace MereketengueInterfaz
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SelectEv1(object sender, EventArgs e)
         {
             EvaluatePaper2 ev2 = new EvaluatePaper2();
-            EvaluatePaper ev1 = new EvaluatePaper();
-            ev1.Show();
-            ev2.Close();
+            this.Hide();
+            ev2.ShowDialog();
+            this.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GoBackEv1(object sender, EventArgs e)
         {
-            EvaluatePaper2 ev2 = new EvaluatePaper2();
-            EvaluatePaper ev1 = new EvaluatePaper();
-            ev2.Show();
-            ev1.Close();
+            /*
+            this.Hide();
+            MenuPrincipal.ShowDialog();
+            this.Show();
+            */
         }
     }
 }

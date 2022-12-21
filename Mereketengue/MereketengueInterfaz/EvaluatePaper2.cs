@@ -14,6 +14,7 @@ namespace MereketengueInterfaz
     {
         public EvaluatePaper2()
         {
+            
             InitializeComponent();
         }
 
@@ -24,7 +25,7 @@ namespace MereketengueInterfaz
 
         private void GoBackEv2(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }
