@@ -57,9 +57,21 @@ namespace MereketengueInterfaz
 
         private void buscarClick(object sender, EventArgs e)
         {
-            listaPapers.Items.Clear();
-            foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
-                listaPapers.Items.Add(p.Title);
+            
+                listaPapers.Items.Clear();
+                try
+            {
+                foreach (Paper p in service.getPendingPublicationPapers(actualArea))
+                {
+                    listaPapers.Items.Add(p.Title);
+                }
+            }
+            catch (Exception ex) {
+                DialogResult answer = MessageBox.Show(this, // Owner
+                "Unable to create DB", // Message
+                "Error", // Title
+                MessageBoxButtons.OK, // Buttons included
+                MessageBoxIcon.Exclamation); // Icon
             }
             //listaPapers.Items.Add(service.getPendingPublicationPapers(actualArea));
         }
