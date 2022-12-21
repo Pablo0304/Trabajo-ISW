@@ -121,5 +121,17 @@ namespace MereketengueInterfaz
                 this.Close();
             }
         }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                pssw.PasswordChar = '\0';
+            }
+            else
+            {
+                pssw.PasswordChar = '*';
+            }
+        }
     }
 }
