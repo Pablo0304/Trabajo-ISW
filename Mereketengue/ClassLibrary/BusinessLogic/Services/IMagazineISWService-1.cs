@@ -70,6 +70,7 @@ namespace Magazine.Services
         Boolean pendingPublication(Issue issue);
         void AddPublishedPapers(Paper paper);
         ICollection<Paper> getPendingPublicationPapers(Area area);
+        ICollection<Paper> getPendingEvaluationPapers(Area area);
 
         #endregion
 
