@@ -20,7 +20,6 @@ namespace MereketengueInterfaz
         public PaperSubmission(IMagazineISWService service)
         {
             InitializeComponent();
-            service.
         }
 
     }

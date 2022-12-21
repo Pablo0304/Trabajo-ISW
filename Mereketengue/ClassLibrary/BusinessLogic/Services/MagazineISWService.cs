@@ -22,6 +22,9 @@ namespace Magazine.Services
         private Entities.Magazine magazine;
         private ICollection<Paper> listaPapers;
 
+        public void setMagazine(Entities.Magazine magazine) { 
+            this.magazine = magazine;
+        }
         public MagazineISWService(IDAL dal)
         {
             this.dal = dal;
@@ -45,6 +48,8 @@ namespace Magazine.Services
             User ChiefEditor = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
 
             Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", ChiefEditor);
+
+            setMagazine(m1);
 
             User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
@@ -236,6 +241,7 @@ namespace Magazine.Services
 
         }
 
+
         public Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible)
         {
             Paper paper = new Paper(title, uploadDate, belongingArea, responsible);
@@ -249,7 +255,7 @@ namespace Magazine.Services
 
         #region Issue
 
-        public Issue BuildIssue()
+        public Issue BuildIssue(DateTime publicationDate)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             {
@@ -272,10 +278,25 @@ namespace Magazine.Services
         
         }
 
-        public void AddPublishedPapers(Paper paper, Issue issue)
+        public Issue getLastIssue() {
+            return magazine.gMaxNumberIssue();
+
+        }
+        public Boolean pendingPublication(Issue issue) {
+            Boolean res = false;
+            if ((DateTime)issue.PublicationDate >= DateTime.Now) {
+                res = true;
+            }
+            return res;
+        }
+
+        public void AddPublishedPapers(Paper paper)
         {
-            listaPapers = issue.PublishedPapers;
             listaPapers.Add(paper);
+        }
+
+        public ICollection<Paper> getPendingPublicationPapers(Area area) {
+            return area.PublicationPending;
         }
 
         public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {
