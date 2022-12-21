@@ -46,8 +46,7 @@ namespace MereketengueInterfaz
         private void seleccionarPaper(object sender, EventArgs e)
         {
             foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
-                //if (p.Title == listaPapers.SelectedItem.ToString()) { selectedPaper = p; }
-                selectedPaper = p;
+                if (p.Title == listaPapers.SelectedItem.ToString()) { selectedPaper = p; }
             }
         }
 
