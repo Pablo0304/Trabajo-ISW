@@ -333,6 +333,10 @@ namespace Magazine.Services
             return area;
         }
 
+        public ICollection<Paper> getPendingEvaluationPapers(Area area) {
+            return area.EvaluationPending;
+        }
+
         #endregion
 
         #region Magazine

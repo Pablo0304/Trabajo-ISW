@@ -75,6 +75,7 @@ namespace Magazine.Services
 
         #region Area
         Entities.Area  AddArea(string name, User editor, Entities.Magazine magazine);
+        ICollection<Paper> getPendingEvaluationPapers(Area area);
         #endregion
 
         #region Magazine

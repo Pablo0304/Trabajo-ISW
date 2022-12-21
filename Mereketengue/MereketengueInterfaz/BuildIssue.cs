@@ -57,27 +57,16 @@ namespace MereketengueInterfaz
 
         private void buscarClick(object sender, EventArgs e)
         {
-            
-                listaPapers.Items.Clear();
-                try
-            {
-                foreach (Paper p in service.getPendingPublicationPapers(actualArea))
-                {
-                    listaPapers.Items.Add(p.Title);
-                }
-            }
-            catch (Exception ex) {
-                DialogResult answer = MessageBox.Show(this, // Owner
-                "Unable to create DB", // Message
-                "Error", // Title
-                MessageBoxButtons.OK, // Buttons included
-                MessageBoxIcon.Exclamation); // Icon
+            listaPapers.Items.Clear();
+            foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
+                listaPapers.Items.Add(p.Title);
             }
             //listaPapers.Items.Add(service.getPendingPublicationPapers(actualArea));
         }
 
         private void BuildIssue_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'magazineDBDataSet.Papers' Puede moverla o quitarla según sea necesario.
 
         }
 
@@ -90,14 +79,6 @@ namespace MereketengueInterfaz
         private void publicateClick(object sender, EventArgs e)
         {
             service.BuildIssue(dateTimePicker.Value);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Menu_Principal mp = new Menu_Principal(service);
-            this.Hide();
-            mp.ShowDialog();
-            this.Close();
         }
     }
 }
