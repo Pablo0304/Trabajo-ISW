@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Magazine.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,13 @@ namespace MereketengueInterfaz
 {
     public partial class EvaluatePaper2 : Form
     {
+        private IMagazineISWService service;
+
         public EvaluatePaper2()
         {
+
             InitializeComponent();
+            this.service = service;
         }
 
         private void Send(object sender, EventArgs e)

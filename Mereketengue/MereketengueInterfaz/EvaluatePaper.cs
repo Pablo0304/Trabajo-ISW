@@ -1,4 +1,5 @@
-﻿using Magazine.Services;
+﻿using Magazine.Entities;
+using Magazine.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,9 @@ namespace MereketengueInterfaz
         {
             InitializeComponent();
             this.service = service;
-            
+            foreach (Area a in service.listAreas()) {
+                comboAreas.Items.Add(a.Name);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
