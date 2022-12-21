@@ -279,7 +279,9 @@ namespace Magazine.Services
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
         
         }
-
+        public ICollection<Issue> getAllIssues() {
+            return magazine.Issues;
+        }
         public Issue getLastIssue() {
             return magazine.gMaxNumberIssue();
 

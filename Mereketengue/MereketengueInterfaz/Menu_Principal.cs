@@ -64,7 +64,7 @@ namespace MereketengueInterfaz
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ListPapers ev2 = new ListPapers();
+            ListPapers ev2 = new ListPapers(service);
             this.Hide();
             ev2.ShowDialog();
             this.Close();
