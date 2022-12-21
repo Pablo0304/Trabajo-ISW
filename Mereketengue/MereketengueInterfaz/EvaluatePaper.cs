@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Magazine.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace MereketengueInterfaz
 {
     public partial class EvaluatePaper : Form
     {
-        public EvaluatePaper()
+        private IMagazineISWService service;
+        public EvaluatePaper(IMagazineISWService service)
         {
             InitializeComponent();
+            this.service = service;
+            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -72,6 +76,11 @@ namespace MereketengueInterfaz
             MenuPrincipal.ShowDialog();
             this.Show();
             */
+        }
+
+        private void ComboBoxAreas(object sender, EventArgs e)
+        {
+            
         }
     }
 }

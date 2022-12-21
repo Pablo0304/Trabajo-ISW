@@ -43,10 +43,8 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e) //QUITA ESTO CUANDO VAYAS A HACER PUSH ME CAGOENSATANAS
         {
-            EvaluatePaper ev1 = new EvaluatePaper();
-            this.Hide();
-            ev1.ShowDialog();
-            this.Show();
+            
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
