@@ -51,24 +51,27 @@
             this.ListCoauthors = new System.Windows.Forms.ListBox();
             this.labelCoauthor = new System.Windows.Forms.Label();
             this.Error4 = new System.Windows.Forms.Label();
+            this.Confirm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Location = new System.Drawing.Point(16, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 24);
+            this.label1.Size = new System.Drawing.Size(173, 29);
             this.label1.TabIndex = 2;
             this.label1.Text = "Select an area:";
             // 
             // comboBoxAreas
             // 
             this.comboBoxAreas.FormattingEnabled = true;
-            this.comboBoxAreas.Location = new System.Drawing.Point(153, 13);
+            this.comboBoxAreas.Location = new System.Drawing.Point(204, 16);
+            this.comboBoxAreas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxAreas.Name = "comboBoxAreas";
-            this.comboBoxAreas.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxAreas.Size = new System.Drawing.Size(160, 24);
             this.comboBoxAreas.TabIndex = 3;
             this.comboBoxAreas.SelectedIndexChanged += new System.EventHandler(this.cambiarSelectArea);
             this.comboBoxAreas.Click += new System.EventHandler(this.LlenarAreas);
@@ -77,25 +80,28 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(13, 70);
+            this.label2.Location = new System.Drawing.Point(17, 86);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 24);
+            this.label2.Size = new System.Drawing.Size(246, 29);
             this.label2.TabIndex = 4;
             this.label2.Text = "Insert the paper\'s title:";
             // 
             // PaperTitlebox
             // 
-            this.PaperTitlebox.Location = new System.Drawing.Point(216, 70);
+            this.PaperTitlebox.Location = new System.Drawing.Point(288, 86);
+            this.PaperTitlebox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PaperTitlebox.Name = "PaperTitlebox";
-            this.PaperTitlebox.Size = new System.Drawing.Size(161, 20);
+            this.PaperTitlebox.Size = new System.Drawing.Size(213, 22);
             this.PaperTitlebox.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(34, 119);
+            this.label3.Location = new System.Drawing.Point(45, 146);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(727, 13);
+            this.label3.Size = new System.Drawing.Size(847, 16);
             this.label3.TabIndex = 6;
             this.label3.Text = "_________________________________________________________________________________" +
     "_______________________________________";
@@ -104,17 +110,19 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label4.Location = new System.Drawing.Point(11, 143);
+            this.label4.Location = new System.Drawing.Point(15, 176);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 26);
+            this.label4.Size = new System.Drawing.Size(133, 31);
             this.label4.TabIndex = 7;
             this.label4.Text = "(Optional)";
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(397, 68);
+            this.buttonSend.Location = new System.Drawing.Point(529, 84);
+            this.buttonSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(67, 23);
+            this.buttonSend.Size = new System.Drawing.Size(89, 28);
             this.buttonSend.TabIndex = 8;
             this.buttonSend.Text = "Send";
             this.buttonSend.UseVisualStyleBackColor = true;
@@ -124,65 +132,73 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label5.Location = new System.Drawing.Point(544, 145);
+            this.label5.Location = new System.Drawing.Point(725, 178);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(194, 24);
+            this.label5.Size = new System.Drawing.Size(247, 29);
             this.label5.TabIndex = 10;
             this.label5.Text = "Added Coauthors\' List";
             // 
             // textBoxID
             // 
-            this.textBoxID.Location = new System.Drawing.Point(16, 212);
+            this.textBoxID.Location = new System.Drawing.Point(21, 261);
+            this.textBoxID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(59, 20);
+            this.textBoxID.Size = new System.Drawing.Size(77, 22);
             this.textBoxID.TabIndex = 11;
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(16, 266);
+            this.textBoxName.Location = new System.Drawing.Point(21, 327);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(97, 20);
+            this.textBoxName.Size = new System.Drawing.Size(128, 22);
             this.textBoxName.TabIndex = 12;
             // 
             // textBoxSurname
             // 
-            this.textBoxSurname.Location = new System.Drawing.Point(17, 331);
+            this.textBoxSurname.Location = new System.Drawing.Point(23, 407);
+            this.textBoxSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxSurname.Name = "textBoxSurname";
-            this.textBoxSurname.Size = new System.Drawing.Size(126, 20);
+            this.textBoxSurname.Size = new System.Drawing.Size(167, 22);
             this.textBoxSurname.TabIndex = 13;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 193);
+            this.label6.Location = new System.Drawing.Point(23, 238);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 13);
+            this.label6.Size = new System.Drawing.Size(20, 16);
             this.label6.TabIndex = 14;
             this.label6.Text = "ID";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 250);
+            this.label7.Location = new System.Drawing.Point(19, 308);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(44, 16);
             this.label7.TabIndex = 15;
             this.label7.Text = "Name";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(14, 315);
+            this.label8.Location = new System.Drawing.Point(19, 388);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.Size = new System.Drawing.Size(61, 16);
             this.label8.TabIndex = 16;
             this.label8.Text = "Surname";
             // 
             // ButtonAddCoauthor
             // 
-            this.ButtonAddCoauthor.Location = new System.Drawing.Point(426, 198);
+            this.ButtonAddCoauthor.Location = new System.Drawing.Point(568, 244);
+            this.ButtonAddCoauthor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonAddCoauthor.Name = "ButtonAddCoauthor";
-            this.ButtonAddCoauthor.Size = new System.Drawing.Size(86, 34);
+            this.ButtonAddCoauthor.Size = new System.Drawing.Size(115, 42);
             this.ButtonAddCoauthor.TabIndex = 17;
             this.ButtonAddCoauthor.Text = "Add Coauthor";
             this.ButtonAddCoauthor.UseVisualStyleBackColor = true;
@@ -191,73 +207,93 @@
             // Selectedarea
             // 
             this.Selectedarea.AutoSize = true;
-            this.Selectedarea.Location = new System.Drawing.Point(290, 16);
+            this.Selectedarea.Location = new System.Drawing.Point(387, 20);
+            this.Selectedarea.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Selectedarea.Name = "Selectedarea";
-            this.Selectedarea.Size = new System.Drawing.Size(74, 13);
+            this.Selectedarea.Size = new System.Drawing.Size(93, 16);
             this.Selectedarea.TabIndex = 19;
             this.Selectedarea.Text = "Selected Area";
             // 
             // errorId
             // 
             this.errorId.AutoSize = true;
-            this.errorId.Location = new System.Drawing.Point(96, 212);
+            this.errorId.Location = new System.Drawing.Point(128, 261);
+            this.errorId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.errorId.Name = "errorId";
-            this.errorId.Size = new System.Drawing.Size(0, 13);
+            this.errorId.Size = new System.Drawing.Size(0, 16);
             this.errorId.TabIndex = 20;
             // 
             // ErrorName
             // 
             this.ErrorName.AutoSize = true;
-            this.ErrorName.Location = new System.Drawing.Point(128, 266);
+            this.ErrorName.Location = new System.Drawing.Point(171, 327);
+            this.ErrorName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ErrorName.Name = "ErrorName";
-            this.ErrorName.Size = new System.Drawing.Size(0, 13);
+            this.ErrorName.Size = new System.Drawing.Size(0, 16);
             this.ErrorName.TabIndex = 21;
             // 
             // ErrorSurname
             // 
             this.ErrorSurname.AutoSize = true;
-            this.ErrorSurname.Location = new System.Drawing.Point(150, 331);
+            this.ErrorSurname.Location = new System.Drawing.Point(200, 407);
+            this.ErrorSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ErrorSurname.Name = "ErrorSurname";
-            this.ErrorSurname.Size = new System.Drawing.Size(0, 13);
+            this.ErrorSurname.Size = new System.Drawing.Size(0, 16);
             this.ErrorSurname.TabIndex = 22;
             // 
             // ErrorlistCoauthor
             // 
             this.ErrorlistCoauthor.AutoSize = true;
-            this.ErrorlistCoauthor.Location = new System.Drawing.Point(548, 385);
+            this.ErrorlistCoauthor.Location = new System.Drawing.Point(731, 474);
+            this.ErrorlistCoauthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ErrorlistCoauthor.Name = "ErrorlistCoauthor";
-            this.ErrorlistCoauthor.Size = new System.Drawing.Size(0, 13);
+            this.ErrorlistCoauthor.Size = new System.Drawing.Size(0, 16);
             this.ErrorlistCoauthor.TabIndex = 23;
             // 
             // ListCoauthors
             // 
             this.ListCoauthors.FormattingEnabled = true;
-            this.ListCoauthors.Location = new System.Drawing.Point(551, 189);
+            this.ListCoauthors.ItemHeight = 16;
+            this.ListCoauthors.Location = new System.Drawing.Point(735, 233);
+            this.ListCoauthors.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ListCoauthors.Name = "ListCoauthors";
-            this.ListCoauthors.Size = new System.Drawing.Size(187, 186);
+            this.ListCoauthors.Size = new System.Drawing.Size(248, 228);
             this.ListCoauthors.TabIndex = 24;
             // 
             // labelCoauthor
             // 
             this.labelCoauthor.AutoSize = true;
-            this.labelCoauthor.Location = new System.Drawing.Point(555, 384);
+            this.labelCoauthor.Location = new System.Drawing.Point(740, 473);
+            this.labelCoauthor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCoauthor.Name = "labelCoauthor";
-            this.labelCoauthor.Size = new System.Drawing.Size(0, 13);
+            this.labelCoauthor.Size = new System.Drawing.Size(0, 16);
             this.labelCoauthor.TabIndex = 25;
             // 
             // Error4
             // 
             this.Error4.AutoSize = true;
-            this.Error4.Location = new System.Drawing.Point(555, 385);
+            this.Error4.Location = new System.Drawing.Point(740, 474);
+            this.Error4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Error4.Name = "Error4";
-            this.Error4.Size = new System.Drawing.Size(0, 13);
+            this.Error4.Size = new System.Drawing.Size(0, 16);
             this.Error4.TabIndex = 26;
+            // 
+            // Confirm
+            // 
+            this.Confirm.Location = new System.Drawing.Point(948, 510);
+            this.Confirm.Name = "Confirm";
+            this.Confirm.Size = new System.Drawing.Size(107, 32);
+            this.Confirm.TabIndex = 27;
+            this.Confirm.Text = "Confirm";
+            this.Confirm.UseVisualStyleBackColor = true;
+            this.Confirm.Click += new System.EventHandler(this.button1_Click);
             // 
             // PaperSubmission
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.Confirm);
             this.Controls.Add(this.Error4);
             this.Controls.Add(this.labelCoauthor);
             this.Controls.Add(this.ListCoauthors);
@@ -281,6 +317,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxAreas);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PaperSubmission";
             this.Text = "PaperSubmission";
             this.ResumeLayout(false);
@@ -312,5 +349,6 @@
         private System.Windows.Forms.ListBox ListCoauthors;
         private System.Windows.Forms.Label labelCoauthor;
         private System.Windows.Forms.Label Error4;
+        private System.Windows.Forms.Button Confirm;
     }
 }
