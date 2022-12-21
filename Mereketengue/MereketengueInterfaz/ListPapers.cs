@@ -17,6 +17,8 @@ namespace MereketengueInterfaz
         private IMagazineISWService service;
         public ListPapers(IMagazineISWService service)
         {
+            InitializeComponent();
+            this.service = service;
             foreach (Area a in service.listAreas()) {
                 foreach (Paper p in a.Papers) {
                     String autores = "";
@@ -31,7 +33,6 @@ namespace MereketengueInterfaz
                     listaPapers.Items.Add("Title: " + p.Title + " | Authors: " + autores + "| State: " + state);
                 }
             }
-            InitializeComponent();
         }
 
         private void ListPapers_Load(object sender, EventArgs e)
