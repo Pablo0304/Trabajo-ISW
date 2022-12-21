@@ -28,7 +28,10 @@ namespace MereketengueInterfaz
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            SignUp ev1 = new SignUp(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Show();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -48,6 +51,8 @@ namespace MereketengueInterfaz
                 service.Login(user.Text, pssw.Text);
             }
             else {
+                user.Text = "";
+                pssw.Text = "";
                 DialogResult answer = MessageBox.Show(this, // Owner
                 "You must complete User and Login boxes", // Message
                 "Unable to Login", // Title
