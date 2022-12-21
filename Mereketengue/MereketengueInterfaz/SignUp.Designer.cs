@@ -33,16 +33,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pssw = new System.Windows.Forms.TextBox();
-            this.user = new System.Windows.Forms.TextBox();
+            this.surname = new System.Windows.Forms.TextBox();
+            this.name = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.fieldsOfInterest = new System.Windows.Forms.TextBox();
+            this.email = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.pssw = new System.Windows.Forms.TextBox();
+            this.user = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -54,6 +54,7 @@
             this.next.TabIndex = 15;
             this.next.Text = "Next";
             this.next.UseVisualStyleBackColor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // linkLabel1
             // 
@@ -64,6 +65,7 @@
             this.linkLabel1.TabIndex = 14;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Sign up here!!";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
             // 
@@ -73,6 +75,7 @@
             this.label3.Size = new System.Drawing.Size(132, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "¿Alredy have an account?";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -82,6 +85,7 @@
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "Surname:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -91,20 +95,23 @@
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Name:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // pssw
+            // surname
             // 
-            this.pssw.Location = new System.Drawing.Point(347, 108);
-            this.pssw.Name = "pssw";
-            this.pssw.Size = new System.Drawing.Size(152, 20);
-            this.pssw.TabIndex = 10;
+            this.surname.Location = new System.Drawing.Point(347, 108);
+            this.surname.Name = "surname";
+            this.surname.Size = new System.Drawing.Size(152, 20);
+            this.surname.TabIndex = 10;
+            this.surname.TextChanged += new System.EventHandler(this.pssw_TextChanged);
             // 
-            // user
+            // name
             // 
-            this.user.Location = new System.Drawing.Point(347, 66);
-            this.user.Name = "user";
-            this.user.Size = new System.Drawing.Size(152, 20);
-            this.user.TabIndex = 9;
+            this.name.Location = new System.Drawing.Point(347, 66);
+            this.name.Name = "name";
+            this.name.Size = new System.Drawing.Size(152, 20);
+            this.name.TabIndex = 9;
+            this.name.TextChanged += new System.EventHandler(this.user_TextChanged);
             // 
             // label4
             // 
@@ -114,6 +121,7 @@
             this.label4.Size = new System.Drawing.Size(86, 13);
             this.label4.TabIndex = 19;
             this.label4.Text = "Fields of interest:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -123,21 +131,24 @@
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 18;
             this.label5.Text = "Email:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // textBox1
+            // fieldsOfInterest
             // 
-            this.textBox1.Location = new System.Drawing.Point(347, 189);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(214, 79);
-            this.textBox1.TabIndex = 17;
+            this.fieldsOfInterest.Location = new System.Drawing.Point(347, 189);
+            this.fieldsOfInterest.Multiline = true;
+            this.fieldsOfInterest.Name = "fieldsOfInterest";
+            this.fieldsOfInterest.Size = new System.Drawing.Size(214, 79);
+            this.fieldsOfInterest.TabIndex = 17;
+            this.fieldsOfInterest.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox2
+            // email
             // 
-            this.textBox2.Location = new System.Drawing.Point(347, 147);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(214, 20);
-            this.textBox2.TabIndex = 16;
+            this.email.Location = new System.Drawing.Point(347, 147);
+            this.email.Name = "email";
+            this.email.Size = new System.Drawing.Size(214, 20);
+            this.email.TabIndex = 16;
+            this.email.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label6
             // 
@@ -147,6 +158,7 @@
             this.label6.Size = new System.Drawing.Size(56, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "Password:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -156,20 +168,23 @@
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 22;
             this.label7.Text = "User:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // textBox3
+            // pssw
             // 
-            this.textBox3.Location = new System.Drawing.Point(347, 329);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(152, 20);
-            this.textBox3.TabIndex = 21;
+            this.pssw.Location = new System.Drawing.Point(347, 329);
+            this.pssw.Name = "pssw";
+            this.pssw.Size = new System.Drawing.Size(152, 20);
+            this.pssw.TabIndex = 21;
+            this.pssw.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // textBox4
+            // user
             // 
-            this.textBox4.Location = new System.Drawing.Point(347, 287);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(152, 20);
-            this.textBox4.TabIndex = 20;
+            this.user.Location = new System.Drawing.Point(347, 287);
+            this.user.Name = "user";
+            this.user.Size = new System.Drawing.Size(152, 20);
+            this.user.TabIndex = 20;
+            this.user.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // checkBox1
             // 
@@ -190,21 +205,22 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.pssw);
+            this.Controls.Add(this.user);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.fieldsOfInterest);
+            this.Controls.Add(this.email);
             this.Controls.Add(this.next);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pssw);
-            this.Controls.Add(this.user);
+            this.Controls.Add(this.surname);
+            this.Controls.Add(this.name);
             this.Name = "SignUp";
             this.Text = "SignUp";
+            this.Load += new System.EventHandler(this.SignUp_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,16 +233,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox pssw;
-        private System.Windows.Forms.TextBox user;
+        private System.Windows.Forms.TextBox surname;
+        private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox fieldsOfInterest;
+        private System.Windows.Forms.TextBox email;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox pssw;
+        private System.Windows.Forms.TextBox user;
         private System.Windows.Forms.CheckBox checkBox1;
     }
 }
