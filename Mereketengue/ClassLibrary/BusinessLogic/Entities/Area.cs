@@ -52,5 +52,12 @@ namespace Magazine.Entities
         {
             this.Papers.Add(paper);
         }
+        
+        public bool comprobarName(String name)
+        {
+            return this.Name.Equals(name);
+        }
+        
+        
     }
 }

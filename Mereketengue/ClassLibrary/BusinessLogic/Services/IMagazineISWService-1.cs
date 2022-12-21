@@ -54,7 +54,7 @@ namespace Magazine.Services
         #endregion
 
         #region Paper
-        Paper EnviarPaper(Area area, string Title, List<string> lista);
+        Paper EnviarPaper(Area area, string Title);
         void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios);
         ICollection<Paper> ListarPapersRechazados(Area area);
         ICollection<Paper> ListarPublishedPapers(Area area);
@@ -74,6 +74,7 @@ namespace Magazine.Services
 
         #region Area
         Entities.Area  AddArea(string name, User editor, Entities.Magazine magazine);
+        Entities.Area gArea(string name);
         #endregion
 
         #region Magazine
@@ -86,5 +87,6 @@ namespace Magazine.Services
         void deleteCoauthor(Person person, Paper paper); //añadido
         Person AddPerson(string id, string name, string surname);
         #endregion 
+        User gLoggedUser();
     }
 }

@@ -55,6 +55,8 @@ namespace Magazine.Services
 
             Area a1 = AddArea("Area A1", u2, m1);
 
+            LoggedUser = ChiefEditor;
+
             User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
 
             Area a2 = AddArea("Area 2", u3, m1);
@@ -141,7 +143,7 @@ namespace Magazine.Services
         #endregion
 
         #region Paper
-        public Paper EnviarPaper(Area area, string Title, List<string> lista) // se usa en paper submision
+        public Paper EnviarPaper(Area area, string Title) // se usa en paper submision
         {
             foreach (Paper p in area.Papers) {
                 if (p.comprobarTitle(Title)) 
@@ -282,6 +284,7 @@ namespace Magazine.Services
             return magazine.gMaxNumberIssue();
 
         }
+
         public Boolean pendingPublication(Issue issue) {
             Boolean res = false;
             if ((DateTime)issue.PublicationDate >= DateTime.Now) {
@@ -329,6 +332,16 @@ namespace Magazine.Services
             return area;
         }
 
+        public Area gArea(String name)
+        {
+            foreach (Area a in magazine.Areas)
+            {
+                if (a.comprobarName(name)) { return a; }
+            }
+            throw new ServiceException("Error: Area  dont Exist");
+
+        }
+
         #endregion
 
         #region Magazine
@@ -362,15 +375,27 @@ namespace Magazine.Services
         {
             if (LoggedUser.Equals(paper.Responsible))
             {
-                if (paper.gCoAuthorsCount() < 3)
-                {   //comprobar si exixte persona
-                    Person person = new Person(id, name, surname);
-                    paper.addCoauthor(person);
-                    person.AñadiralPaper(paper);
-                    dal.Insert<Person>(person);
-                    return person;
+                Boolean encontrado = false;
+                foreach (Person p in dal.GetAll<Person>())
+                {
+                    if (p.comprobarId(id))
+                    {
+                        encontrado = true;
+                        throw new ServiceException("Error: There is already a Person with that id");
+                    }
+                    if (!encontrado)
+                    {
+                        if (paper.gCoAuthorsCount() < 4)
+                        {   //comprobar si exixte persona
+                            Person person = new Person(id, name, surname);
+                            paper.addCoauthor(person);
+                            person.AñadiralPaper(paper);
+                            dal.Insert<Person>(person);
+                            return person;
+                        }
+                        else { throw new ServiceException("There is already 4 Coauthors for this paper"); }
+                    }
                 }
-                else { throw new ServiceException("There is already 4 Coauthors for this paper"); }
             }
             throw new ServiceException("You are not allowed to add Coauthors to this paper, only the paper's responsible can do it");
         }
@@ -396,5 +421,7 @@ namespace Magazine.Services
         }
 
         #endregion
+        public User gLoggedUser() { return LoggedUser; }
     }
+
 }

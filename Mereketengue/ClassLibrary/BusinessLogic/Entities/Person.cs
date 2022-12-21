@@ -31,5 +31,9 @@ namespace Magazine.Entities
         {
             this.CoAuthoredPapers.Remove(paper);
         }
+
+        public bool comprobarId(String id){
+            return this.Id.Equals(id);
+        }
     }
 }
