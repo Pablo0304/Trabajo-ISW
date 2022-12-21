@@ -24,7 +24,7 @@ namespace MereketengueInterfaz
 
         private void GoBackEv2(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

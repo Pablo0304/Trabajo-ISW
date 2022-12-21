@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Magazine.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,69 @@ namespace MereketengueInterfaz
 {
     public partial class Menu_Principal : Form
     {
-        public Menu_Principal()
+        private IMagazineISWService service;
+
+        public Menu_Principal(IMagazineISWService service)
         {
             InitializeComponent();
+            this.service = service;
+        }
+
+        private void Menu_Principal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+             
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            BuildIssue ev2 = new BuildIssue();
+            this.Hide();
+            ev2.ShowDialog();
+            this.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            EvaluatePaper ev2 = new EvaluatePaper();
+            this.Hide();
+            ev2.ShowDialog();
+            this.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ListPapers ev2 = new ListPapers();
+            this.Hide();
+            ev2.ShowDialog();
+            this.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PaperSubmission ev2 = new PaperSubmission(service);
+            this.Hide();
+            ev2.ShowDialog();
+            this.Show();
         }
     }
 }

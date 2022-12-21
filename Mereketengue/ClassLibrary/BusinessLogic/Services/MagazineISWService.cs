@@ -236,6 +236,7 @@ namespace Magazine.Services
 
         }
 
+
         public Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible)
         {
             Paper paper = new Paper(title, uploadDate, belongingArea, responsible);
@@ -249,7 +250,7 @@ namespace Magazine.Services
 
         #region Issue
 
-        public Issue BuildIssue()
+        public Issue BuildIssue(DateTime publicationDate)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             {
@@ -272,10 +273,13 @@ namespace Magazine.Services
         
         }
 
-        public void AddPublishedPapers(Paper paper, Issue issue)
+        public void AddPublishedPapers(Paper paper)
         {
-            listaPapers = issue.PublishedPapers;
             listaPapers.Add(paper);
+        }
+
+        public ICollection<Paper> getPendingPublicationPapers(Area area) {
+            return area.PublicationPending;
         }
 
         public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {

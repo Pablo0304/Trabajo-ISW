@@ -112,7 +112,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Select";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.SelectEv1);
             // 
             // button2
             // 
@@ -122,7 +122,7 @@
             this.button2.TabIndex = 8;
             this.button2.Text = "Back";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.GoBackEv1);
             // 
             // EvaluatePaper
             // 
@@ -137,7 +137,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EvaluatePaper";
             this.Text = "Evaluate Paper";
             this.ResumeLayout(false);
