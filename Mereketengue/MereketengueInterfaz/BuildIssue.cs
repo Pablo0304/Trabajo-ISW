@@ -45,7 +45,10 @@ namespace MereketengueInterfaz
 
         private void seleccionarPaper(object sender, EventArgs e)
         {
-            selectedPaper = (Paper)listaPapers.SelectedItem;
+            foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
+                //if (p.Title == listaPapers.SelectedItem.ToString()) { selectedPaper = p; }
+                selectedPaper = p;
+            }
         }
 
         private void seleccionarArea(object sender, EventArgs e)
@@ -82,6 +85,14 @@ namespace MereketengueInterfaz
         private void publicateClick(object sender, EventArgs e)
         {
             service.BuildIssue(dateTimePicker.Value);
+        }
+
+        private void backClick(object sender, EventArgs e)
+        {
+            Menu_Principal ev1 = new Menu_Principal(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Close();
         }
     }
 }

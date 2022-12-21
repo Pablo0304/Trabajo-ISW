@@ -20,7 +20,7 @@ namespace Magazine.Services
         private readonly IDAL dal;
         private User LoggedUser;
         private Entities.Magazine magazine;
-        private ICollection<Paper> listaPapers;
+        private ICollection<Paper> listaPapers = null;
 
         public void setMagazine(Entities.Magazine magazine) { 
             this.magazine = magazine;
@@ -71,7 +71,15 @@ namespace Magazine.Services
 
             p1.EvaluationPendingArea = a2;
 
-            a2.AddToEvalPendPapers(p1);
+            a2.AddToPublPendPapers(p1);
+
+            Paper p2 = AddPaper("sexoooooooo", DateTime.Now, a2, u2);
+
+            Evaluation e2 = AddEvaluation(true, "Este issue es una tremenda mierda y Pablo la chupa", DateTime.Now);
+
+            p2.EvaluationPendingArea = a2;
+
+            a2.AddToPublPendPapers(p2);
         }
 
         #region User
@@ -307,7 +315,7 @@ namespace Magazine.Services
 
         public void AddPublishedPapers(Paper paper)
         {
-            listaPapers.Add(paper);
+            this.listaPapers.Add(paper);
         }
 
         public ICollection<Paper> getPendingPublicationPapers(Area area) {
