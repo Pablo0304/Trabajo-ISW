@@ -74,11 +74,11 @@ namespace MereketengueInterfaz
 
         private void GoBackEv1(object sender, EventArgs e)
         {
-            /*
+            Menu_Principal mp = new Menu_Principal(service);
             this.Hide();
-            MenuPrincipal.ShowDialog();
+            mp.ShowDialog();
             this.Show();
-            */
+            
         }
 
         private void ComboBoxAreas(object sender, EventArgs e)
