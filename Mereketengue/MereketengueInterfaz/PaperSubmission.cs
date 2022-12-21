@@ -7,19 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Magazine.Services;
+using Magazine.Entities;
+using Magazine.Persistence;
+using System.Runtime.ConstrainedExecution;
 
 namespace MereketengueInterfaz
 {
     public partial class PaperSubmission : Form
     {
-        public PaperSubmission()
+       
+        public PaperSubmission(IMagazineISWService service)
         {
             InitializeComponent();
+            service.
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

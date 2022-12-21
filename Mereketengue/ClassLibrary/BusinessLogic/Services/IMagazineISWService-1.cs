@@ -75,6 +75,7 @@ namespace Magazine.Services
 
         #region Magazine
         Magazine.Entities.Magazine AddMagazine(string name, User chiefEditorId);
+        ICollection<Area> listAreas();
         #endregion
 
         #region Person
