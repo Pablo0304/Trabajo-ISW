@@ -14,7 +14,6 @@ namespace MereketengueInterfaz
     {
         public EvaluatePaper2()
         {
-            
             InitializeComponent();
         }
 
