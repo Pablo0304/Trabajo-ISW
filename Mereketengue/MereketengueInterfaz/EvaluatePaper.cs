@@ -85,5 +85,10 @@ namespace MereketengueInterfaz
         {
             
         }
+
+        private void EvaluatePaper_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
