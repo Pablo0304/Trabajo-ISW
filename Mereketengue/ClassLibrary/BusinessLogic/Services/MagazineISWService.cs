@@ -188,9 +188,6 @@ namespace Magazine.Services
                     area.AddToPublPendPapers(paper);
                     paper.PublicationPendingArea = area;
                     area.DeleteFromEvalPendPapers(paper);
-                    dal.Delete<Paper>(paper); //?
-                    dal.Insert<Paper>(paper); //pregunta
-                    dal.Insert<Area>(area);
                     Commit();
 
                 }
@@ -198,8 +195,6 @@ namespace Magazine.Services
                 {
                     area.DeleteFromEvalPendPapers(paper);
                     paper.EvaluationPendingArea = null;
-                    dal.Insert<Paper>(paper);
-                    dal.Insert<Area>(area);
                     Commit();
                 }
             }
