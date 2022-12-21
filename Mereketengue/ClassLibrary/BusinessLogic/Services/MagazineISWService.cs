@@ -65,15 +65,15 @@ namespace Magazine.Services
 
             Paper p1 = AddPaper("titulillo", DateTime.Now, a2, u2);
 
-            Evaluation e1 = AddEvaluation(true, "Este issue es una tremenda mierda y Pablo la chupa", DateTime.Now);
+            Evaluation e1 = AddEvaluation(true, "Evaluation 1", DateTime.Now);
 
             p1.EvaluationPendingArea = a2;
 
             a2.AddToPublPendPapers(p1);
 
-            Paper p2 = AddPaper("sexoooooooo", DateTime.Now, a2, u2);
+            Paper p2 = AddPaper("Paper 2", DateTime.Now, a2, u2);
 
-            Evaluation e2 = AddEvaluation(true, "Este issue es una tremenda mierda y Pablo la chupa", DateTime.Now);
+            Evaluation e2 = AddEvaluation(true, "Evaluation 2", DateTime.Now);
 
             p2.EvaluationPendingArea = a2;
 

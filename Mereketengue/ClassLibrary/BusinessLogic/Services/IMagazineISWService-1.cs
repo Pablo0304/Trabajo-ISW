@@ -77,7 +77,6 @@ namespace Magazine.Services
         #region Area
         Entities.Area  AddArea(string name, User editor, Entities.Magazine magazine);
 
-
         Area gArea(String name);
         #endregion
 
