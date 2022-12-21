@@ -43,7 +43,7 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e)
         {
-            
+            service.Login(user.Text, pssw.Text);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
