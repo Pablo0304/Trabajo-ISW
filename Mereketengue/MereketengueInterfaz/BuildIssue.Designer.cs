@@ -40,8 +40,9 @@
             this.papersTableAdapter = new MereketengueInterfaz.MagazineDBDataSetTableAdapters.PapersTableAdapter();
             this.agregarPaper = new System.Windows.Forms.Button();
             this.selectedPapers = new System.Windows.Forms.ListBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.publicationDate = new System.Windows.Forms.Label();
+            this.numberLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.magazineDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.papersBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -71,9 +72,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.label1.Location = new System.Drawing.Point(12, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(374, 46);
+            this.label1.Size = new System.Drawing.Size(192, 46);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Magazine (number):";
+            this.label1.Text = "Magazine";
             // 
             // selectorArea
             // 
@@ -137,12 +138,12 @@
             this.selectedPapers.Size = new System.Drawing.Size(309, 340);
             this.selectedPapers.TabIndex = 7;
             // 
-            // dateTimePicker1
+            // dateTimePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(718, 88);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 8;
+            this.dateTimePicker.Location = new System.Drawing.Point(718, 88);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.TabIndex = 8;
             // 
             // publicationDate
             // 
@@ -153,13 +154,24 @@
             this.publicationDate.TabIndex = 9;
             this.publicationDate.Text = "Publication date:";
             // 
+            // numberLabel
+            // 
+            this.numberLabel.AutoSize = true;
+            this.numberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.numberLabel.Location = new System.Drawing.Point(210, 35);
+            this.numberLabel.Name = "numberLabel";
+            this.numberLabel.Size = new System.Drawing.Size(192, 46);
+            this.numberLabel.TabIndex = 10;
+            this.numberLabel.Text = "(numero):";
+            // 
             // BuildIssue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.numberLabel);
             this.Controls.Add(this.publicationDate);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.selectedPapers);
             this.Controls.Add(this.agregarPaper);
             this.Controls.Add(this.busacarButton);
@@ -192,7 +204,8 @@
         private MagazineDBDataSetTableAdapters.PapersTableAdapter papersTableAdapter;
         private System.Windows.Forms.Button agregarPaper;
         private System.Windows.Forms.ListBox selectedPapers;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label publicationDate;
+        private System.Windows.Forms.Label numberLabel;
     }
 }

@@ -48,7 +48,7 @@ namespace MereketengueInterfaz
 
         private void button4_Click(object sender, EventArgs e)
         {
-            BuildIssue ev2 = new BuildIssue();
+            BuildIssue ev2 = new BuildIssue(service);
             this.Hide();
             ev2.ShowDialog();
             this.Show();

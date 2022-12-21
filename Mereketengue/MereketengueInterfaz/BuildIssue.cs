@@ -23,7 +23,18 @@ namespace MereketengueInterfaz
         {
             InitializeComponent();
             this.service = service;
-            selectorArea.Items.Add(service.listAreas());
+            foreach (Area a in service.listAreas()) {
+                selectorArea.Items.Add(a.Name);
+            }
+            Issue lastIssue = service.getLastIssue();
+            if (service.pendingPublication(lastIssue)) {
+                numberLabel.Text = lastIssue.Number.ToString();
+                dateTimePicker.Text = lastIssue.PublicationDate.ToString();
+                foreach (Paper p in lastIssue.PublishedPapers) {
+                    selectedPapers.Items.Add(p.Title);
+                }
+            }
+            //selectorArea.Items.Add(service.listAreas());
             
         }
 
@@ -34,13 +45,18 @@ namespace MereketengueInterfaz
 
         private void seleccionarArea(object sender, EventArgs e)
         {
-            actualArea = (Area)selectorArea.SelectedItem;
+            foreach (Area a in service.listAreas()) {
+                if ((String)selectorArea.SelectedItem == a.Name) { actualArea = a;  }
+            }
         }
 
         private void buscarClick(object sender, EventArgs e)
         {
             listaPapers.Items.Clear();
-            listaPapers.Items.Add(service.getPendingPublicationPapers(actualArea));
+            foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
+                listaPapers.Items.Add(p.Title);
+            }
+            //listaPapers.Items.Add(service.getPendingPublicationPapers(actualArea));
         }
 
         private void BuildIssue_Load(object sender, EventArgs e)
@@ -58,7 +74,7 @@ namespace MereketengueInterfaz
 
         private void publicateClick(object sender, EventArgs e)
         {
-
+            service.BuildIssue(dateTimePicker.Value);
         }
     }
 }

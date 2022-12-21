@@ -65,6 +65,8 @@ namespace Magazine.Services
 
         #region Issue
         Issue BuildIssue(DateTime publicationDate);
+        Issue getLastIssue();
+        Boolean pendingPublication(Issue issue);
         void AddPublishedPapers(Paper paper);
         ICollection<Paper> getPendingPublicationPapers(Area area);
 
