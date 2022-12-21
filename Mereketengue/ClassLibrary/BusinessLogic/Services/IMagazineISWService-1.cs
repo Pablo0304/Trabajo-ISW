@@ -70,12 +70,12 @@ namespace Magazine.Services
         Boolean pendingPublication(Issue issue);
         void AddPublishedPapers(Paper paper);
         ICollection<Paper> getPendingPublicationPapers(Area area);
+        ICollection<Paper> getPendingEvaluationPapers(Area area);
 
         #endregion
 
         #region Area
         Entities.Area  AddArea(string name, User editor, Entities.Magazine magazine);
-
 
         Area gArea(String name);
         #endregion

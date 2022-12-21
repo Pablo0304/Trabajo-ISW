@@ -96,6 +96,10 @@ namespace MereketengueInterfaz
                 MessageBoxIcon.Information); // Icon
                 buttonSend.Enabled = false;
                 ListCoauthors.Items.Add(service.gLoggedUser().Name.ToString());
+                Menu_Principal mp = new Menu_Principal(service);
+                this.Hide();
+                mp.ShowDialog();
+                this.Close();
             }
         }
 
