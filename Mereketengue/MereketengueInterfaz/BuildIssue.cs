@@ -57,10 +57,13 @@ namespace MereketengueInterfaz
 
         private void buscarClick(object sender, EventArgs e)
         {
-            listaPapers.Items.Clear();
-            foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
-                listaPapers.Items.Add(p.Title);
-            }
+            
+                listaPapers.Items.Clear();
+                foreach (Paper p in service.getPendingPublicationPapers(actualArea))
+                {
+                    listaPapers.Items.Add(p.Title);
+                }
+           
             //listaPapers.Items.Add(service.getPendingPublicationPapers(actualArea));
         }
 

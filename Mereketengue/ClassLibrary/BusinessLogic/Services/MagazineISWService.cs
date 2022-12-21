@@ -62,6 +62,14 @@ namespace Magazine.Services
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
             Issue i1 = CreateIssue(1, m1);
+
+            Paper p1 = AddPaper("titulillo", DateTime.Now, a2, u2);
+
+            Evaluation e1 = AddEvaluation(true, "Este issue es una tremenda mierda y Pablo la chupa", DateTime.Now);
+
+            p1.EvaluationPendingArea = a2;
+
+            a2.AddToEvalPendPapers(p1);
         }
 
         #region User
