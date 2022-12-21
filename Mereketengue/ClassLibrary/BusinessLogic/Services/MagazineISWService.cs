@@ -57,7 +57,6 @@ namespace Magazine.Services
 
             LoggedUser = ChiefEditor;//quitar cuando esté hecho login y register
 
-
             User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
 
             Area a2 = AddArea("Area 2", u3, m1);
