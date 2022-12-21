@@ -64,8 +64,9 @@ namespace Magazine.Services
         #endregion
 
         #region Issue
-        Issue BuildIssue();
-
+        Issue BuildIssue(DateTime publicationDate);
+        void AddPublishedPapers(Paper paper);
+        ICollection<Paper> getPendingPublicationPapers(Area area);
 
         #endregion
 
