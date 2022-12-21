@@ -20,7 +20,7 @@ namespace MereketengueInterfaz
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             service.DBInitialization();
-            Application.Run(new Menu_Principal(service));
+            Application.Run(new Login(service));
         }
     }
 }

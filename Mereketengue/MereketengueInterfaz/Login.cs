@@ -43,8 +43,17 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e) //QUITA ESTO CUANDO VAYAS A HACER PUSH ME CAGOENSATANAS
         {
-            if (user.Text != null && pssw.Text != null) {
+            if (user.Text != "" && pssw.Text != "")
+            {
                 service.Login(user.Text, pssw.Text);
+            }
+            else {
+                DialogResult answer = MessageBox.Show(this, // Owner
+                "You must complete User and Login boxes", // Message
+                "Unable to Login", // Title
+                MessageBoxButtons.OK, // Buttons included
+                MessageBoxIcon.Exclamation); // Icon
+
             }
         }
 
