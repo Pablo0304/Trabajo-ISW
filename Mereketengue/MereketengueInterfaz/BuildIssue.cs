@@ -83,7 +83,7 @@ namespace MereketengueInterfaz
 
         private void publicateClick(object sender, EventArgs e)
         {
-            service.BuildIssue(dateTimePicker.Value);
+            //service.BuildIssue(dateTimePicker.Value);
         }
 
         private void backClick(object sender, EventArgs e)

@@ -106,7 +106,9 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e)
         {
-            if (textBoxId.Text == "" || user.Text == "" || pssw.Text == "" || email.Text == "" || fieldsOfInterest.Text == "" || name.Text == "" || surname.Text == "" || !service.SignUp(textBoxId.Text, name.Text, surname.Text, checkBox1.Checked, fieldsOfInterest.Text, email.Text, user.Text, pssw.Text))
+            Random a = new Random();
+            String id = a.ToString();
+            if (user.Text == "" || pssw.Text == "" || email.Text == "" || fieldsOfInterest.Text == "" || name.Text == "" || surname.Text == "" || !service.SignUp(id, name.Text, surname.Text, checkBox1.Checked, fieldsOfInterest.Text, email.Text, user.Text, pssw.Text))
             {
                 DialogResult answer = MessageBox.Show(this, // Owner
                 "Invalid Credentials or Non-Existent User", // Message
