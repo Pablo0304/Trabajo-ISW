@@ -61,10 +61,10 @@
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(367, 450);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(73, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(63, 13);
             this.linkLabel1.TabIndex = 14;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Sign up here!!";
+            this.linkLabel1.Text = "Login here!!";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3

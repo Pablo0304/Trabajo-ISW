@@ -28,10 +28,7 @@ namespace MereketengueInterfaz
 
         private void label1_Click(object sender, EventArgs e)
         {
-            SignUp ev1 = new SignUp(service);
-            this.Hide();
-            ev1.ShowDialog();
-            this.Show();
+            
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -70,6 +67,14 @@ namespace MereketengueInterfaz
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void signup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SignUp ev1 = new SignUp(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Show();
         }
     }
 }
