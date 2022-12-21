@@ -59,15 +59,5 @@ namespace MereketengueInterfaz
                 listaPapers.Items.Add(p.Title);
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EvaluatePaper_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
