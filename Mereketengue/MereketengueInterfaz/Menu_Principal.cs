@@ -51,7 +51,7 @@ namespace MereketengueInterfaz
             BuildIssue ev2 = new BuildIssue(service);
             this.Hide();
             ev2.ShowDialog();
-            this.Show();
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -59,15 +59,15 @@ namespace MereketengueInterfaz
             EvaluatePaper ev1 = new EvaluatePaper(service);
             this.Hide();
             ev1.ShowDialog();
-            this.Show();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ListPapers ev2 = new ListPapers();
+            ListPapers ev2 = new ListPapers(service);
             this.Hide();
             ev2.ShowDialog();
-            this.Show();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace MereketengueInterfaz
             PaperSubmission ev2 = new PaperSubmission(service);
             this.Hide();
             ev2.ShowDialog();
-            this.Show();
+            this.Close();
         }
     }
 }

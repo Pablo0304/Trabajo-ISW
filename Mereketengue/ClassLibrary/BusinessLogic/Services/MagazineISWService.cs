@@ -64,6 +64,14 @@ namespace Magazine.Services
             User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
 
             Issue i1 = CreateIssue(1, m1);
+
+            Paper p1 = AddPaper("titulillo", DateTime.Now, a2, u2);
+
+            Evaluation e1 = AddEvaluation(true, "Este issue es una tremenda mierda y Pablo la chupa", DateTime.Now);
+
+            p1.EvaluationPendingArea = a2;
+
+            a2.AddToEvalPendPapers(p1);
         }
 
         #region User
@@ -85,7 +93,7 @@ namespace Magazine.Services
                     return true;
                 }
             }
-            throw new ServiceException("Login or Password are not correct.");
+            return false;
         }
 
         /// <summary>   Performs a log out operation </summary>
@@ -117,12 +125,14 @@ namespace Magazine.Services
                 if (u.comprobarId(id))
                 {
                     encontrado = true;
-                    throw new ServiceException("Error: You are already registered, go to Log in page");
+                    //throw new ServiceException("Error: You are already registered, go to Log in page");
+                    return false;
                 }
                 if (u.comprobarLogin(login))
                 {
                     encontrado = true;
-                    throw new ServiceException("Error: That login is already used, try again.");
+                    //throw new ServiceException("Error: That login is already used, try again.");
+                    return false;
                 }
             }
             if (!encontrado)
@@ -279,7 +289,9 @@ namespace Magazine.Services
             throw new ServiceException("You are not allowed to list Papers, only the ChiefEditor can do it.");
         
         }
-
+        public ICollection<Issue> getAllIssues() {
+            return magazine.Issues;
+        }
         public Issue getLastIssue() {
             return magazine.gMaxNumberIssue();
 
@@ -340,6 +352,10 @@ namespace Magazine.Services
             }
             throw new ServiceException("Error: Area  dont Exist");
 
+        }
+
+        public ICollection<Paper> getPendingEvaluationPapers(Area area) {
+            return area.EvaluationPending;
         }
 
         #endregion

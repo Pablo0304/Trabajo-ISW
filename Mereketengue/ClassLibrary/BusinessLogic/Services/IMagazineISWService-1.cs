@@ -65,6 +65,7 @@ namespace Magazine.Services
 
         #region Issue
         Issue BuildIssue(DateTime publicationDate);
+        ICollection<Issue> getAllIssues();
         Issue getLastIssue();
         Boolean pendingPublication(Issue issue);
         void AddPublishedPapers(Paper paper);
@@ -74,7 +75,6 @@ namespace Magazine.Services
 
         #region Area
         Entities.Area  AddArea(string name, User editor, Entities.Magazine magazine);
-        Entities.Area gArea(string name);
         #endregion
 
         #region Magazine

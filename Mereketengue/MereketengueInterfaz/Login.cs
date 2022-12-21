@@ -28,7 +28,7 @@ namespace MereketengueInterfaz
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -43,8 +43,19 @@ namespace MereketengueInterfaz
 
         private void next_Click(object sender, EventArgs e) //QUITA ESTO CUANDO VAYAS A HACER PUSH ME CAGOENSATANAS
         {
-            if (user.Text != null && pssw.Text != null) {
-                service.Login(user.Text, pssw.Text);
+            if (user.Text == "" || pssw.Text == "" || !service.Login(user.Text, pssw.Text))
+            {
+                DialogResult answer = MessageBox.Show(this, // Owner
+                "Invalid Credentials", // Message
+                "Unable to Login", // Title
+                MessageBoxButtons.OK, // Buttons included
+                MessageBoxIcon.Exclamation); // Icon
+            }
+            else {
+                Menu_Principal ev1 = new Menu_Principal(service);
+                this.Hide();
+                ev1.ShowDialog();
+                this.Close();
             }
         }
 
@@ -56,6 +67,14 @@ namespace MereketengueInterfaz
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void signup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SignUp ev1 = new SignUp(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Close();
         }
     }
 }

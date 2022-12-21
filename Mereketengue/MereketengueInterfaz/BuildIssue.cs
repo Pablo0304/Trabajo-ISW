@@ -57,17 +57,19 @@ namespace MereketengueInterfaz
 
         private void buscarClick(object sender, EventArgs e)
         {
-            listaPapers.Items.Clear();
-            foreach (Paper p in service.getPendingPublicationPapers(actualArea)) {
-                listaPapers.Items.Add(p.Title);
-            }
+            
+                listaPapers.Items.Clear();
+                foreach (Paper p in service.getPendingPublicationPapers(actualArea))
+                {
+                    listaPapers.Items.Add(p.Title);
+                }
+           
             //listaPapers.Items.Add(service.getPendingPublicationPapers(actualArea));
         }
 
         private void BuildIssue_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'magazineDBDataSet.Papers' Puede moverla o quitarla según sea necesario.
-            this.papersTableAdapter.Fill(this.magazineDBDataSet.Papers);
 
         }
 

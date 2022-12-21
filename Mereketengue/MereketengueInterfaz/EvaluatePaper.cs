@@ -15,48 +15,15 @@ namespace MereketengueInterfaz
     public partial class EvaluatePaper : Form
     {
         private IMagazineISWService service;
+        Area actualArea;
         public EvaluatePaper(IMagazineISWService service)
         {
             InitializeComponent();
             this.service = service;
-            foreach (Area a in service.listAreas()) {
+            foreach (Area a in service.listAreas())
+            {
                 comboAreas.Items.Add(a.Name);
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,24 +33,31 @@ namespace MereketengueInterfaz
 
         private void SelectEv1(object sender, EventArgs e)
         {
-            EvaluatePaper2 ev2 = new EvaluatePaper2();
+            Menu_Principal mp = new Menu_Principal(service);
             this.Hide();
-            ev2.ShowDialog();
-            this.Show();
+            mp.ShowDialog();
+            this.Close();
         }
 
         private void GoBackEv1(object sender, EventArgs e)
         {
-            /*
+            Menu_Principal mp = new Menu_Principal(service);
             this.Hide();
-            MenuPrincipal.ShowDialog();
-            this.Show();
-            */
+            mp.ShowDialog();
+            this.Close();
         }
 
         private void ComboBoxAreas(object sender, EventArgs e)
         {
-            
+            foreach (Area a in service.listAreas())
+            {
+                if ((String)comboAreas.SelectedItem == a.Name) { actualArea = a; }
+            }
+            listaPapers.Items.Clear();
+            foreach (Paper p in service.getPendingEvaluationPapers(actualArea))
+            {
+                listaPapers.Items.Add(p.Title);
+            }
         }
     }
 }

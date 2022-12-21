@@ -49,9 +49,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(941, 498);
+            this.button1.Location = new System.Drawing.Point(706, 405);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 44);
+            this.button1.Size = new System.Drawing.Size(86, 36);
             this.button1.TabIndex = 0;
             this.button1.Text = "Publicate";
             this.button1.UseVisualStyleBackColor = true;
@@ -59,47 +60,52 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(820, 498);
+            this.button2.Location = new System.Drawing.Point(615, 405);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 44);
+            this.button2.Size = new System.Drawing.Size(86, 36);
             this.button2.TabIndex = 1;
             this.button2.Text = "Back";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.label1.Location = new System.Drawing.Point(12, 35);
+            this.label1.Location = new System.Drawing.Point(9, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 46);
+            this.label1.Size = new System.Drawing.Size(155, 37);
             this.label1.TabIndex = 2;
             this.label1.Text = "Magazine";
             // 
             // selectorArea
             // 
             this.selectorArea.FormattingEnabled = true;
-            this.selectorArea.Location = new System.Drawing.Point(20, 96);
+            this.selectorArea.Location = new System.Drawing.Point(15, 78);
+            this.selectorArea.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectorArea.Name = "selectorArea";
-            this.selectorArea.Size = new System.Drawing.Size(200, 24);
+            this.selectorArea.Size = new System.Drawing.Size(151, 21);
             this.selectorArea.TabIndex = 3;
             this.selectorArea.SelectedIndexChanged += new System.EventHandler(this.seleccionarArea);
             // 
             // listaPapers
             // 
             this.listaPapers.FormattingEnabled = true;
-            this.listaPapers.ItemHeight = 16;
-            this.listaPapers.Location = new System.Drawing.Point(20, 126);
+            this.listaPapers.Location = new System.Drawing.Point(15, 102);
+            this.listaPapers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listaPapers.Name = "listaPapers";
-            this.listaPapers.Size = new System.Drawing.Size(381, 340);
+            this.listaPapers.Size = new System.Drawing.Size(287, 277);
             this.listaPapers.TabIndex = 4;
             this.listaPapers.SelectedIndexChanged += new System.EventHandler(this.seleccionarPaper);
             // 
             // busacarButton
             // 
-            this.busacarButton.Location = new System.Drawing.Point(246, 96);
+            this.busacarButton.Location = new System.Drawing.Point(184, 78);
+            this.busacarButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.busacarButton.Name = "busacarButton";
-            this.busacarButton.Size = new System.Drawing.Size(75, 23);
+            this.busacarButton.Size = new System.Drawing.Size(56, 19);
             this.busacarButton.TabIndex = 5;
             this.busacarButton.Text = "Buscar";
             this.busacarButton.UseVisualStyleBackColor = true;
@@ -121,9 +127,10 @@
             // 
             // agregarPaper
             // 
-            this.agregarPaper.Location = new System.Drawing.Point(427, 257);
+            this.agregarPaper.Location = new System.Drawing.Point(320, 209);
+            this.agregarPaper.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.agregarPaper.Name = "agregarPaper";
-            this.agregarPaper.Size = new System.Drawing.Size(84, 58);
+            this.agregarPaper.Size = new System.Drawing.Size(63, 47);
             this.agregarPaper.TabIndex = 6;
             this.agregarPaper.Text = "Agregar paper";
             this.agregarPaper.UseVisualStyleBackColor = true;
@@ -132,25 +139,27 @@
             // selectedPapers
             // 
             this.selectedPapers.FormattingEnabled = true;
-            this.selectedPapers.ItemHeight = 16;
-            this.selectedPapers.Location = new System.Drawing.Point(609, 122);
+            this.selectedPapers.Location = new System.Drawing.Point(457, 99);
+            this.selectedPapers.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectedPapers.Name = "selectedPapers";
-            this.selectedPapers.Size = new System.Drawing.Size(309, 340);
+            this.selectedPapers.Size = new System.Drawing.Size(233, 277);
             this.selectedPapers.TabIndex = 7;
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(718, 88);
+            this.dateTimePicker.Location = new System.Drawing.Point(538, 72);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.Size = new System.Drawing.Size(151, 20);
             this.dateTimePicker.TabIndex = 8;
             // 
             // publicationDate
             // 
             this.publicationDate.AutoSize = true;
-            this.publicationDate.Location = new System.Drawing.Point(606, 94);
+            this.publicationDate.Location = new System.Drawing.Point(454, 76);
+            this.publicationDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.publicationDate.Name = "publicationDate";
-            this.publicationDate.Size = new System.Drawing.Size(106, 16);
+            this.publicationDate.Size = new System.Drawing.Size(86, 13);
             this.publicationDate.TabIndex = 9;
             this.publicationDate.Text = "Publication date:";
             // 
@@ -158,17 +167,18 @@
             // 
             this.numberLabel.AutoSize = true;
             this.numberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.numberLabel.Location = new System.Drawing.Point(210, 35);
+            this.numberLabel.Location = new System.Drawing.Point(158, 28);
+            this.numberLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.numberLabel.Name = "numberLabel";
-            this.numberLabel.Size = new System.Drawing.Size(192, 46);
+            this.numberLabel.Size = new System.Drawing.Size(157, 37);
             this.numberLabel.TabIndex = 10;
             this.numberLabel.Text = "(numero):";
             // 
             // BuildIssue
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.numberLabel);
             this.Controls.Add(this.publicationDate);
             this.Controls.Add(this.dateTimePicker);
@@ -180,7 +190,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BuildIssue";
             this.Text = "Build Issue";
             this.Load += new System.EventHandler(this.BuildIssue_Load);

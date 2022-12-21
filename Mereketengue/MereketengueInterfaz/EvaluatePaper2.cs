@@ -19,20 +19,17 @@ namespace MereketengueInterfaz
         {
 
             InitializeComponent();
-            this.service = service;
+            
         }
 
         private void Send(object sender, EventArgs e)
         {
-            Menu_Principal mp = new Menu_Principal(service);
-            this.Hide();
-            mp.ShowDialog();
-            this.Show();
+            
         }
 
         private void GoBackEv2(object sender, EventArgs e)
         {
-            this.Close();
+            
         }
     }
 }
