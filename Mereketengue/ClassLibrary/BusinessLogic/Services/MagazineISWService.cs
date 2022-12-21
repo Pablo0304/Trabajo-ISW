@@ -325,8 +325,6 @@ namespace Magazine.Services
             return list;
         }
 
-
-
         #endregion
 
         #region Person

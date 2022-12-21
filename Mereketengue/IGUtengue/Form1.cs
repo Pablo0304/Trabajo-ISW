@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MereketengueInterfaz
+namespace IGUtengue
 {
-    public partial class PaperSubmission : Form
+    public partial class Form1 : Form
     {
-        public PaperSubmission()
+        public Form1()
         {
             InitializeComponent();
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

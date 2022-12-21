@@ -1,12 +1,10 @@
-﻿using Magazine.Persistence;
-using Magazine.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MereketengueInterfaz
+namespace IGUtengue
 {
     internal static class Program
     {
@@ -16,10 +14,9 @@ namespace MereketengueInterfaz
         [STAThread]
         static void Main()
         {
-            IMagazineISWService service = new MagazineISWService(new EntityFrameworkDAL(new MagazineDbContext()));
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new (service));
+            Application.Run(new Form1());
         }
     }
 }
