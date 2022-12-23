@@ -28,6 +28,7 @@ namespace MereketengueInterfaz
                 selectorArea.Items.Add(a.Name);
             }
             Issue lastIssue = service.getLastIssue();
+
             if (service.pendingPublication(lastIssue))
             {
                 numberLabel.Text = lastIssue.Number.ToString() + " (editar):";
@@ -81,7 +82,7 @@ namespace MereketengueInterfaz
             selectedPapers.Items.Add(selectedPaper);
         }
 
-        private void publicateClick(object sender, EventArgs e)
+        private void publicateClick(object sender, EventArgs e) 
         {
             if (service.BuildIssue(dateTimePicker.Value, selectedPapersAux)) { 
                 Menu_Principal ev1 = new Menu_Principal(service);

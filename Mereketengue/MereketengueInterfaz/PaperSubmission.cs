@@ -21,31 +21,29 @@ namespace MereketengueInterfaz
         private Area area;
         private Paper papel;
         private Person person;
-        private Person selectedCoauthor;
-        private List<Person> Coauthors;
 
         public PaperSubmission(IMagazineISWService service)
         {
             InitializeComponent();
             this.service = service;
-            /*listaAreas.Items.Clear();
-
-            foreach (Area a in service.listAreas())
-            {
-                listaAreas.Items.Add(a.Name.ToString());
-            }*/
+            ErrorSend.Text = "";
+            Error4.Text = "";
+            ErrorlistCoauthor.Text = "";
+            ErrorName.Text = "";
+            ErrorSurname.Text = "";
+            errorId.Text = "";
+            labelCoauthor.Text = "";
+            ErrorArea.Text = "";
         }
 
         private void AddCoauthor(object sender, EventArgs e)
         {
-            if (ListCoauthors.Items.Count < 4)
+            try
             {
                 if (textBoxID.Text != null && textBoxID.Text != "")
                 {
-
                     if (textBoxName.Text != null && textBoxName.Text != "")
                     {
-
                         if (textBoxSurname.Text != null && textBoxSurname.Text != "")
                         {
                             if (papel != null)
@@ -76,28 +74,53 @@ namespace MereketengueInterfaz
                     errorId.Enabled = true;
                     errorId.Text = "Insert id";
                 }
+                
             }
-            else
+            catch (ServiceException) 
             {
-                Error4.Enabled = true;
                 Error4.Text = "There is already 4 coauthors";
             }
         } 
 
         private void Send(object sender, EventArgs e)
         {
-            if (PaperTitlebox.Text != null && PaperTitlebox.Text != "" && area != null)
-            {
-                papel = service.EnviarPaper(area, PaperTitlebox.Text);
-                DialogResult answer = MessageBox.Show(this, // Owner
-                "Corectly Added to de DB", // Message
-                "Paper Created", // Title
-                MessageBoxButtons.OK, // Buttons included
-                MessageBoxIcon.Information); // Icon
-                buttonSend.Enabled = false;
-                ListCoauthors.Items.Add(service.gLoggedUser().Name.ToString());
-                
+            try {
+                if (PaperTitlebox.Text != null && PaperTitlebox.Text != "")
+                {
+                    if (area != null)
+                    {
+                        papel = service.EnviarPaper(area, PaperTitlebox.Text);
+                        DialogResult Añadido = MessageBox.Show(this, // Owner
+                        "Corectly Added to de DB", // Message
+                        "Paper Created", // Title
+                        MessageBoxButtons.OK, // Buttons included
+                        MessageBoxIcon.Information); // Icon
+
+                        DialogResult coauthors = MessageBox.Show(this, // Owner
+                        "Would you like to add some Coauthors?", // Message
+                        "Optional", // Title
+                        MessageBoxButtons.OKCancel, // Buttons included
+                        MessageBoxIcon.Information); // Icon
+                        if (coauthors == DialogResult.OK)
+                        {
+                            paneltrampa.SendToBack();
+                            buttonSend.Enabled = false;
+                            ListCoauthors.Items.Clear();
+                            ListCoauthors.Items.Add(service.gLoggedUser().Name.ToString());
+                        }
+                        else
+                        {
+                            Menu_Principal mp = new Menu_Principal(service);
+                            this.Hide();
+                            mp.ShowDialog();
+                            this.Close();
+                        }
+                    }
+                    else { ErrorArea.Text = "Area is not selected."; }
+                }
+                else { ErrorSend.Text = "Insert paper's title."; }
             }
+            catch (ServiceException) { ErrorSend.Text = "There is already a paper with the same Title in this area."; }
         }
 
         private void LlenarAreas(object sender, EventArgs e)
@@ -114,20 +137,14 @@ namespace MereketengueInterfaz
         {
             String item = comboBoxAreas.GetItemText(comboBoxAreas.SelectedItem);
             area = service.gArea(item);
-            Selectedarea.Text = area.Name;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ConfirmameEsta(object sender, EventArgs e)
         {
             Menu_Principal mp = new Menu_Principal(service);
             this.Hide();
             mp.ShowDialog();
             this.Close();
-        }
-
-        private void PaperSubmission_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

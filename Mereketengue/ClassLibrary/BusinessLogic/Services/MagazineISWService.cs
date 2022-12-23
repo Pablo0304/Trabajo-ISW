@@ -25,6 +25,7 @@ namespace Magazine.Services
         public void setMagazine(Entities.Magazine magazine) { 
             this.magazine = magazine;
         }
+
         public MagazineISWService(IDAL dal)
         {
             this.dal = dal;
@@ -197,7 +198,7 @@ namespace Magazine.Services
                     Commit();
                 }
             }
-            throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area's editor can do it.");
+            else { throw new ServiceException("You are not allowed to Evaluate this Paper, only the Area's editor can do it."); }
         }
 
         public ICollection<Paper> ListarPapersEvPending(Area area)

@@ -69,12 +69,6 @@
     <Compile Include="EvaluatePaper.Designer.cs">
       <DependentUpon>EvaluatePaper.cs</DependentUpon>
     </Compile>
-    <Compile Include="EvaluatePaper2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EvaluatePaper2.Designer.cs">
-      <DependentUpon>EvaluatePaper2.cs</DependentUpon>
-    </Compile>
     <Compile Include="ListPapers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,9 +116,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EvaluatePaper.resx">
       <DependentUpon>EvaluatePaper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EvaluatePaper2.resx">
-      <DependentUpon>EvaluatePaper2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListPapers.resx">
       <DependentUpon>ListPapers.cs</DependentUpon>
