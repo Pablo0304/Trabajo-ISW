@@ -48,7 +48,7 @@ namespace MereketengueInterfaz
         private void seleccionarPaper(object sender, EventArgs e)
         {
             String var = listaPapers.GetItemText(listaPapers.SelectedItem);
-            selectedPaper = service.gPaper(var, actualArea);
+            selectedPaper = service.SearchPaper(var, actualArea);
         }
 
         private void seleccionarArea(object sender, EventArgs e)

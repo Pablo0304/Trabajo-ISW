@@ -35,5 +35,9 @@ namespace Magazine.Entities
         public bool comprobarId(String id){
             return this.Id.Equals(id);
         }
+
+        public bool comprobarName(String name) { 
+            return this.Name.Equals(name);
+        }
     }
 }

@@ -47,13 +47,11 @@
             this.ErrorSurname = new System.Windows.Forms.Label();
             this.ErrorlistCoauthor = new System.Windows.Forms.Label();
             this.ListCoauthors = new System.Windows.Forms.ListBox();
-            this.labelCoauthor = new System.Windows.Forms.Label();
-            this.Error4 = new System.Windows.Forms.Label();
             this.ErrorSend = new System.Windows.Forms.Label();
             this.Confirm = new System.Windows.Forms.Button();
             this.paneltrampa = new System.Windows.Forms.Panel();
             this.ErrorArea = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ButtonDeleteCoauthor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -184,6 +182,7 @@
             // errorId
             // 
             this.errorId.AutoSize = true;
+            this.errorId.ForeColor = System.Drawing.Color.Red;
             this.errorId.Location = new System.Drawing.Point(82, 183);
             this.errorId.Name = "errorId";
             this.errorId.Size = new System.Drawing.Size(57, 13);
@@ -193,6 +192,7 @@
             // ErrorName
             // 
             this.ErrorName.AutoSize = true;
+            this.ErrorName.ForeColor = System.Drawing.Color.Red;
             this.ErrorName.Location = new System.Drawing.Point(120, 237);
             this.ErrorName.Name = "ErrorName";
             this.ErrorName.Size = new System.Drawing.Size(57, 13);
@@ -202,6 +202,7 @@
             // ErrorSurname
             // 
             this.ErrorSurname.AutoSize = true;
+            this.ErrorSurname.ForeColor = System.Drawing.Color.Red;
             this.ErrorSurname.Location = new System.Drawing.Point(150, 302);
             this.ErrorSurname.Name = "ErrorSurname";
             this.ErrorSurname.Size = new System.Drawing.Size(71, 13);
@@ -224,28 +225,12 @@
             this.ListCoauthors.Name = "ListCoauthors";
             this.ListCoauthors.Size = new System.Drawing.Size(187, 186);
             this.ListCoauthors.TabIndex = 24;
-            // 
-            // labelCoauthor
-            // 
-            this.labelCoauthor.AutoSize = true;
-            this.labelCoauthor.Location = new System.Drawing.Point(548, 390);
-            this.labelCoauthor.Name = "labelCoauthor";
-            this.labelCoauthor.Size = new System.Drawing.Size(35, 13);
-            this.labelCoauthor.TabIndex = 25;
-            this.labelCoauthor.Text = "Error2";
-            // 
-            // Error4
-            // 
-            this.Error4.AutoSize = true;
-            this.Error4.Location = new System.Drawing.Point(548, 403);
-            this.Error4.Name = "Error4";
-            this.Error4.Size = new System.Drawing.Size(35, 13);
-            this.Error4.TabIndex = 26;
-            this.Error4.Text = "Error3";
+            this.ListCoauthors.SelectedIndexChanged += new System.EventHandler(this.SeleccionarCoauthor);
             // 
             // ErrorSend
             // 
             this.ErrorSend.AutoSize = true;
+            this.ErrorSend.ForeColor = System.Drawing.Color.Red;
             this.ErrorSend.Location = new System.Drawing.Point(477, 77);
             this.ErrorSend.Name = "ErrorSend";
             this.ErrorSend.Size = new System.Drawing.Size(35, 13);
@@ -273,33 +258,34 @@
             // ErrorArea
             // 
             this.ErrorArea.AutoSize = true;
+            this.ErrorArea.BackColor = System.Drawing.Color.Transparent;
+            this.ErrorArea.ForeColor = System.Drawing.Color.Red;
             this.ErrorArea.Location = new System.Drawing.Point(281, 20);
             this.ErrorArea.Name = "ErrorArea";
             this.ErrorArea.Size = new System.Drawing.Size(35, 13);
             this.ErrorArea.TabIndex = 30;
             this.ErrorArea.Text = "label4";
             // 
-            // button1
+            // ButtonDeleteCoauthor
             // 
-            this.button1.Location = new System.Drawing.Point(426, 237);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 32);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ButtonDeleteCoauthor.Location = new System.Drawing.Point(426, 230);
+            this.ButtonDeleteCoauthor.Name = "ButtonDeleteCoauthor";
+            this.ButtonDeleteCoauthor.Size = new System.Drawing.Size(86, 35);
+            this.ButtonDeleteCoauthor.TabIndex = 31;
+            this.ButtonDeleteCoauthor.Text = "Delete Coauthor";
+            this.ButtonDeleteCoauthor.UseVisualStyleBackColor = true;
+            this.ButtonDeleteCoauthor.Click += new System.EventHandler(this.ButtonDeleteCoauthor_Click);
             // 
             // PaperSubmission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ButtonDeleteCoauthor);
             this.Controls.Add(this.ErrorArea);
             this.Controls.Add(this.paneltrampa);
             this.Controls.Add(this.ErrorSend);
             this.Controls.Add(this.Confirm);
-            this.Controls.Add(this.Error4);
-            this.Controls.Add(this.labelCoauthor);
             this.Controls.Add(this.ListCoauthors);
             this.Controls.Add(this.ErrorlistCoauthor);
             this.Controls.Add(this.ErrorSurname);
@@ -346,12 +332,10 @@
         private System.Windows.Forms.Label ErrorSurname;
         private System.Windows.Forms.Label ErrorlistCoauthor;
         private System.Windows.Forms.ListBox ListCoauthors;
-        private System.Windows.Forms.Label labelCoauthor;
-        private System.Windows.Forms.Label Error4;
         private System.Windows.Forms.Label ErrorSend;
         private System.Windows.Forms.Button Confirm;
         private System.Windows.Forms.Panel paneltrampa;
         private System.Windows.Forms.Label ErrorArea;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ButtonDeleteCoauthor;
     }
 }

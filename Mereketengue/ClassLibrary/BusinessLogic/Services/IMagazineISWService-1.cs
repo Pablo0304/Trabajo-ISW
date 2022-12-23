@@ -49,7 +49,7 @@ namespace Magazine.Services
         /// <returns>   Any required ServiceExceptions
         /// </returns>
         bool SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
-
+        User SearchUser(String name);
         Entities.User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
         #endregion
 
@@ -60,7 +60,7 @@ namespace Magazine.Services
         ICollection<Paper> ListarPublishedPapers(Area area);
         ICollection<Paper> ListarPapersPublPending(Area area);
         ICollection<Paper> ListarPapersEvPending(Area area);
-        Paper gPaper(String name, Area area);
+        Paper SearchPaper(String name, Area area);
         Entities.Paper AddPaper(string title, DateTime uploadDate, Area belongingArea, User responsible);
         #endregion
 
@@ -77,7 +77,7 @@ namespace Magazine.Services
         #region Area
         Entities.Area  AddArea(string name, User editor, Entities.Magazine magazine);
 
-        Area gArea(String name);
+        Area SearchArea(String name);
         #endregion
 
         #region Magazine
@@ -89,6 +89,7 @@ namespace Magazine.Services
         Person addCoauthor(string id,string name, string surname, Paper paper);
         void deleteCoauthor(Person person, Paper paper); //añadido
         Person AddPerson(string id, string name, string surname);
+        Person SearchPerson(String name);
         #endregion 
         User gLoggedUser();
     }

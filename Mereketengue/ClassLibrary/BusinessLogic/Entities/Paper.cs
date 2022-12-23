@@ -34,12 +34,12 @@ namespace Magazine.Entities
         
         public void deleteCoauthor(Person person)
         {
-            CoAuthors.Remove(person);
+            this.CoAuthors.Remove(person);
         }
 
         public void addCoauthor(Person person)
         {
-            CoAuthors.Add(person);
+            this.CoAuthors.Add(person);
         }
 
         public int gCoAuthorsCount() 
