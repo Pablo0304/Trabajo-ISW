@@ -1,4 +1,5 @@
 ﻿using Magazine.Services;
+using MereketengueInterfaz.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,9 +80,16 @@ namespace MereketengueInterfaz
             this.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void animationEnterPaperSubmission(object sender, EventArgs e)
         {
-            button1_Click(sender,e);
+            this.ButtonPaperSubmission.BackColor = System.Drawing.Color.SlateBlue;
+            this.ButtonPaperSubmission.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void animationLeavePaperSubmission(object sender, EventArgs e)
+        {
+            this.ButtonPaperSubmission.BackColor = System.Drawing.Color.Lavender;
+            this.ButtonPaperSubmission.ForeColor = System.Drawing.Color.Black;
         }
     }
 }

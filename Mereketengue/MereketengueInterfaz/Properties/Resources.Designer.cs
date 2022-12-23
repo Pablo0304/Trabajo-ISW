@@ -59,5 +59,15 @@ namespace MereketengueInterfaz.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
+        internal static System.Drawing.Icon Crab {
+            get {
+                object obj = ResourceManager.GetObject("Crab", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

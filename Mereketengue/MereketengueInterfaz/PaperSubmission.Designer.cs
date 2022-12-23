@@ -53,6 +53,7 @@
             this.Confirm = new System.Windows.Forms.Button();
             this.paneltrampa = new System.Windows.Forms.Panel();
             this.ErrorArea = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -172,7 +173,7 @@
             // 
             // ButtonAddCoauthor
             // 
-            this.ButtonAddCoauthor.Location = new System.Drawing.Point(258, 317);
+            this.ButtonAddCoauthor.Location = new System.Drawing.Point(426, 189);
             this.ButtonAddCoauthor.Name = "ButtonAddCoauthor";
             this.ButtonAddCoauthor.Size = new System.Drawing.Size(86, 34);
             this.ButtonAddCoauthor.TabIndex = 17;
@@ -253,10 +254,10 @@
             // 
             // Confirm
             // 
-            this.Confirm.Location = new System.Drawing.Point(711, 414);
+            this.Confirm.Location = new System.Drawing.Point(713, 403);
             this.Confirm.Margin = new System.Windows.Forms.Padding(2);
             this.Confirm.Name = "Confirm";
-            this.Confirm.Size = new System.Drawing.Size(80, 26);
+            this.Confirm.Size = new System.Drawing.Size(78, 37);
             this.Confirm.TabIndex = 27;
             this.Confirm.Text = "Confirm";
             this.Confirm.UseVisualStyleBackColor = true;
@@ -266,7 +267,7 @@
             // 
             this.paneltrampa.Location = new System.Drawing.Point(12, 145);
             this.paneltrampa.Name = "paneltrampa";
-            this.paneltrampa.Size = new System.Drawing.Size(779, 295);
+            this.paneltrampa.Size = new System.Drawing.Size(779, 35);
             this.paneltrampa.TabIndex = 29;
             // 
             // ErrorArea
@@ -278,11 +279,21 @@
             this.ErrorArea.TabIndex = 30;
             this.ErrorArea.Text = "label4";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(426, 237);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 32);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // PaperSubmission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ErrorArea);
             this.Controls.Add(this.paneltrampa);
             this.Controls.Add(this.ErrorSend);
@@ -341,5 +352,6 @@
         private System.Windows.Forms.Button Confirm;
         private System.Windows.Forms.Panel paneltrampa;
         private System.Windows.Forms.Label ErrorArea;
+        private System.Windows.Forms.Button button1;
     }
 }
