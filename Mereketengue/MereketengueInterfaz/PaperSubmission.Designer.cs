@@ -1,4 +1,6 @@
-﻿namespace MereketengueInterfaz
+﻿using System.Windows.Forms;
+
+namespace MereketengueInterfaz
 {
     partial class PaperSubmission
     {
@@ -90,6 +92,7 @@
             this.PaperTitlebox.Name = "PaperTitlebox";
             this.PaperTitlebox.Size = new System.Drawing.Size(161, 20);
             this.PaperTitlebox.TabIndex = 5;
+            this.PaperTitlebox.TextChanged += new System.EventHandler(this.escribe);
             // 
             // label3
             // 
@@ -103,9 +106,9 @@
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(397, 68);
+            this.buttonSend.Location = new System.Drawing.Point(710, 77);
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(67, 23);
+            this.buttonSend.Size = new System.Drawing.Size(78, 38);
             this.buttonSend.TabIndex = 8;
             this.buttonSend.Text = "Send";
             this.buttonSend.UseVisualStyleBackColor = true;
@@ -212,6 +215,7 @@
             // ErrorlistCoauthor
             // 
             this.ErrorlistCoauthor.AutoSize = true;
+            this.ErrorlistCoauthor.ForeColor = System.Drawing.Color.Red;
             this.ErrorlistCoauthor.Location = new System.Drawing.Point(548, 378);
             this.ErrorlistCoauthor.Name = "ErrorlistCoauthor";
             this.ErrorlistCoauthor.Size = new System.Drawing.Size(35, 13);
@@ -231,7 +235,7 @@
             // 
             this.ErrorSend.AutoSize = true;
             this.ErrorSend.ForeColor = System.Drawing.Color.Red;
-            this.ErrorSend.Location = new System.Drawing.Point(477, 77);
+            this.ErrorSend.Location = new System.Drawing.Point(383, 78);
             this.ErrorSend.Name = "ErrorSend";
             this.ErrorSend.Size = new System.Drawing.Size(35, 13);
             this.ErrorSend.TabIndex = 28;
@@ -252,7 +256,7 @@
             // 
             this.paneltrampa.Location = new System.Drawing.Point(12, 145);
             this.paneltrampa.Name = "paneltrampa";
-            this.paneltrampa.Size = new System.Drawing.Size(779, 35);
+            this.paneltrampa.Size = new System.Drawing.Size(779, 295);
             this.paneltrampa.TabIndex = 29;
             // 
             // ErrorArea
@@ -281,7 +285,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ButtonDeleteCoauthor);
             this.Controls.Add(this.ErrorArea);
             this.Controls.Add(this.paneltrampa);
             this.Controls.Add(this.ErrorSend);
@@ -305,6 +308,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxAreas);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.ButtonDeleteCoauthor);
             this.Name = "PaperSubmission";
             this.Text = "ErrorName";
             this.ResumeLayout(false);

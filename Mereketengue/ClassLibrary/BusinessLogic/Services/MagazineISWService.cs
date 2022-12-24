@@ -435,12 +435,16 @@ namespace Magazine.Services
 
         public void deleteCoauthor(Person person, Paper paper) // por si acaso
         {
-            if (paper.gCoAuthorsCount()> 0)
+            if (paper != null && person != null)
             {
-                paper.deleteCoauthor(person);
-                person.EliminarDelPaper(paper);
-                Commit();
+                if (paper.gCoAuthorsCount() > 0)
+                {
+                    paper.deleteCoauthor(person);
+                    person.EliminarDelPaper(paper);
+                    Commit();
+                }
             }
+            else { throw new ServiceException("There is no person selected"); }
         }
 
         public Person SearchPerson(String id)

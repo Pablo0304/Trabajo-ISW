@@ -23,6 +23,7 @@ namespace MereketengueInterfaz
         private Paper papel;
         private Person person;
         private Person SelectedCoauthor;
+        private String item;
 
         public PaperSubmission(IMagazineISWService service)
         {
@@ -38,6 +39,10 @@ namespace MereketengueInterfaz
 
         private void AddCoauthor(object sender, EventArgs e)
         {
+            ErrorlistCoauthor.Text = "";
+            ErrorSurname.Text = "";
+            ErrorName.Text = "";
+            errorId.Text = "";
             try
             {
                 if (textBoxID.Text != null && textBoxID.Text != "")
@@ -48,9 +53,7 @@ namespace MereketengueInterfaz
                         {
                             if (papel != null)
                             {
-                                ErrorSurname.Text = "";
-                                ErrorName.Text = "";
-                                errorId.Text = "";
+                                
                                 person = service.addCoauthor(textBoxID.Text, textBoxName.Text, textBoxSurname.Text, papel);
                                 String persona = person.Id.ToString();
                                 ListCoauthors.Items.Add(persona + " " + person.Name.ToString());
@@ -62,15 +65,16 @@ namespace MereketengueInterfaz
                     } else { ErrorName.Text = "Insert name"; }
                 } else{ errorId.Text = "Insert id";} 
             }
-            catch (ServiceException)  { ErrorlistCoauthor.Text = "There is already 4 coauthors"; }
+            catch (ServiceException ex)  { ErrorlistCoauthor.Text = ex.Message; }
         } 
 
         private void Send(object sender, EventArgs e)
         {
             try {
-                if (PaperTitlebox.Text != null && PaperTitlebox.Text != "")
+                if (area != null)
                 {
-                    if (area != null)
+                    
+                    if (PaperTitlebox.Text != null && PaperTitlebox.Text != "")
                     {
                         papel = service.EnviarPaper(area, PaperTitlebox.Text);
 
@@ -86,6 +90,7 @@ namespace MereketengueInterfaz
                             ListCoauthors.Items.Clear();
                             String actualUser = service.gLoggedUser().Id.ToString();
                             ListCoauthors.Items.Add(actualUser + " " + service.gLoggedUser().Name.ToString());
+                            item = actualUser + " " + service.gLoggedUser().Name.ToString();
                         }
                         else
                         {
@@ -95,9 +100,10 @@ namespace MereketengueInterfaz
                             this.Close();
                         }
                     }
-                    else { ErrorArea.Text = "Area is not selected."; }
+                    else { ErrorSend.Text = "Insert paper's title."; }
                 }
-                else { ErrorSend.Text = "Insert paper's title."; }
+               
+                else { ErrorArea.Text = "Area is not selected."; }
             }
             catch (ServiceException ex) 
             {
@@ -129,40 +135,78 @@ namespace MereketengueInterfaz
 
         private void ConfirmameEsta(object sender, EventArgs e)
         {
-
-            DialogResult coauthors = MessageBox.Show(this, // Owner
-            "Sure you dont want to add more Coauthors?", // Message
-            "Lets send the paper", // Title
-            MessageBoxButtons.YesNo, // Buttons included
-            MessageBoxIcon.Question); // Icon
-            if (coauthors == DialogResult.Yes)
+            if (area != null)
             {
-                DialogResult Sending = MessageBox.Show(this, // Owner
-                "Sending... ", // Message
-                "Saving the paper " + papel.Title + " in BD", // Title
-                MessageBoxButtons.OK, // Buttons included
-                MessageBoxIcon.Information); // Icon
-                Menu_Principal mp = new Menu_Principal(service);
-                this.Hide();
-                mp.ShowDialog();
-                this.Close();
+                if (PaperTitlebox.Text != "")
+                {
+                    if (papel.CoAuthors.Count < 4)
+                    {
+                        DialogResult coauthors = MessageBox.Show(this, // Owner
+                        "You could add " + (4 - papel.CoAuthors.Count) + " more", // Message
+                        "Dont want to add more Coauthors?", // Title
+                        MessageBoxButtons.YesNo, // Buttons included
+                        MessageBoxIcon.Question); // Icon
+                        if (coauthors == DialogResult.Yes)
+                        {
+                            DialogResult Sending = MessageBox.Show(this, // Owner
+                            "Sending... ", // Message
+                            "Saving the paper " + papel.Title + " in BD", // Title
+                            MessageBoxButtons.OK, // Buttons included
+                            MessageBoxIcon.Information); // Icon
+                            Menu_Principal mp = new Menu_Principal(service);
+                            this.Hide();
+                            mp.ShowDialog();
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        DialogResult Sending2 = MessageBox.Show(this, // Owner
+                        "Sending... ", // Message
+                        "Saving the paper " + papel.Title + " in BD", // Title
+                        MessageBoxButtons.OK, // Buttons included
+                        MessageBoxIcon.Information); // Icon
+                        Menu_Principal mp2 = new Menu_Principal(service);
+                        this.Hide();
+                        mp2.ShowDialog();
+                        this.Close();
+                    }
+                }
+                else { ErrorSend.Text = "Insert paper's title."; }
             }
+            else { ErrorArea.Text = "Insert area."; }
         }
 
         private void ButtonDeleteCoauthor_Click(object sender, EventArgs e)
         {
-            service.deleteCoauthor(SelectedCoauthor, papel);
+            try
+            {
+                if (!SelectedCoauthor.Equals(papel.Responsible))
+                {
+                    service.deleteCoauthor(SelectedCoauthor, papel);
+                    ListCoauthors.Items.Remove(ListCoauthors.SelectedItem);
+                    ListCoauthors.SelectedItem = item;
+                }
+                else { ErrorlistCoauthor.Text = "You cant remove the paper's responsible"; }
+
+            }
+            catch (ServiceException ex) { ErrorlistCoauthor.Text = ex.Message; }
         }
 
         private void SeleccionarCoauthor(object sender, EventArgs e)
         {
+            ErrorlistCoauthor.Text = "";
             try
             {
-                String IDyNombre = ListCoauthors.SelectedItem.ToString();
-                int posicion = IDyNombre.IndexOf(" ");
-                String soloId = IDyNombre.Substring(0, posicion);
-                SelectedCoauthor = service.SearchPerson(soloId);
-                if (SelectedCoauthor.Equals(null)) { SelectedCoauthor = service.SearchUser(soloId); }
+                if (ListCoauthors.SelectedItem != null)
+                {
+                    String IDyNombre = ListCoauthors.SelectedItem.ToString();
+                    int posicion = IDyNombre.IndexOf(" ");
+                    String soloId = IDyNombre.Substring(0, posicion);
+                    SelectedCoauthor = service.SearchPerson(soloId);
+                    if (SelectedCoauthor.Equals(null)) { SelectedCoauthor = service.SearchUser(soloId); }
+                }
+                else { ErrorlistCoauthor.Text = "Select a Coauthor"; }
             }
             catch (ServiceException ex) 
             {
@@ -172,6 +216,11 @@ namespace MereketengueInterfaz
                 MessageBoxButtons.OK, // Buttons included
                 MessageBoxIcon.Information); // Icon
             }
+        }
+
+        private void escribe(object sender, EventArgs e)
+        {
+            ErrorSend.Text = "";
         }
     }
 }
