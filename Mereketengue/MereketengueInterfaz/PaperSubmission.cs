@@ -142,8 +142,8 @@ namespace MereketengueInterfaz
                     if (papel.CoAuthors.Count < 4)
                     {
                         DialogResult coauthors = MessageBox.Show(this, // Owner
-                        "You could add " + (4 - papel.CoAuthors.Count) + " more", // Message
-                        "Dont want to add more Coauthors?", // Title
+                        "You could add " + (4 - papel.CoAuthors.Count) + " more Coauthors", // Message
+                        "Sure you want to send the paper", // Title
                         MessageBoxButtons.YesNo, // Buttons included
                         MessageBoxIcon.Question); // Icon
                         if (coauthors == DialogResult.Yes)
@@ -221,6 +221,19 @@ namespace MereketengueInterfaz
         private void escribe(object sender, EventArgs e)
         {
             ErrorSend.Text = "";
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            MessageBox.Show("The form is now closing.",
+                "Redirecting to the main menu", 
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Warning);
+                base.OnClosed(e);
+                Menu_Principal mp4 = new Menu_Principal(service);
+                this.Hide();
+                mp4.ShowDialog();
+                this.Close();
         }
     }
 }

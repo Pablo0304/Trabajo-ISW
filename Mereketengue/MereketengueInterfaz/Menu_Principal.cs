@@ -48,38 +48,6 @@ namespace MereketengueInterfaz
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            BuildIssue ev2 = new BuildIssue(service);
-            this.Hide();
-            ev2.ShowDialog();
-            this.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            EvaluatePaper ev1 = new EvaluatePaper(service);
-            this.Hide();
-            ev1.ShowDialog();
-            this.Show();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ListPapers ev2 = new ListPapers(service);
-            this.Hide();
-            ev2.ShowDialog();
-            this.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PaperSubmission ev2 = new PaperSubmission(service);
-            this.Hide();
-            ev2.ShowDialog();
-            this.Show();
-        }
-
         private void animationEnterPaperSubmission(object sender, EventArgs e)
         {
             this.ButtonPaperSubmission.BackColor = System.Drawing.Color.SlateBlue;
@@ -90,6 +58,38 @@ namespace MereketengueInterfaz
         {
             this.ButtonPaperSubmission.BackColor = System.Drawing.Color.Lavender;
             this.ButtonPaperSubmission.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void buttonEvPaper_Click(object sender, EventArgs e)
+        {
+            EvaluatePaper ev1 = new EvaluatePaper(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Close();
+        }
+
+        private void buttonBuilsIssue_Click(object sender, EventArgs e)
+        {
+            BuildIssue ev2 = new BuildIssue(service);
+            this.Hide();
+            ev2.ShowDialog();
+            this.Close();
+        }
+
+        private void buttonListPapers_Click(object sender, EventArgs e)
+        {
+            ListPapers ev2 = new ListPapers(service);
+            this.Hide();
+            ev2.ShowDialog();
+            this.Close();
+        }
+
+        private void ButtonPaperSubmission_Click(object sender, EventArgs e)
+        {
+            PaperSubmission ventana = new PaperSubmission(service);
+            this.Hide();
+            ventana.ShowDialog();
+            this.Close();
         }
     }
 }
