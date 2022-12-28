@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -36,6 +37,7 @@ namespace MereketengueInterfaz
 
         private void SelectEv1(object sender, EventArgs e)
         {
+            Ev1Error.Text = "";
             try
             {
                 if (actualArea != null)
@@ -47,7 +49,11 @@ namespace MereketengueInterfaz
                             if (decisionText != null)
                             {
                                 service.EvaluatePaper(actualArea, selectedPaper, d, TextComm.Text);
-
+                                DialogResult error = MessageBox.Show(this, // Owner
+                                "Sending...", // Message
+                                "Correctly Evaluated", // Title
+                                MessageBoxButtons.OK, // Buttons included
+                                MessageBoxIcon.Information); // Icon
                                 Menu_Principal mp = new Menu_Principal(service);
                                 this.Hide();
                                 mp.ShowDialog();
