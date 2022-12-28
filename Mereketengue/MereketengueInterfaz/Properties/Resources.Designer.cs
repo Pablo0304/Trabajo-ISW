@@ -61,12 +61,12 @@ namespace MereketengueInterfaz.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Icon Crab {
+        internal static System.Drawing.Bitmap avion {
             get {
-                object obj = ResourceManager.GetObject("Crab", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                object obj = ResourceManager.GetObject("avion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
