@@ -91,5 +91,43 @@ namespace MereketengueInterfaz
             ventana.ShowDialog();
             this.Close();
         }
+
+        private void AnimacionEnterListPapers(object sender, EventArgs e)
+        {
+            this.buttonListPapers.BackColor = System.Drawing.Color.SlateBlue;
+            this.buttonListPapers.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void AnimacionLeaveListPapers(object sender, EventArgs e)
+        {
+            this.buttonListPapers.BackColor = System.Drawing.Color.Lavender;
+            this.buttonListPapers.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void AnimacionEnterBuildIssue(object sender, EventArgs e)
+        {
+
+            this.buttonBuilsIssue.BackColor = System.Drawing.Color.SlateBlue;
+            this.buttonBuilsIssue.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void AnimacionLeaveBuidIssue(object sender, EventArgs e)
+        {
+            this.buttonBuilsIssue.BackColor = System.Drawing.Color.Lavender;
+            this.buttonBuilsIssue.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void AnimacionEnterEvaluatePaper(object sender, EventArgs e)
+        {
+
+            this.buttonEvPaper.BackColor = System.Drawing.Color.SlateBlue;
+            this.buttonEvPaper.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void AnimacionLeaveEvaluatePaper(object sender, EventArgs e)
+        {
+            this.buttonEvPaper.BackColor = System.Drawing.Color.Lavender;
+            this.buttonEvPaper.ForeColor = System.Drawing.Color.Black;
+        }
     }
 }
