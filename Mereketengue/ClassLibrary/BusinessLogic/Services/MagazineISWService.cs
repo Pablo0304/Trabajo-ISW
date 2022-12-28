@@ -188,7 +188,7 @@ namespace Magazine.Services
 
         public void EvaluatePaper(Area area, Paper paper, Boolean decision, string comentarios)
         {
-            if (area.Editor.Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
+            if (area.Editor.Equals(LoggedUser)|| magazine.ChiefEditor.Equals(LoggedUser)) //solo puede hacerlo el AreaEditor
             {
                 Evaluation evaluacion = AddEvaluation(decision, comentarios, DateTime.Now);
                 paper.Evaluation = evaluacion;
