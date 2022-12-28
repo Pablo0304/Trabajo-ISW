@@ -34,10 +34,11 @@
             this.listaPapers = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TextComm = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.decision = new System.Windows.Forms.ComboBox();
+            this.Ev1Error = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TextArea
@@ -60,7 +61,7 @@
             this.comboAreas.Name = "comboAreas";
             this.comboAreas.Size = new System.Drawing.Size(507, 24);
             this.comboAreas.TabIndex = 3;
-            this.comboAreas.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAreas);
+            this.comboAreas.SelectedIndexChanged += new System.EventHandler(this.SelectAreas);
             // 
             // TextPapers
             // 
@@ -103,13 +104,14 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.GoBackEv1);
             // 
-            // textBox1
+            // TextComm
             // 
-            this.textBox1.Location = new System.Drawing.Point(63, 473);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(507, 125);
-            this.textBox1.TabIndex = 9;
+            this.TextComm.Location = new System.Drawing.Point(63, 473);
+            this.TextComm.Multiline = true;
+            this.TextComm.Name = "TextComm";
+            this.TextComm.Size = new System.Drawing.Size(507, 125);
+            this.TextComm.TabIndex = 9;
+            this.TextComm.TextChanged += new System.EventHandler(this.ChangeCommTextBox);
             // 
             // label1
             // 
@@ -141,15 +143,26 @@
             this.decision.TabIndex = 12;
             this.decision.SelectedIndexChanged += new System.EventHandler(this.decision_SelectedIndexChanged);
             // 
+            // Ev1Error
+            // 
+            this.Ev1Error.AutoSize = true;
+            this.Ev1Error.ForeColor = System.Drawing.Color.Red;
+            this.Ev1Error.Location = new System.Drawing.Point(322, 625);
+            this.Ev1Error.Name = "Ev1Error";
+            this.Ev1Error.Size = new System.Drawing.Size(59, 16);
+            this.Ev1Error.TabIndex = 16;
+            this.Ev1Error.Text = "ErrorEv1";
+            // 
             // EvaluatePaper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 792);
+            this.Controls.Add(this.Ev1Error);
             this.Controls.Add(this.decision);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TextComm);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listaPapers);
@@ -172,9 +185,10 @@
         private System.Windows.Forms.ListBox listaPapers;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TextComm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox decision;
+        private System.Windows.Forms.Label Ev1Error;
     }
 }
