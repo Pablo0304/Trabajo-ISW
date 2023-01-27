@@ -37,6 +37,7 @@
             this.IssueNumberError = new System.Windows.Forms.Label();
             this.priceText = new System.Windows.Forms.Label();
             this.meterPrice = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -67,6 +68,7 @@
             this.buscadorBox.Name = "buscadorBox";
             this.buscadorBox.Size = new System.Drawing.Size(47, 22);
             this.buscadorBox.TabIndex = 4;
+            this.buscadorBox.TextChanged += new System.EventHandler(this.tocarTexto);
             // 
             // buscador
             // 
@@ -129,17 +131,30 @@
             // 
             this.meterPrice.AutoSize = true;
             this.meterPrice.Font = new System.Drawing.Font("Nirmala UI", 14F);
-            this.meterPrice.Location = new System.Drawing.Point(653, 113);
+            this.meterPrice.Location = new System.Drawing.Point(664, 113);
             this.meterPrice.Name = "meterPrice";
             this.meterPrice.Size = new System.Drawing.Size(83, 32);
             this.meterPrice.TabIndex = 14;
             this.meterPrice.Text = "\"price\"";
             // 
+            // backButton
+            // 
+            this.backButton.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.backButton.Location = new System.Drawing.Point(689, 483);
+            this.backButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(96, 37);
+            this.backButton.TabIndex = 15;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backClick);
+            // 
             // ConsultarIssueNOReg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 495);
+            this.ClientSize = new System.Drawing.Size(814, 531);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.meterPrice);
             this.Controls.Add(this.priceText);
             this.Controls.Add(this.IssueNumberError);
@@ -167,5 +182,6 @@
         private System.Windows.Forms.Label IssueNumberError;
         private System.Windows.Forms.Label priceText;
         private System.Windows.Forms.Label meterPrice;
+        private System.Windows.Forms.Button backButton;
     }
 }

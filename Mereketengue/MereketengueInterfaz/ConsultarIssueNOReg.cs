@@ -21,7 +21,7 @@ namespace MereketengueInterfaz
         private Area area;
         private int valor;
         private User usercontrol;
-        public ConsultarIssueNOReg()
+        public ConsultarIssueNOReg(IMagazineISWService service)
         {
             InitializeComponent();
             this.buscador.Image = Resources.lupa;
@@ -42,6 +42,7 @@ namespace MereketengueInterfaz
 
         private void cluckBuscador(object sender, EventArgs e)
         {
+            meterPrice.Text = "";
             try
             {
                 IssueNumberError.Text = "";
@@ -59,28 +60,40 @@ namespace MereketengueInterfaz
             }
             ListaPapers.Items.Clear();
             IssueNumberError.Text = "";
-            if (buscadorBox.Text.Length == 0)
+            foreach (Issue i in service.getAllIssues())
             {
-               foreach (Issue i in service.getAllIssues())
-               {
-                    if (i.Number == valor)
+                if (i.Number == valor)
+                {
+                    if (i.Number >= 0)
                     {
-                        if (i.Number >= 0)
+                        meterPrice.Text = i.Price + "€";
+                        foreach (Paper p in i.PublishedPapers)
                         {
-                            meterPrice.Text = i.Price + "€";
-                            foreach (Paper p in i.PublishedPapers)
+                            String autores = "";
+                            foreach (Person per in p.CoAuthors)
                             {
-                                String autores = "";
-                                foreach (Person per in p.CoAuthors)
-                                {
-                                    autores += per.Name.ToString();
-                                }
-                                ListaPapers.Items.Add("Title: " + p.Title + " | Authors: " + autores);
+                                autores += per.Name.ToString() + ", ";
                             }
+                            ListaPapers.Items.Add("Title: " + p.Title + " | Authors: " + autores);
                         }
                     }
-               }
+                }
             }
+            
+        }
+
+        private void backClick(object sender, EventArgs e)
+        {
+            ventanaprincipalNueva ev1 = new ventanaprincipalNueva(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Close();
+        }
+
+        private void tocarTexto(object sender, EventArgs e)
+        {
+            meterPrice.Text = "";
+            ListaPapers.Items.Clear();
         }
     }
 }
