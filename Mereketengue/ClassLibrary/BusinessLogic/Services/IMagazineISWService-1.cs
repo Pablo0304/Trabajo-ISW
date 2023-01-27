@@ -15,7 +15,7 @@ namespace Magazine.Services
 
         /// <summary>   Initializes Database with some data</summary>        
         void DBInitialization();
-
+        User getLoggedUser();
         #region User
         /// <summary>   Performs login validation and logs in </summary>
         /// <param>     <c>login</c> is the user login name 
@@ -48,9 +48,9 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        bool SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
+        bool SignUp(string id, string name, string surname, bool alerted, bool suscribed, string areasOfInterest, string email, string login, string password);
         User SearchUser(String name);
-        Entities.User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password);
+        Entities.User AddUser(string id, string name, string surname, bool alerted, bool suscribed, string areasOfInterest, string email, string login, string password);
         #endregion
 
         #region Paper
@@ -65,7 +65,12 @@ namespace Magazine.Services
         #endregion
 
         #region Issue
-        Boolean BuildIssue(DateTime publicationDate, ICollection<Paper> listaPapersAux);
+        Issue searchIssue(int number);
+        void eliminarPublishedpapers(ICollection<Paper> papers);
+        Issue BuildIssue(int number, DateTime publicationDate, ICollection<Paper> listaPapersAux, float price, float discount);
+        Issue AddIssue(int number, Magazine.Entities.Magazine magazine, float discount, float price, DateTime pubtime);
+        Issue CreateIssue(DateTime fecha, int number, Magazine.Entities.Magazine magazine, ICollection<Paper> listaPapersAux, float discount, float price);
+        void EditIssue(Issue issue, ICollection<Paper> publishedPapers,DateTime pubdate, float discount, float price);
         ICollection<Issue> getAllIssues();
         Issue getLastIssue();
         Boolean pendingPublication(Issue issue);
@@ -83,6 +88,7 @@ namespace Magazine.Services
         #region Magazine
         Magazine.Entities.Magazine AddMagazine(string name, User chiefEditorId);
         ICollection<Area> listAreas();
+        Entities.Magazine getMagazine();
         #endregion
 
         #region Person

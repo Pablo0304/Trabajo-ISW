@@ -38,6 +38,16 @@ namespace Magazine.Entities
             this.Issues.Remove(issue);
         }
 
+        public List<int> getallnumbers()
+        {
+            List<int> numbers = new List<int>();
+            foreach (Issue issue in this.Issues)
+            {
+                numbers.Add(issue.Number);
+            }
+            return numbers;
+        }
+
 
     }
 }

@@ -225,15 +225,18 @@ namespace MereketengueInterfaz
 
         protected override void OnClosed(EventArgs e)
         {
-            MessageBox.Show("The form is now closing.",
-                "Redirecting to the main menu", 
-                MessageBoxButtons.OK, 
-                MessageBoxIcon.Warning);
-                base.OnClosed(e);
-                Menu_Principal mp4 = new Menu_Principal(service);
-                this.Hide();
-                mp4.ShowDialog();
-                this.Close();
+            Menu_Principal mp4 = new Menu_Principal(service);
+            this.Hide();
+            mp4.ShowDialog();
+            this.Close();
+        }
+
+        private void cerrar(object sender, EventArgs e)
+        {
+            Menu_Principal mp4 = new Menu_Principal(service);
+            this.Hide();
+            mp4.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -47,6 +47,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.ffff = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // next
@@ -62,7 +63,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(367, 450);
+            this.linkLabel1.Location = new System.Drawing.Point(375, 467);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(63, 13);
             this.linkLabel1.TabIndex = 14;
@@ -73,7 +74,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(334, 434);
+            this.label3.Location = new System.Drawing.Point(344, 454);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(132, 13);
             this.label3.TabIndex = 13;
@@ -192,7 +193,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(271, 389);
+            this.checkBox1.Location = new System.Drawing.Point(258, 408);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(316, 17);
             this.checkBox1.TabIndex = 24;
@@ -219,19 +220,33 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Location = new System.Drawing.Point(510, 331);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(118, 17);
             this.checkBox2.TabIndex = 27;
             this.checkBox2.Text = "Mostrar Contraseña";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.checkBox2.CheckStateChanged += new System.EventHandler(this.check);
+            // 
+            // ffff
+            // 
+            this.ffff.AutoSize = true;
+            this.ffff.Location = new System.Drawing.Point(258, 385);
+            this.ffff.Name = "ffff";
+            this.ffff.Size = new System.Drawing.Size(148, 17);
+            this.ffff.TabIndex = 28;
+            this.ffff.Text = "I want to monthly suscribe";
+            this.ffff.UseVisualStyleBackColor = true;
+            this.ffff.CheckedChanged += new System.EventHandler(this.label2_Click);
             // 
             // SignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 545);
+            this.Controls.Add(this.ffff);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.label8);
@@ -280,5 +295,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox ffff;
     }
 }

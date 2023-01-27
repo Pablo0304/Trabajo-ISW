@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Magazine.Entities
 {
@@ -14,9 +15,12 @@ namespace Magazine.Entities
             PublishedPapers = new List<Paper>();
         }
 
-        public Issue(int Number, Magazine magazine) : this() // espera el parametro number (int)
+        public Issue(int Number, Magazine magazine, float discount, float price) : this() // espera el parametro number (int)
         {
             this.Number = Number;
+            this.Discount = discount;
+            this.Price = price;
+
             //this.PublicationDate = fecha;
             
             // Relaciones a 1
@@ -43,6 +47,11 @@ namespace Magazine.Entities
         public void clearPublishedpapers()
         {
             this.PublishedPapers.Clear();
+        }
+
+        public bool comprobarNumberIssue(int number)
+        {
+            return this.Number.Equals(number);
         }
 
     }

@@ -13,7 +13,7 @@ namespace Magazine.Entities
             MainAuthoredPapers = new List<Paper>();
         }
 
-        public User(String id, String name, String surname, Boolean alerted, String areasOfInterest, String email, String login, String password ) : base(id, name, surname) {
+        public User(String id, String name, String surname, Boolean alerted, Boolean MagazineSubscriber, String areasOfInterest, String email, String login, String password ) : base(id, name, surname) {
             
             //Atributos
             this.Alerted = alerted; 
@@ -21,6 +21,7 @@ namespace Magazine.Entities
             this.Email = email;
             this.Login = login; 
             this.Password = password;
+            this.MagazineSubscriber = MagazineSubscriber;
 
 
             //Colecciones
@@ -31,7 +32,7 @@ namespace Magazine.Entities
 
         public bool comprobarPassword(String pssw) { return this.Password.Equals(pssw); }
 
-        public bool comprobarId(String id) { return this.Id.Equals(id); }
+        public new bool comprobarId(String id) { return this.Id.Equals(id); }
 
     }
 }

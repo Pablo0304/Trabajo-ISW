@@ -57,6 +57,9 @@ namespace Magazine.Entities
         {
             return this.Name.Equals(name);
         }
+        public bool containsPaperPendPub(Paper p) {
+            return this.PublicationPending.Contains(p);  
+        }
         
         
     }

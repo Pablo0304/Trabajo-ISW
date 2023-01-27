@@ -19,6 +19,9 @@ namespace MereketengueInterfaz
         {
             InitializeComponent();
             this.service = service;
+            this.checkBox2.Checked = false;
+            this.checkBox2.Checked = true;
+
     }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -101,12 +104,19 @@ namespace MereketengueInterfaz
 
         private void user_TextChanged(object sender, EventArgs e)
         {
-
+            if (!checkBox2.Checked)
+            {
+                pssw.PasswordChar = '\0';
+            }
+            else
+            {
+                pssw.PasswordChar = '*';
+            }
         }
 
         private void next_Click(object sender, EventArgs e)
         {
-            if (textBoxId.Text == ""|| user.Text == "" || pssw.Text == "" || email.Text == "" || fieldsOfInterest.Text == "" || name.Text == "" || surname.Text == "" || !service.SignUp(textBoxId.Text, name.Text, surname.Text, checkBox1.Checked, fieldsOfInterest.Text, email.Text, user.Text, pssw.Text))
+            if (textBoxId.Text == ""|| user.Text == "" || pssw.Text == "" || email.Text == "" || fieldsOfInterest.Text == "" || name.Text == "" || surname.Text == "" || !service.SignUp(textBoxId.Text, name.Text, surname.Text, checkBox1.Checked, checkBox2.Checked, fieldsOfInterest.Text, email.Text, user.Text, pssw.Text))
             {
                 DialogResult answer = MessageBox.Show(this, // Owner
                 "Invalid Credentials or Non-Existent User", // Message
@@ -122,9 +132,9 @@ namespace MereketengueInterfaz
             }
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void check(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
+            if (!checkBox2.Checked)
             {
                 pssw.PasswordChar = '\0';
             }

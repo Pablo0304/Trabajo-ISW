@@ -14,6 +14,10 @@ namespace Magazine.Entities
 
         public int Number { get; set; } // number
 
+        public float Price { get; set; }
+
+        public float Discount { get; set; }
+
         public DateTime? PublicationDate { get; set; } // fecha de publicación
 
         public virtual ICollection<Paper> PublishedPapers { get; set; } // lista con Paper de una Issue en concreto

@@ -19,6 +19,8 @@ namespace MereketengueInterfaz
         {
             InitializeComponent();
             this.service = service;
+            this.checkBox2.Checked = false;
+            this.checkBox2.Checked = true;
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -79,7 +81,7 @@ namespace MereketengueInterfaz
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
+            if (!checkBox2.Checked)
             {
                 pssw.PasswordChar = '\0';
             }

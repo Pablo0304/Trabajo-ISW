@@ -22,6 +22,7 @@ namespace Magazine.Services
         private Entities.Magazine magazine;
         private ICollection<Paper> listaPapers;
 
+        public Entities.Magazine getMagazine() { return magazine; }
         public void setMagazine(Entities.Magazine magazine) { 
             this.magazine = magazine;
         }
@@ -46,40 +47,116 @@ namespace Magazine.Services
         {
             RemoveAllData();
 
-            User ChiefEditor = AddUser("1234", "MC", "Penades", false, "documentos", "mpenades@gmail.com", "mpenades", "1234");
+            User ChiefEditor = AddUser("1234", "MC", "Penades", false, true, "documentos", "mpenades@gmail.com", "mpenades", "1234");
 
             Magazine.Entities.Magazine m1 = AddMagazine("Revista Universitària UUPPVV", ChiefEditor);
 
             setMagazine(m1);
 
-            User u2 = AddUser("2345", "Ana", "Nunez", false, "emergencias", "anunez@gmail.com", "anunez", "1234");
+            User u1 = AddUser("2345", "Ana", "Nunez", false, true, "emergencias", "anunez@gmail.com", "anunez", "1234");
 
-            Area a1 = AddArea("Area A1", u2, m1);
+            User u2 = AddUser("3456", "Jose", "Garcia", false, true, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
 
-            User u3 = AddUser("3456", "Jose", "Garcia", false, "pruebas", "jgarcia@gmail.com", "jgarcia", "1234");
+            User u3 = AddUser("4567", "Juan", "Perez", false, true, "software", "jperez@gmail.com", "jperez", "1234");
 
-            Area a2 = AddArea("Area 2", u3, m1);
+            User jav = AddUser("5000", "Javi", "Diéguez", false, true, "pan", "javi@gmail.com", "javi", "1234");
 
-            User u4 = AddUser("4567", "Juan", "Perez", false, "software", "jperez@gmail.com", "jperez", "1234");
+            User car = AddUser("5001", "Ángel", "Carmona", false, true, "lentejas", "carmona@gmail.com", "angel", "1234");
 
-            Paper p1 = AddPaper("titulillo", DateTime.Now, a2, u2);
-            Issue i1 = CreateIssue(1, m1, listaPapers);
+            User dan = AddUser("5002", "Dani", "suchard", false, true, "ensalada", "dani@gmail.com", "dani", "1234");
 
-            Evaluation e1 = AddEvaluation(true, "Evaluation 1", DateTime.Now);
+            User pab = AddUser("5003", "pablo", "covid", false, true, "brocheta", "cabo@gmail.com", "pablo", "1234");
 
-            p1.EvaluationPendingArea = a2;
+            Area Juegos = AddArea("Juegos", jav, m1);
 
-            a2.AddToPublPendPapers(p1);
+            Area Coches = AddArea("Coches", car, m1);
 
-            Paper p2 = AddPaper("Paper 2", DateTime.Now, a2, u2);
+            Area Comida = AddArea("Comida", pab, m1);
+            
+            Area Deportes = AddArea("Deportes", dan, m1);
+            
+            Paper p1 = AddPaper("Subnautica", DateTime.Now, Juegos, car);
+            p1.addCoauthor(u2);
+            p1.addCoauthor(u1);
+            Paper p2 = AddPaper("Ark", DateTime.Now, Juegos, jav);
+            Juegos.AddToPublPendPapers(p2);
+            Paper p3 = AddPaper("Portal", DateTime.Now, Juegos, pab);
+            p3.addCoauthor(u3);
+            Paper p4 = AddPaper("Ferrari", DateTime.Now, Coches, car);
+            //Coches.addToPapers(p4);
+            Coches.AddToEvalPendPapers(p4);
+            Paper p5 = AddPaper("BMW", DateTime.Now, Coches, jav);
+            p5.addCoauthor(u1);
+            p5.addCoauthor(u2);
+            Paper p6 = AddPaper("Kia", DateTime.Now, Coches, dan);
+            Coches.AddToPublPendPapers(p6);
+            Paper p7 = AddPaper("Fiat", DateTime.Now, Coches, pab);
+            p7.addCoauthor(u1);
+            p7.addCoauthor(u3);
+            Paper p8 = AddPaper("burrito", DateTime.Now, Comida, dan);
+            Comida.addToPapers(p8);
+            Comida.AddToEvalPendPapers(p8);
+            Paper p9 = AddPaper("patatas", DateTime.Now, Comida, pab);
+            p9.addCoauthor(u1);
+            p9.addCoauthor(u2);
+            p9.addCoauthor(u3);
+            Paper p10 = AddPaper("sopa", DateTime.Now, Comida, pab);
+            Comida.AddToPublPendPapers(p10);
+            Paper p11 = AddPaper("macarrones", DateTime.Now, Comida, car);
+            Paper p12 = AddPaper("furbo", DateTime.Now, Deportes, car);
+            Deportes.addToPapers(p12);
+            Deportes.AddToEvalPendPapers(p12);
+            Paper p13 = AddPaper("voley", DateTime.Now, Deportes, jav);
+            p13.addCoauthor(u1);
+            p13.addCoauthor(u2);
+            p13.addCoauthor(u3);
+            Paper p14 = AddPaper("Esports", DateTime.Now, Deportes, dan);
+            p14.addCoauthor(u2);
+            p14.addCoauthor(u3);
+            Deportes.AddToPublPendPapers(p14);
+            Paper p15 = AddPaper("Jeep", DateTime.Now, Coches, jav);
+            Coches.AddToPublPendPapers(p15);
+            Paper p16 = AddPaper("tarta", DateTime.Now, Comida, jav);
+            Comida.AddToPublPendPapers(p16);
+            Paper p17 = AddPaper("Minecraft", DateTime.Now, Juegos, dan);
+            Juegos.AddToPublPendPapers(p17);
+            Paper p18 = AddPaper("Basket", DateTime.Now, Deportes, pab);
+            Deportes.AddToPublPendPapers(p18);
+
+            //crear Issues
+            DateTime date1 = new DateTime(2024, 4, 19);
+            DateTime date2 = new DateTime(2024, 3, 11);
+            Issue i0 = AddIssue(0, m1,10,50,date1);
+            i0.addToPublishedPapers(p3);
+            i0.addToPublishedPapers(p5);
+            i0.addToPublishedPapers(p7);
+            p3.Issue = i0;
+            p5.Issue = i0;
+            p7.Issue = i0;
+            Issue i1 = AddIssue(1, m1, 10, 5,date2);
+            i1.addToPublishedPapers(p9);
+            i1.addToPublishedPapers(p11);
+            p9.Issue = i1;
+            p11.Issue = i1;
+            Issue i2 = AddIssue(2, m1, 10, 5, DateTime.Now);
+            i2.addToPublishedPapers(p13);
+            i2.addToPublishedPapers(p1);
+            p13.Issue = i2;
+            p1.Issue =  i2;
+            Commit();
+
+            /*Evaluation e1 = AddEvaluation(true, "Evaluation 1", DateTime.Now);
+
+            p6.PublicationPendingArea = Juegos;
+
+            Juegos.AddToPublPendPapers(p1);
 
             Evaluation e2 = AddEvaluation(true, "Evaluation 2", DateTime.Now);
 
-            p2.EvaluationPendingArea = a2;
-
-            a2.AddToPublPendPapers(p2);
+            p2.EvaluationPendingArea = a2;*/
         }
 
+        public User getLoggedUser() { return LoggedUser; }
         #region User
         /// <summary>   Performs login validation and logs in </summary>
         /// <param>     <c>login</c> is the user login name 
@@ -123,7 +200,7 @@ namespace Magazine.Services
         /// </param>
         /// <returns>   Any required ServiceExceptions
         /// </returns>
-        public bool SignUp(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        public bool SignUp(string id, string name, string surname, bool alerted, bool suscribed, string areasOfInterest, string email, string login, string password)
         {
             Boolean encontrado = false;
             foreach (User u in dal.GetAll<User>())
@@ -143,15 +220,15 @@ namespace Magazine.Services
             }
             if (!encontrado)
             {
-                AddUser(id, name, surname, alerted, areasOfInterest, email, login, password);
+                AddUser(id, name, surname, alerted, suscribed, areasOfInterest, email, login, password);
                 return true;
             }
             return false;
         }
 
-        public User AddUser(string id, string name, string surname, bool alerted, string areasOfInterest, string email, string login, string password)
+        public User AddUser(string id, string name, string surname, bool alerted, bool suscribed, string areasOfInterest, string email, string login, string password)
         {
-            User user = new User(id, name, surname, alerted, areasOfInterest, email, login, password);
+            User user = new User(id, name, surname, alerted, suscribed, areasOfInterest, email, login, password);
             dal.Insert<User>(user);
             Commit();
             return user;
@@ -277,6 +354,8 @@ namespace Magazine.Services
         {
             Paper paper = new Paper(title, uploadDate, belongingArea, responsible);
             dal.Insert<Paper>(paper);
+            //belongingArea.addToPapers(paper);
+            //belongingArea.AddToEvalPendPapers(paper);
             Commit();
             return paper;
         }
@@ -285,26 +364,33 @@ namespace Magazine.Services
 
 
         #region Issue
-
-        public Boolean BuildIssue(DateTime publicationDate, ICollection<Paper> listaPapersAux)
+        public Issue searchIssue(int number)
+        {
+            foreach (Issue i in magazine.Issues)
+            {
+                if (i.comprobarNumberIssue(number)) { return i; }
+            }
+            throw new ServiceException("Error: Area  dont Exist");
+        }
+        public Issue BuildIssue(int number, DateTime publicationDate, ICollection<Paper> listaPapersAux, float price, float discount)
         {
             if (LoggedUser.Equals(magazine.ChiefEditor)) //solo si es el chiefEditor
             {
-                Issue issue = magazine.gMaxNumberIssue();
-
-                if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
+                //Issue issue = magazine.gMaxNumberIssue();
+                //if (!issue.IssuePendientePub((DateTime)issue.PublicationDate))//cambiar
+                Issue issue = CreateIssue(publicationDate,number, magazine, listaPapersAux, discount, price);
+                foreach (Paper p in listaPapersAux)
                 {
-                    CreateIssue(issue.Number + 1, magazine, listaPapersAux);
+                    Area aux = p.BelongingArea;
+                    if (aux.containsPaperPendPub(p)) { aux.DeleteFromPublPendPapers(p); }
+                    Commit();
                 }
-                else //ya existe, edit
-                {
-                    DateTime fechaPubli = (DateTime)issue.PublicationDate;
+                //else //ya existe, edit
+                //DateTime fechaPubli = (DateTime)issue.PublicationDate;
 
-                    EditIssue(issue, listaPapersAux, fechaPubli, issue.Number);
-                }
-                return true;
+                return issue;
             }
-            else { return false; }
+            else { throw new ServiceException("You are not allowed to create Issues"); }
         
         }
         public ICollection<Issue> getAllIssues() {
@@ -329,20 +415,45 @@ namespace Magazine.Services
         public ICollection<Paper> getPendingPublicationPapers(Area area) {
             return area.PublicationPending;
         }
+        public void eliminarPublishedpapers(ICollection<Paper> papers)
+        {
+            foreach (Paper p in papers)
+            {
+                Area aux = p.BelongingArea;
+                aux.AddToPublPendPapers(p);
+            }
+            Commit();
+        }
+        public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime pubdate, float discount, float price) {
 
-        public void EditIssue(Issue issue, ICollection<Paper> publishedPapers, DateTime fechaPubli, int number) {
+            issue.clearPublishedpapers();
             issue.PublishedPapers = publishedPapers;
-            issue.Number = number;
-            issue.PublicationDate = fechaPubli;
-            issue.PublishedPapers = listaPapers;
+            issue.Price = price;
+            issue.Discount = discount;
+            issue.PublicationDate = pubdate;
+            foreach(Paper p2 in publishedPapers)
+            {
+                Area aux2 = p2.BelongingArea;
+                if (aux2.containsPaperPendPub(p2)) { aux2.DeleteFromPublPendPapers(p2); }
+            }
             Commit();
         }
 
-        public Issue CreateIssue(int number, Magazine.Entities.Magazine magazine, ICollection<Paper> listaPapersAux)
+        public Issue CreateIssue(DateTime fecha, int number, Magazine.Entities.Magazine magazine, ICollection<Paper> listaPapersAux, float discount, float price)
         {
-            Issue issue = new Issue(number, magazine);
-            issue.PublicationDate = DateTime.Now;
+            Issue issue = new Issue(number, magazine,discount,price);
+            issue.PublicationDate = fecha;
+
             issue.PublishedPapers = listaPapersAux;
+            magazine.addToIssues(issue);
+            dal.Insert<Issue>(issue);
+            Commit();
+            return issue;
+        }
+        public Issue AddIssue(int number, Magazine.Entities.Magazine magazine, float discount, float price, DateTime pubtime)
+        {
+            Issue issue = new Issue(number, magazine, discount, price);
+            issue.PublicationDate = pubtime;
             magazine.addToIssues(issue);
             dal.Insert<Issue>(issue);
             Commit();

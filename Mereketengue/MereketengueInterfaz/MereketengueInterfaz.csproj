@@ -63,6 +63,18 @@
     <Compile Include="BuildIssue.Designer.cs">
       <DependentUpon>BuildIssue.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuyIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyIssue.Designer.cs">
+      <DependentUpon>BuyIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarIssueNOReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultarIssueNOReg.Designer.cs">
+      <DependentUpon>ConsultarIssueNOReg.cs</DependentUpon>
+    </Compile>
     <Compile Include="EvaluatePaper.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,8 +123,17 @@
     <Compile Include="SignUp.Designer.cs">
       <DependentUpon>SignUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="ventanaprincipalNueva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ventanaprincipalNueva.Designer.cs">
+      <DependentUpon>ventanaprincipalNueva.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BuildIssue.resx">
       <DependentUpon>BuildIssue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultarIssueNOReg.resx">
+      <DependentUpon>ConsultarIssueNOReg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EvaluatePaper.resx">
       <DependentUpon>EvaluatePaper.cs</DependentUpon>
@@ -136,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignUp.resx">
       <DependentUpon>SignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaprincipalNueva.resx">
+      <DependentUpon>ventanaprincipalNueva.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="MagazineDBDataSet.xsc">
       <DependentUpon>MagazineDBDataSet.xsd</DependentUpon>
@@ -168,9 +192,56 @@
       <Name>MagazineLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\portapapeles.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\avion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\periodismo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editar.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editargif64.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sello.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sello-modified.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\periodismo-modified.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\portapapeles-modified.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avion-modified.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lupa.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lupa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brocheta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flecha-correcta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dar-dinero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dar-dinero %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

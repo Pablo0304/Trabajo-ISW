@@ -54,15 +54,16 @@ namespace MereketengueInterfaz
             this.paneltrampa = new System.Windows.Forms.Panel();
             this.ErrorArea = new System.Windows.Forms.Label();
             this.ButtonDeleteCoauthor = new System.Windows.Forms.Button();
+            this.Back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 14F);
             this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 24);
+            this.label1.Size = new System.Drawing.Size(134, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Select an area:";
             // 
@@ -79,10 +80,10 @@ namespace MereketengueInterfaz
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.label2.Font = new System.Drawing.Font("Nirmala UI", 14F);
             this.label2.Location = new System.Drawing.Point(13, 70);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 24);
+            this.label2.Size = new System.Drawing.Size(198, 25);
             this.label2.TabIndex = 4;
             this.label2.Text = "Insert the paper\'s title:";
             // 
@@ -106,9 +107,10 @@ namespace MereketengueInterfaz
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(710, 77);
+            this.buttonSend.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.buttonSend.Location = new System.Drawing.Point(713, 78);
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(78, 38);
+            this.buttonSend.Size = new System.Drawing.Size(75, 37);
             this.buttonSend.TabIndex = 8;
             this.buttonSend.Text = "Send";
             this.buttonSend.UseVisualStyleBackColor = true;
@@ -234,10 +236,11 @@ namespace MereketengueInterfaz
             // ErrorSend
             // 
             this.ErrorSend.AutoSize = true;
+            this.ErrorSend.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.ErrorSend.ForeColor = System.Drawing.Color.Red;
             this.ErrorSend.Location = new System.Drawing.Point(383, 78);
             this.ErrorSend.Name = "ErrorSend";
-            this.ErrorSend.Size = new System.Drawing.Size(35, 13);
+            this.ErrorSend.Size = new System.Drawing.Size(38, 15);
             this.ErrorSend.TabIndex = 28;
             this.ErrorSend.Text = "label9";
             // 
@@ -263,10 +266,11 @@ namespace MereketengueInterfaz
             // 
             this.ErrorArea.AutoSize = true;
             this.ErrorArea.BackColor = System.Drawing.Color.Transparent;
+            this.ErrorArea.Font = new System.Drawing.Font("Nirmala UI", 9F);
             this.ErrorArea.ForeColor = System.Drawing.Color.Red;
             this.ErrorArea.Location = new System.Drawing.Point(281, 20);
             this.ErrorArea.Name = "ErrorArea";
-            this.ErrorArea.Size = new System.Drawing.Size(35, 13);
+            this.ErrorArea.Size = new System.Drawing.Size(38, 15);
             this.ErrorArea.TabIndex = 30;
             this.ErrorArea.Text = "label4";
             // 
@@ -280,11 +284,23 @@ namespace MereketengueInterfaz
             this.ButtonDeleteCoauthor.UseVisualStyleBackColor = true;
             this.ButtonDeleteCoauthor.Click += new System.EventHandler(this.ButtonDeleteCoauthor_Click);
             // 
+            // Back
+            // 
+            this.Back.Font = new System.Drawing.Font("Nirmala UI", 10F);
+            this.Back.Location = new System.Drawing.Point(713, 446);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(75, 31);
+            this.Back.TabIndex = 32;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.cerrar);
+            // 
             // PaperSubmission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(803, 489);
+            this.Controls.Add(this.Back);
             this.Controls.Add(this.ErrorArea);
             this.Controls.Add(this.paneltrampa);
             this.Controls.Add(this.ErrorSend);
@@ -341,5 +357,6 @@ namespace MereketengueInterfaz
         private System.Windows.Forms.Panel paneltrampa;
         private System.Windows.Forms.Label ErrorArea;
         private System.Windows.Forms.Button ButtonDeleteCoauthor;
+        private Button Back;
     }
 }
