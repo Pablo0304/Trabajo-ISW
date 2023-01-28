@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListPapers));
             this.buscadorBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.buscador = new System.Windows.Forms.Button();
@@ -44,7 +45,7 @@
             // 
             // buscadorBox
             // 
-            this.buscadorBox.Location = new System.Drawing.Point(376, 12);
+            this.buscadorBox.Location = new System.Drawing.Point(529, 10);
             this.buscadorBox.Name = "buscadorBox";
             this.buscadorBox.Size = new System.Drawing.Size(36, 20);
             this.buscadorBox.TabIndex = 0;
@@ -59,7 +60,7 @@
             // buscador
             // 
             this.buscador.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.buscador.Location = new System.Drawing.Point(549, 12);
+            this.buscador.Location = new System.Drawing.Point(729, 18);
             this.buscador.Name = "buscador";
             this.buscador.Size = new System.Drawing.Size(50, 50);
             this.buscador.TabIndex = 2;
@@ -69,19 +70,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 71);
+            this.label1.Location = new System.Drawing.Point(30, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(577, 13);
+            this.label1.Size = new System.Drawing.Size(739, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "---------------------------------------------------------------------------------" +
-    "--------------------------------------------------------------------------------" +
-    "-----------------------------";
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Nirmala UI", 14F);
-            this.label2.Location = new System.Drawing.Point(243, 9);
+            this.label2.Location = new System.Drawing.Point(396, 7);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 25);
@@ -91,7 +90,7 @@
             // backButton
             // 
             this.backButton.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.backButton.Location = new System.Drawing.Point(527, 322);
+            this.backButton.Location = new System.Drawing.Point(720, 478);
             this.backButton.Margin = new System.Windows.Forms.Padding(2);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(72, 30);
@@ -103,7 +102,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(86, 13);
+            this.comboBox1.Location = new System.Drawing.Point(100, 10);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(112, 21);
             this.comboBox1.TabIndex = 7;
@@ -114,7 +113,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Nirmala UI", 14F);
-            this.label3.Location = new System.Drawing.Point(29, 9);
+            this.label3.Location = new System.Drawing.Point(43, 6);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 25);
             this.label3.TabIndex = 8;
@@ -127,7 +126,7 @@
             this.ListaPapers.ItemHeight = 21;
             this.ListaPapers.Location = new System.Drawing.Point(33, 91);
             this.ListaPapers.Name = "ListaPapers";
-            this.ListaPapers.Size = new System.Drawing.Size(566, 214);
+            this.ListaPapers.Size = new System.Drawing.Size(758, 382);
             this.ListaPapers.TabIndex = 9;
             // 
             // ErrorArea
@@ -135,7 +134,7 @@
             this.ErrorArea.AutoSize = true;
             this.ErrorArea.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.ErrorArea.ForeColor = System.Drawing.Color.Red;
-            this.ErrorArea.Location = new System.Drawing.Point(35, 49);
+            this.ErrorArea.Location = new System.Drawing.Point(44, 49);
             this.ErrorArea.Name = "ErrorArea";
             this.ErrorArea.Size = new System.Drawing.Size(45, 19);
             this.ErrorArea.TabIndex = 10;
@@ -146,7 +145,7 @@
             this.IssueNumberError.AutoSize = true;
             this.IssueNumberError.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.IssueNumberError.ForeColor = System.Drawing.Color.Red;
-            this.IssueNumberError.Location = new System.Drawing.Point(244, 49);
+            this.IssueNumberError.Location = new System.Drawing.Point(397, 49);
             this.IssueNumberError.Name = "IssueNumberError";
             this.IssueNumberError.Size = new System.Drawing.Size(45, 19);
             this.IssueNumberError.TabIndex = 11;
@@ -156,7 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 363);
+            this.ClientSize = new System.Drawing.Size(803, 519);
             this.Controls.Add(this.IssueNumberError);
             this.Controls.Add(this.ErrorArea);
             this.Controls.Add(this.ListaPapers);

@@ -132,6 +132,9 @@
     <EmbeddedResource Include="BuildIssue.resx">
       <DependentUpon>BuildIssue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuyIssue.resx">
+      <DependentUpon>BuyIssue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsultarIssueNOReg.resx">
       <DependentUpon>ConsultarIssueNOReg.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,6 +245,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flecha-correct33233.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

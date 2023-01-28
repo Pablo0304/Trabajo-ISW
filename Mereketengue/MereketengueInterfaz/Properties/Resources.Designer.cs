@@ -133,6 +133,16 @@ namespace MereketengueInterfaz.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap flecha_correct33233 {
+            get {
+                object obj = ResourceManager.GetObject("flecha_correct33233", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap flecha_correcta {
             get {
                 object obj = ResourceManager.GetObject("flecha_correcta", resourceCulture);
