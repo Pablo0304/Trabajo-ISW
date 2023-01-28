@@ -74,7 +74,10 @@ namespace MereketengueInterfaz
                             {
                                 autores += per.Name.ToString() + ", ";
                             }
-                            ListaPapers.Items.Add("Title: " + p.Title + " | Authors: " + autores);
+                            if (i.PublicationDate < DateTime.Now)
+                            {
+                                ListaPapers.Items.Add("Title: " + p.Title + " | Authors: " + autores);
+                            }
                         }
                     }
                 }
