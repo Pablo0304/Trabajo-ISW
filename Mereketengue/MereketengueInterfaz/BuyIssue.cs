@@ -19,6 +19,7 @@ namespace MereketengueInterfaz
         private Magazine.Entities.Magazine magazine;
         private Issue selectedIssue;
         private User controluser;
+        private float precio;
         private ICollection<Issue> issuesListacompra;
         public BuyIssue(IMagazineISWService service)
         {
@@ -45,19 +46,21 @@ namespace MereketengueInterfaz
             //calcular price
             if (controluser.MagazineSubscriber)
             {
-                String aux = "";
+                float aux = 0;
                 foreach (Issue issue in issuesListacompra)
                 {
                     aux += (issue.Price * issue.Discount);
+                    precio = aux;
                 }
                 labelprecio.Text = aux + " €";
             }
             else 
             {
-                String aux = "";
+                float aux = 0;
                 foreach (Issue issue in issuesListacompra)
                 {
                     aux += issue.Price;
+                    precio = aux;
                 }
                 labelprecio.Text = aux + " €";
             }
@@ -73,10 +76,39 @@ namespace MereketengueInterfaz
                 Issue aux = service.searchIssue(numberIssue);
                 issuesListacompra.Remove(aux);
             }
+            if (issuesListacompra.Count != 0)
+            {
+                if (controluser.MagazineSubscriber)
+                {
+                    float aux = 0;
+                    foreach (Issue issue in issuesListacompra)
+                    {
+                        aux += (issue.Price - (issue.Price * issue.Discount / 100));
+                        precio = aux;
+                    }
+                    labelprecio.Text = aux + " €";
+                }
+                else
+                {
+                    float aux = 0;
+                    foreach (Issue issue in issuesListacompra)
+                    {
+                        aux += issue.Price;
+                        precio = aux;
+                    }
+                    labelprecio.Text = aux + " €";
+                }
+            }
+            else 
+            {
+                labelprecio.Text = 0 + " €";
+                precio = 0;
+            }
         }
 
         private void load(object sender, EventArgs e)
         {
+            issuesListacompra = new List<Issue>();
             controluser = service.getLoggedUser();
             magazine = service.getMagazine();
             foreach(Issue i in magazine.Issues)
@@ -84,7 +116,6 @@ namespace MereketengueInterfaz
                 if(i.PublicationDate < DateTime.Now)
                 {
                     issuesPublicadas.Items.Add(i.Number);
-                    
                 }
             }
         }
@@ -92,10 +123,10 @@ namespace MereketengueInterfaz
         private void Buybutton_Click(object sender, EventArgs e)
         {
             DialogResult coauthors = MessageBox.Show(this, // Owner
-                       "", // Message
+                       "Total price: " + precio , // Message
                        "Buy Issues", // Title
                        MessageBoxButtons.OKCancel, // Buttons included
-                       MessageBoxIcon.Question); // Icon
+                       MessageBoxIcon.Information); // Icon
             if (coauthors == DialogResult.OK)
             {
                 Menu_Principal mp = new Menu_Principal(service);
