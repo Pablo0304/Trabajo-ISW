@@ -108,7 +108,7 @@ namespace MereketengueInterfaz
             // buttonSend
             // 
             this.buttonSend.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.buttonSend.Location = new System.Drawing.Point(713, 78);
+            this.buttonSend.Location = new System.Drawing.Point(716, 446);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(75, 37);
             this.buttonSend.TabIndex = 8;
@@ -287,9 +287,9 @@ namespace MereketengueInterfaz
             // Back
             // 
             this.Back.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.Back.Location = new System.Drawing.Point(713, 446);
+            this.Back.Location = new System.Drawing.Point(628, 446);
             this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(75, 31);
+            this.Back.Size = new System.Drawing.Size(82, 37);
             this.Back.TabIndex = 32;
             this.Back.Text = "Back";
             this.Back.UseVisualStyleBackColor = true;

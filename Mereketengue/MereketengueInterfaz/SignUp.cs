@@ -148,5 +148,12 @@ namespace MereketengueInterfaz
         {
 
         }
+        protected override void OnClosed(EventArgs e)
+        {
+            ventanaprincipalNueva ev1 = new ventanaprincipalNueva(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Close();
+        }
     }
 }

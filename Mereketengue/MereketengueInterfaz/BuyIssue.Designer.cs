@@ -36,6 +36,7 @@
             this.buttonaddcart = new System.Windows.Forms.Button();
             this.buttonborrar = new System.Windows.Forms.Button();
             this.labelprecio = new System.Windows.Forms.Label();
+            this.buttonback = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // issuesPublicadas
@@ -124,11 +125,23 @@
             this.labelprecio.TabIndex = 7;
             this.labelprecio.Text = "0€";
             // 
+            // buttonback
+            // 
+            this.buttonback.Font = new System.Drawing.Font("Nirmala UI", 14F);
+            this.buttonback.Location = new System.Drawing.Point(48, 542);
+            this.buttonback.Name = "buttonback";
+            this.buttonback.Size = new System.Drawing.Size(85, 48);
+            this.buttonback.TabIndex = 8;
+            this.buttonback.Text = "Back";
+            this.buttonback.UseVisualStyleBackColor = true;
+            this.buttonback.Click += new System.EventHandler(this.buttonback_Click);
+            // 
             // BuyIssue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1033, 616);
+            this.Controls.Add(this.buttonback);
             this.Controls.Add(this.labelprecio);
             this.Controls.Add(this.buttonborrar);
             this.Controls.Add(this.buttonaddcart);
@@ -155,5 +168,6 @@
         private System.Windows.Forms.Button buttonaddcart;
         private System.Windows.Forms.Button buttonborrar;
         private System.Windows.Forms.Label labelprecio;
+        private System.Windows.Forms.Button buttonback;
     }
 }

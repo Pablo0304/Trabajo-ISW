@@ -65,7 +65,7 @@ namespace Magazine.Services
 
             User dan = AddUser("5002", "Dani", "suchard", false, true, "ensalada", "dani@gmail.com", "dani", "1234");
 
-            User pab = AddUser("5003", "pablo", "covid", false, true, "brocheta", "cabo@gmail.com", "pablo", "1234");
+            User pab = AddUser("5003", "Pablo", "covid", false, true, "brocheta", "cabo@gmail.com", "pablo", "1234");
 
             Area Juegos = AddArea("Juegos", jav, m1);
 

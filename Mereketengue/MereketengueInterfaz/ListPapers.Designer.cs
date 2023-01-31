@@ -60,7 +60,7 @@
             // buscador
             // 
             this.buscador.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.buscador.Location = new System.Drawing.Point(729, 18);
+            this.buscador.Location = new System.Drawing.Point(869, 10);
             this.buscador.Name = "buscador";
             this.buscador.Size = new System.Drawing.Size(50, 50);
             this.buscador.TabIndex = 2;
@@ -72,7 +72,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(30, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(739, 13);
+            this.label1.Size = new System.Drawing.Size(889, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -89,11 +89,11 @@
             // 
             // backButton
             // 
-            this.backButton.Font = new System.Drawing.Font("Nirmala UI", 10F);
-            this.backButton.Location = new System.Drawing.Point(720, 478);
+            this.backButton.Font = new System.Drawing.Font("Nirmala UI", 14F);
+            this.backButton.Location = new System.Drawing.Point(33, 499);
             this.backButton.Margin = new System.Windows.Forms.Padding(2);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(72, 30);
+            this.backButton.Size = new System.Drawing.Size(80, 38);
             this.backButton.TabIndex = 6;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
@@ -121,12 +121,12 @@
             // 
             // ListaPapers
             // 
-            this.ListaPapers.Font = new System.Drawing.Font("Nirmala UI", 12F);
+            this.ListaPapers.Font = new System.Drawing.Font("Nirmala UI", 14F);
             this.ListaPapers.FormattingEnabled = true;
-            this.ListaPapers.ItemHeight = 21;
+            this.ListaPapers.ItemHeight = 25;
             this.ListaPapers.Location = new System.Drawing.Point(33, 91);
             this.ListaPapers.Name = "ListaPapers";
-            this.ListaPapers.Size = new System.Drawing.Size(758, 382);
+            this.ListaPapers.Size = new System.Drawing.Size(895, 379);
             this.ListaPapers.TabIndex = 9;
             // 
             // ErrorArea
@@ -134,7 +134,7 @@
             this.ErrorArea.AutoSize = true;
             this.ErrorArea.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.ErrorArea.ForeColor = System.Drawing.Color.Red;
-            this.ErrorArea.Location = new System.Drawing.Point(44, 49);
+            this.ErrorArea.Location = new System.Drawing.Point(44, 41);
             this.ErrorArea.Name = "ErrorArea";
             this.ErrorArea.Size = new System.Drawing.Size(45, 19);
             this.ErrorArea.TabIndex = 10;
@@ -145,7 +145,7 @@
             this.IssueNumberError.AutoSize = true;
             this.IssueNumberError.Font = new System.Drawing.Font("Nirmala UI", 10F);
             this.IssueNumberError.ForeColor = System.Drawing.Color.Red;
-            this.IssueNumberError.Location = new System.Drawing.Point(397, 49);
+            this.IssueNumberError.Location = new System.Drawing.Point(397, 41);
             this.IssueNumberError.Name = "IssueNumberError";
             this.IssueNumberError.Size = new System.Drawing.Size(45, 19);
             this.IssueNumberError.TabIndex = 11;
@@ -155,7 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 519);
+            this.ClientSize = new System.Drawing.Size(940, 564);
             this.Controls.Add(this.IssueNumberError);
             this.Controls.Add(this.ErrorArea);
             this.Controls.Add(this.ListaPapers);

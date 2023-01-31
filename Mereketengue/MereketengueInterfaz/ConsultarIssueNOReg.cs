@@ -66,19 +66,20 @@ namespace MereketengueInterfaz
                 {
                     if (i.Number >= 0)
                     {
-                        meterPrice.Text = i.Price + "€";
-                        foreach (Paper p in i.PublishedPapers)
+                        if (i.PublicationDate < DateTime.Now)
                         {
-                            String autores = "";
-                            foreach (Person per in p.CoAuthors)
+                            meterPrice.Text = i.Price + "€";
+                            foreach (Paper p in i.PublishedPapers)
                             {
-                                autores += per.Name.ToString() + ", ";
-                            }
-                            if (i.PublicationDate < DateTime.Now)
-                            {
+                                String autores = "";
+                                foreach (Person per in p.CoAuthors)
+                                {
+                                    autores += per.Name.ToString() + ", ";
+                                }
                                 ListaPapers.Items.Add("Title: " + p.Title + " | Authors: " + autores);
                             }
                         }
+                        else { ListaPapers.Items.Add("This issue is not published yet"); }
                     }
                 }
             }
@@ -97,6 +98,13 @@ namespace MereketengueInterfaz
         {
             meterPrice.Text = "";
             ListaPapers.Items.Clear();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            ventanaprincipalNueva ev1 = new ventanaprincipalNueva(service);
+            this.Hide();
+            ev1.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -37,6 +37,7 @@ namespace MereketengueInterfaz
 
         private void buttonaddcart_Click(object sender, EventArgs e)
         {
+            
             //añadir a la lista
             if (selectedIssue != null)
             {
@@ -49,7 +50,7 @@ namespace MereketengueInterfaz
                 float aux = 0;
                 foreach (Issue issue in issuesListacompra)
                 {
-                    aux += (issue.Price * issue.Discount);
+                    aux += (issue.Price - (issue.Price * (issue.Discount / 100)));
                     precio = aux;
                 }
                 labelprecio.Text = aux + " €";
@@ -83,7 +84,7 @@ namespace MereketengueInterfaz
                     float aux = 0;
                     foreach (Issue issue in issuesListacompra)
                     {
-                        aux += (issue.Price - (issue.Price * issue.Discount / 100));
+                        aux += (issue.Price - (issue.Price * (issue.Discount / 100)));
                         precio = aux;
                     }
                     labelprecio.Text = aux + " €";
@@ -134,6 +135,21 @@ namespace MereketengueInterfaz
                 mp.ShowDialog();
                 this.Close();
             }
+        }
+
+        private void buttonback_Click(object sender, EventArgs e)
+        {
+            Menu_Principal mp4 = new Menu_Principal(service);
+            this.Hide();
+            mp4.ShowDialog();
+            this.Close();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            Menu_Principal mp4 = new Menu_Principal(service);
+            this.Hide();
+            mp4.ShowDialog();
+            this.Close();
         }
     }
 

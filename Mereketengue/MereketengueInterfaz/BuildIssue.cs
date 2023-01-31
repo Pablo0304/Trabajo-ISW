@@ -148,6 +148,8 @@ namespace MereketengueInterfaz
             magazine = service.getMagazine();
             lista = magazine.getallnumbers();
             ErrorCrear.Text = "";
+            //ErrorAgregar.Text = selected.ToString();
+
             if (selected == 2)
             {
                 if (textBoxnumber.Text != "")
@@ -190,47 +192,51 @@ namespace MereketengueInterfaz
                 else { ErrorNumber.Text = "Insert Number"; }
 
             }
-            else if (selected == 1 && selectedIssue != null)
+            else if (selected == 1)
             {
-                if (textBoxdiscount.Text != "")
+                if (selectedIssue != null)
                 {
-                    if (textBoxprice.Text != "")
+                    if (textBoxdiscount.Text != "")
                     {
-                        if (dateTimePicker.Value > DateTime.Now)
+                        if (textBoxprice.Text != "")
                         {
-                            try
+                            if (dateTimePicker.Value > DateTime.Now)
                             {
-                                float price = float.Parse(textBoxprice.Text);
-                                float discount = float.Parse(textBoxdiscount.Text);
-                                if (discount >= 0 && discount <= 100)
+                                try
                                 {
-                                    service.eliminarPublishedpapers(papersParaEliminar);
-                                    service.EditIssue(selectedIssue, selectedPapersAux, dateTimePicker.Value, discount, price);
-                                    Menu_Principal ev1 = new Menu_Principal(service);
-                                    this.Hide();
-                                    ev1.ShowDialog();
-                                    this.Close();
+                                    float price = float.Parse(textBoxprice.Text);
+                                    float discount = float.Parse(textBoxdiscount.Text);
+                                    if (discount >= 0 && discount <= 100)
+                                    {
+                                        service.eliminarPublishedpapers(papersParaEliminar);
+                                        service.EditIssue(selectedIssue, selectedPapersAux, dateTimePicker.Value, discount, price);
+                                        Menu_Principal ev1 = new Menu_Principal(service);
+                                        this.Hide();
+                                        ev1.ShowDialog();
+                                        this.Close();
+                                    }
+                                    else { ErrorDiscount.Text = "Insert a valid discount 0%-100%"; }
                                 }
-                                else { ErrorDiscount.Text = "Insert a valid discount 0%-100%"; }
+                                catch (FormatException)
+                                {
+                                    ErrorDiscount.Text = "Price and discount must bee a positive decimal value.";
+                                    ErrorPrice.Text = "Price and discount must bee a positive decimal value.";
+                                }
+                                catch (OverflowException)
+                                {
+                                    ErrorDiscount.Text = "That number is too big or too small, idk.";
+                                    ErrorPrice.Text = "That number is too big or too small, idk.";
+                                }
                             }
-                            catch (FormatException)
-                            {
-                                ErrorDiscount.Text = "Price and discount must bee a positive decimal value.";
-                                ErrorPrice.Text = "Price and discount must bee a positive decimal value.";
-                            }
-                            catch (OverflowException)
-                            {
-                                ErrorDiscount.Text = "That number is too big or too small, idk.";
-                                ErrorPrice.Text = "That number is too big or too small, idk.";
-                            }
+                            else { errordate.Text = "date must be in the future"; }
                         }
-                        else { errordate.Text = "date must be in the future"; }
+                        else { ErrorPrice.Text = "Insert Price"; }
                     }
-                    else { ErrorPrice.Text = "Insert Price"; }
+                    else { ErrorDiscount.Text = "Insert Discount"; }
                 }
-                else { ErrorDiscount.Text = "Insert Discount"; }
-            }
-            else { ErrorCrear.Text = "Select an issue for edit it"; }
+                else { ErrorCrear.Text = "Select an issue for edit it"; }
+            }   
+            
         }
         
         private void clickeditar(object sender, EventArgs e)
@@ -243,6 +249,7 @@ namespace MereketengueInterfaz
             this.selectorIssueComboTextoOpcionEditar.ForeColor = Color.White;
             this.selectorIssueComboTextoOpcionEditar.BackColor = Color.SlateBlue;
             this.TextoOpcionNueva.ForeColor = Color.Black;
+            this.TextoOpcionNueva.BackColor = Color.Lavender;
             selected = 1;
             selectorIssueComboTextoOpcionEditar.Items.Clear();
             foreach (Issue i in magazine.Issues)
@@ -259,6 +266,7 @@ namespace MereketengueInterfaz
         private void clickNueva(object sender, EventArgs e)
         {
             selectedIssue = null;
+            selected = 2;
             selectorIssueComboTextoOpcionEditar.Text = "Select Issue to edit";
             paneltapamelotodo.Visible = false;
             dateTimePicker.Value = DateTime.Now;
@@ -270,33 +278,46 @@ namespace MereketengueInterfaz
             ErrorDiscount.Text = "";
             ErrorPrice.Text = "";
             this.TextoOpcionNueva.ForeColor = Color.White;
+            this.TextoOpcionNueva.BackColor = Color.SlateBlue;
             this.selectorIssueComboTextoOpcionEditar.ForeColor = Color.Black;
             this.selectorIssueComboTextoOpcionEditar.BackColor = Color.White;
-            selected = 2;
+            
         }
 
         private void leavepaneleditar(object sender, EventArgs e)
         {
-            this.selectorIssueComboTextoOpcionEditar.ForeColor = Color.Black;
-            this.selectorIssueComboTextoOpcionEditar.BackColor = Color.Lavender;
+            if (selected == 0)
+            {
+                this.selectorIssueComboTextoOpcionEditar.ForeColor = Color.Black;
+                this.selectorIssueComboTextoOpcionEditar.BackColor = Color.Lavender;
+            }
         }
 
         private void enterpaneleditar(object sender, EventArgs e)
         {
-            this.selectorIssueComboTextoOpcionEditar.ForeColor = Color.White;
-            this.selectorIssueComboTextoOpcionEditar.BackColor = Color.SlateBlue;
+            if (selected == 0)
+            {
+                this.selectorIssueComboTextoOpcionEditar.ForeColor = Color.White;
+                this.selectorIssueComboTextoOpcionEditar.BackColor = Color.SlateBlue;
+            }
         }
 
         private void leavepanelnueva(object sender, EventArgs e)
         {
-            this.TextoOpcionNueva.ForeColor = Color.Black;
-            this.TextoOpcionNueva.BackColor = Color.Lavender;
+            if (selected == 0)
+            {
+                this.TextoOpcionNueva.ForeColor = Color.Black;
+                this.TextoOpcionNueva.BackColor = Color.Lavender;
+            }
         }
 
         private void enterpanelnueva(object sender, EventArgs e)
         {
-            this.TextoOpcionNueva.ForeColor = Color.White;
-            this.TextoOpcionNueva.BackColor = Color.SlateBlue;
+            if (selected == 0)
+            {
+                this.TextoOpcionNueva.ForeColor = Color.White;
+                this.TextoOpcionNueva.BackColor = Color.SlateBlue;
+            }
         }
 
         private void cambiarIssue(object sender, EventArgs e)
